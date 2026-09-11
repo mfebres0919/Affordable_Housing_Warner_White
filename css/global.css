@@ -163,7 +163,8 @@ a {
   text-underline-offset: 0.15em;
 }
 
-ul {
+ul,
+ol {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -347,6 +348,15 @@ button {
   border-radius: 50%;
   background-color: var(--clr-primary);
   object-fit: cover;
+}
+
+.avatar-stack--sm img {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.avatar-stack--sm li + li {
+  margin-left: -0.625rem;
 }
 
 /* Portrait + pull quote + attribution */
