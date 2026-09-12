@@ -221,20 +221,6 @@
 
       <section class="section firm" aria-labelledby="firm-heading">
         <div class="container firm__inner">
-          <picture class="firm__photo">
-            <source media="(min-width: 48em)" srcset="../images/home/about/about-firm.webp" type="image/webp" />
-            <source media="(min-width: 48em)" srcset="../images/home/about/about-firm.jpg" type="image/jpeg" />
-            <source srcset="../images/home/about/about-firm-m.webp" type="image/webp" />
-            <img
-              src="../images/home/about/about-firm-m.jpg"
-              alt="T. Deon Warner and Rev. Marilyn White reviewing a Houston church property"
-              width="720"
-              height="900"
-              decoding="async"
-              loading="lazy"
-            />
-          </picture>
-
           <div class="firm__body">
             <p class="section-badge">
               <span class="section-badge__dot" aria-hidden="true"></span>
@@ -243,50 +229,153 @@
 
             <h2 class="section-heading" id="firm-heading">Why this firm, and why now</h2>
 
-            <div class="firm__prose">
-              <p>
-                Many churches in the Houston area own land or buildings they no longer fully
-                use. Those organisations hold something a developer cannot buy &mdash; deep trust
-                in their own neighbourhood &mdash; but little experience with development
-                financing, tax credits, or government programmes. Meanwhile, recently passed
-                federal affordable housing legislation is expected to release new funding.
-              </p>
-              <p>
-                No consulting firm in Houston currently serves that gap in a clear, accessible
-                way. We were formed to fill it: an attorney and a pastor, working on the same
-                side of the table as the congregation, from the first look at a property through
-                to the day residents move in.
-              </p>
+            <p class="firm__prose">
+              Many Houston churches own land or buildings they no longer fully use. They hold
+              something a developer cannot buy &mdash; deep trust in their own neighbourhood &mdash;
+              but little experience with development financing, tax credits, or government
+              programmes. No consulting firm in this city currently serves that gap in a clear,
+              accessible way. We were formed to fill it.
+            </p>
+
+            <div class="tabs" role="tablist" aria-label="Mission, vision, and approach" data-tabs>
+                <button
+                  class="tabs__btn"
+                  type="button"
+                  role="tab"
+                  id="tab-mission"
+                  aria-controls="panel-mission"
+                  aria-selected="true"
+                  tabindex="0"
+                >
+                  Mission
+                </button>
+                <button
+                  class="tabs__btn"
+                  type="button"
+                  role="tab"
+                  id="tab-vision"
+                  aria-controls="panel-vision"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  Vision
+                </button>
+                <button
+                  class="tabs__btn"
+                  type="button"
+                  role="tab"
+                  id="tab-approach"
+                  aria-controls="panel-approach"
+                  aria-selected="false"
+                  tabindex="-1"
+                >
+                  Approach
+                </button>
             </div>
 
-            <dl class="snapshot">
-                <div class="snapshot__row">
-                  <dt>Entity</dt>
-                  <dd>Texas Limited Liability Company</dd>
-                </div>
-                <div class="snapshot__row">
-                  <dt>Principals</dt>
-                  <dd>T. Deon Warner, Esq. and Rev. Dr. Marilyn White</dd>
-                </div>
-                <div class="snapshot__row">
-                  <dt>Office</dt>
-                  <dd>Houston, Texas</dd>
-                </div>
-                <div class="snapshot__row">
-                  <dt>Focus</dt>
-                  <dd>Consulting and co-development for churches and community groups</dd>
-                </div>
-            </dl>
+              <p class="firm__panel" id="panel-mission" role="tabpanel" aria-labelledby="tab-mission">
+                Guide churches, community groups, and landowners through affordable housing development in plain language &mdash; from the first look at a property to the day residents move in.
+              </p>
 
-            <a class="btn btn--accent btn--with-badge" href="#contact">
-              Schedule a Consultation
-              <span class="btn__badge" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
+              <p class="firm__panel" id="panel-vision" role="tabpanel" aria-labelledby="tab-vision" hidden>
+                Houston congregations using land they already own to create housing their own neighbourhoods can afford, without handing control of the outcome to an outside developer.
+              </p>
+
+              <p class="firm__panel" id="panel-approach" role="tabpanel" aria-labelledby="tab-approach" hidden>
+                Consulting and navigation as standard, with co-development where it fits &mdash; so clients keep an advocate who has a direct stake in how the project turns out.
+              </p>
+
+            <ul class="firm__features">
+              <li class="feature">
+                <span class="feature__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18" /><path d="M5 7h14" /><path d="M5 7 2 14h6L5 7z" /><path d="M19 7l-3 7h6l-3-7z" /><path d="M8 21h8" /></svg>
+                </span>
+                <div class="feature__body">
+                  <h3 class="feature__title">Legal and tax structuring</h3>
+                  <p class="feature__text">
+                    Church property transactions, closings, and tax credit deals handled in house.
+                  </p>
+                </div>
+              </li>
+
+              <li class="feature">
+                <span class="feature__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l8.84 8.84 8.84-8.84a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                </span>
+                <div class="feature__body">
+                  <h3 class="feature__title">Ministry and community trust</h3>
+                  <p class="feature__text">
+                    Three decades of leadership inside the congregations we advise.
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="firm__cta">
+              <a class="btn btn--accent btn--with-badge" href="#contact">
+                Schedule a Consultation
+                <span class="btn__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </a>
+
+              <a class="firm__call" href="tel:+17135550147">
+                <span class="firm__call-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                </span>
+                <span>
+                  <span class="firm__call-label">Call us</span>
+                  <span class="firm__call-value">(713) 555-0147</span>
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div class="firm__visual">
+            <picture class="firm__photo">
+              <source media="(min-width: 48em)" srcset="../images/home/about/about-firm.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="../images/home/about/about-firm.jpg" type="image/jpeg" />
+              <source srcset="../images/home/about/about-firm-m.webp" type="image/webp" />
+              <img
+                src="../images/home/about/about-firm-m.jpg"
+                alt="T. Deon Warner and Rev. Marilyn White reviewing a Houston church property"
+                width="720"
+                height="900"
+                decoding="async"
+                loading="lazy"
+              />
+            </picture>
+
+            <div class="firm__stat">
+              <span class="firm__stat-figure">$33M</span>
+              <span class="firm__stat-label">
+                Affordable senior housing community developed under our principals&rsquo;
+                leadership.
               </span>
-            </a>
+              <span class="firm__stat-note">Delivered in Houston</span>
+            </div>
+
+            <div class="firm__badge">
+              <svg class="firm__badge-ring" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+                <defs>
+                  <path
+                    id="firm-badge-curve"
+                    d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"
+                    fill="none"
+                  />
+                </defs>
+                <text>
+                  <textPath href="#firm-badge-curve">
+                    Faith &middot; Housing &middot; Opportunity &middot; Faith &middot; Housing &middot; Opportunity &middot;
+                  </textPath>
+                </text>
+              </svg>
+
+              <span class="firm__badge-mark" aria-hidden="true">WW</span>
+            </div>
           </div>
         </div>
       </section>
@@ -818,5 +907,6 @@
 
 
     <script src="../js/global.js" defer></script>
+    <script src="../js/about.js" defer></script>
   </body>
 </html>
