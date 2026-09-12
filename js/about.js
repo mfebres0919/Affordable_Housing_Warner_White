@@ -8,23 +8,21 @@
 (function () {
   'use strict';
 
-  var tablist = document.querySelector('[data-tabs]');
+  /* Two independent tablists on this page — mission/vision/approach, and the
+     two principals — so each one gets its own closure rather than sharing
+     module-level state. */
+  function initTabs(tablist) {
+    var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
 
-  if (!tablist) {
-    return;
-  }
+    if (tabs.length < 2) {
+      return;
+    }
 
-  var tabs = Array.prototype.slice.call(tablist.querySelectorAll('[role="tab"]'));
-
-  if (tabs.length < 2) {
-    return;
-  }
-
-  function panelFor(tab) {
+    function panelFor(tab) {
     return document.getElementById(tab.getAttribute('aria-controls'));
-  }
+    }
 
-  function select(tab, moveFocus) {
+    function select(tab, moveFocus) {
     var i;
 
     for (i = 0; i < tabs.length; i += 1) {
@@ -43,15 +41,15 @@
     if (moveFocus) {
       tab.focus();
     }
-  }
+    }
 
-  for (var i = 0; i < tabs.length; i += 1) {
+    for (var i = 0; i < tabs.length; i += 1) {
     tabs[i].addEventListener('click', function (event) {
       select(event.currentTarget, false);
     });
-  }
+    }
 
-  tablist.addEventListener('keydown', function (event) {
+    tablist.addEventListener('keydown', function (event) {
     var current = tabs.indexOf(document.activeElement);
 
     if (current === -1) {
@@ -74,12 +72,19 @@
       event.preventDefault();
       select(tabs[next], true);
     }
-  });
+    });
 
-  /* Normalise whatever the markup shipped with */
-  var initial = tabs.filter(function (t) {
-    return t.getAttribute('aria-selected') === 'true';
-  })[0] || tabs[0];
+    /* Normalise whatever the markup shipped with */
+    var initial = tabs.filter(function (t) {
+      return t.getAttribute('aria-selected') === 'true';
+    })[0] || tabs[0];
 
-  select(initial, false);
+    select(initial, false);
+  }
+
+  var lists = document.querySelectorAll('[data-tabs]');
+
+  for (var l = 0; l < lists.length; l += 1) {
+    initTabs(lists[l]);
+  }
 })();

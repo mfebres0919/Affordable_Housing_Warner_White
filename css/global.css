@@ -302,6 +302,32 @@ button {
   text-align: left;
 }
 
+/* Split variant: heading and lead paragraph share a row on wide screens.
+   A centred column of text in a 1400px viewport leaves most of the row empty;
+   this fills it and gives the section a proper shoulder. */
+.section-header--split {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.section-header--split .section-heading {
+  max-width: 20ch;
+}
+
+@media (min-width: 64em) {
+  .section-header--split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    align-items: end;
+  }
+
+  .section-header--split .section-intro {
+    max-width: 46ch;
+    padding-bottom: 0.35rem;
+  }
+}
+
 /* Icon + heading + copy, used in feature grids */
 .feature {
   display: flex;
