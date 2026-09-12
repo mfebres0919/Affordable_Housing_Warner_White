@@ -275,37 +275,38 @@
         <div class="container about__inner">
           <div class="about__visual">
             <!--
-              images/about-firm.webp + .jpg      (1200x1500, desktop)
-              images/about-firm-m.webp + .jpg    (800x1000, mobile crop)
-              Subject: the principals on site, or a church property under review.
+              images/home/about/
+                about-firm.webp + .jpg     1050x1400 (desktop, min-width 48em)
+                about-firm-m.webp + .jpg    720x900  (mobile)
             -->
             <picture class="about__photo">
-              <source media="(min-width: 48em)" srcset="images/about-firm.webp" type="image/webp" />
-              <source media="(min-width: 48em)" srcset="images/about-firm.jpg" type="image/jpeg" />
-              <source srcset="images/about-firm-m.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/about/about-firm.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/about/about-firm.jpg" type="image/jpeg" />
+              <source srcset="images/home/about/about-firm-m.webp" type="image/webp" />
               <img
-                src="images/about-firm-m.jpg"
+                src="images/home/about/about-firm-m.jpg"
                 alt="T. Deon Warner and Rev. Marilyn White reviewing a Houston church property"
-                width="800"
-                height="1000"
+                width="720"
+                height="900"
                 decoding="async"
                 loading="lazy"
               />
             </picture>
 
             <div class="about__card">
-              <!-- images/deon-warner*, images/marilyn-white* (400x400 square crops) -->
+              <!-- images/people/ — 400x400 square crops, shared with the quote
+                   card and the Our Process footnote so the file downloads once -->
               <ul class="avatar-stack">
                 <li>
                   <picture>
-                    <source srcset="images/deon-warner.webp" type="image/webp" />
-                    <img src="images/deon-warner.jpg" alt="T. Deon Warner, Esq." width="400" height="400" decoding="async" loading="lazy" />
+                    <source srcset="images/people/deon-warner.webp" type="image/webp" />
+                    <img src="images/people/deon-warner.jpg" alt="T. Deon Warner, Esq." width="400" height="400" decoding="async" loading="lazy" />
                   </picture>
                 </li>
                 <li>
                   <picture>
-                    <source srcset="images/marilyn-white.webp" type="image/webp" />
-                    <img src="images/marilyn-white.jpg" alt="Rev. Dr. Marilyn White" width="400" height="400" decoding="async" loading="lazy" />
+                    <source srcset="images/people/marilyn-white.webp" type="image/webp" />
+                    <img src="images/people/marilyn-white.jpg" alt="Rev. Dr. Marilyn White" width="400" height="400" decoding="async" loading="lazy" />
                   </picture>
                 </li>
               </ul>
@@ -327,8 +328,8 @@
             <!-- PLACEHOLDER QUOTE — needs the principals' sign-off before launch -->
             <figure class="quote-card about__quote">
               <picture class="quote-card__photo">
-                <source srcset="images/about-quote.webp" type="image/webp" />
-                <img src="images/about-quote.jpg" alt="T. Deon Warner, Esq." width="600" height="600" decoding="async" loading="lazy" />
+                <source srcset="images/people/deon-warner.webp" type="image/webp" />
+                <img src="images/people/deon-warner.jpg" alt="T. Deon Warner, Esq." width="400" height="400" decoding="async" loading="lazy" />
               </picture>
 
               <div class="quote-card__body">
@@ -527,14 +528,14 @@
             <ul class="avatar-stack avatar-stack--sm">
               <li>
                 <picture>
-                  <source srcset="images/deon-warner.webp" type="image/webp" />
-                  <img src="images/deon-warner.jpg" alt="T. Deon Warner, Esq." width="400" height="400" decoding="async" loading="lazy" />
+                  <source srcset="images/people/deon-warner.webp" type="image/webp" />
+                  <img src="images/people/deon-warner.jpg" alt="T. Deon Warner, Esq." width="400" height="400" decoding="async" loading="lazy" />
                 </picture>
               </li>
               <li>
                 <picture>
-                  <source srcset="images/marilyn-white.webp" type="image/webp" />
-                  <img src="images/marilyn-white.jpg" alt="Rev. Dr. Marilyn White" width="400" height="400" decoding="async" loading="lazy" />
+                  <source srcset="images/people/marilyn-white.webp" type="image/webp" />
+                  <img src="images/people/marilyn-white.jpg" alt="Rev. Dr. Marilyn White" width="400" height="400" decoding="async" loading="lazy" />
                 </picture>
               </li>
             </ul>
