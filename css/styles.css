@@ -987,3 +987,163 @@
     margin-inline: 0;
   }
 }
+
+/* ==========================================================================
+   Pathways marquee — a continuously scrolling band between About and Process
+
+   The track holds the item list twice. Each item carries its own trailing
+   padding rather than the track using `gap`, so both halves are exactly the
+   same width and translateX(-50%) loops seamlessly.
+   ========================================================================== */
+.marquee {
+  padding-block: var(--space-lg);
+  background-color: var(--clr-primary);
+}
+
+.marquee__viewport {
+  position: relative;
+  overflow: hidden;
+  /* Items dissolve at both edges instead of clipping hard */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 6%,
+    #000 94%,
+    transparent 100%
+  );
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 48s linear infinite;
+}
+
+/* Hovering or tabbing into the strip holds it still */
+.marquee__viewport:hover .marquee__track,
+.marquee__viewport:focus-within .marquee__track {
+  animation-play-state: paused;
+}
+
+/* Set by js/script.js from the pause control */
+.marquee.is-paused .marquee__track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex: none;
+  /* Trailing space lives on the item, not as a track gap — see note above */
+  padding-right: clamp(2rem, 5vw, 3.5rem);
+  color: var(--clr-surface);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.marquee__item svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+  color: var(--clr-accent-light);
+}
+
+/* --------------------------------------------------------------------------
+   Pause control
+   Hover-pause alone leaves out keyboard and touch visitors, and WCAG 2.2.2
+   wants a real mechanism for anything that moves for more than five seconds.
+   -------------------------------------------------------------------------- */
+.marquee__inner {
+  position: relative;
+}
+
+.marquee__toggle {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--clr-line-on-dark);
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+
+.marquee__toggle svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.marquee__toggle:hover,
+.marquee__toggle:focus-visible {
+  border-color: var(--clr-accent-light);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+/* Swap the glyph from the button's own state — no DOM rebuilding */
+.marquee__toggle .marquee__icon-play {
+  display: none;
+}
+
+.marquee__toggle[aria-pressed="true"] .marquee__icon-play {
+  display: block;
+}
+
+.marquee__toggle[aria-pressed="true"] .marquee__icon-pause {
+  display: none;
+}
+
+/* ==========================================================================
+   Marquee — reduced motion
+   Nothing moves on its own; the strip becomes a row the visitor scrolls.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .marquee__viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .marquee__track {
+    animation: none;
+    transform: none;
+  }
+
+  /* The second copy exists only to make the loop seamless */
+  .marquee__track [aria-hidden="true"] {
+    display: none;
+  }
+
+  .marquee__toggle {
+    display: none;
+  }
+}

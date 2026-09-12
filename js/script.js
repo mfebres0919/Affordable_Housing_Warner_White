@@ -222,3 +222,30 @@
 
   sync();
 })();
+
+/* ==========================================================================
+   Pathways marquee — pause control
+   CSS already pauses on hover and focus-within; this covers keyboard and
+   touch, which hover cannot reach.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var marquee = document.querySelector('.marquee');
+  var toggle = marquee && marquee.querySelector('.marquee__toggle');
+
+  if (!marquee || !toggle) {
+    return;
+  }
+
+  toggle.addEventListener('click', function () {
+    var paused = toggle.getAttribute('aria-pressed') === 'true';
+
+    toggle.setAttribute('aria-pressed', paused ? 'false' : 'true');
+    toggle.setAttribute('aria-label', paused
+      ? 'Pause the scrolling list'
+      : 'Resume the scrolling list');
+    marquee.classList.toggle('is-paused', !paused);
+  });
+})();

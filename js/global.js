@@ -131,3 +131,56 @@
     desktopQuery.addListener(handleBreakpoint);
   }
 })();
+
+/* ==========================================================================
+   Back to top
+   Reveals itself past one viewport of scrolling. scrollTo is called without
+   a behaviour so it inherits scroll-behavior from CSS — which the
+   reduced-motion block already switches to auto, so no branching here.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var button = document.querySelector('.to-top');
+
+  if (!button) {
+    return;
+  }
+
+  var VISIBLE_CLASS = 'is-visible';
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+
+    if (window.pageYOffset > window.innerHeight * 0.8) {
+      button.classList.add(VISIBLE_CLASS);
+    } else {
+      button.classList.remove(VISIBLE_CLASS);
+    }
+  }
+
+  /* rAF-throttled so scrolling stays cheap */
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
+  }
+
+  button.addEventListener('click', function () {
+    window.scrollTo({ top: 0 });
+
+    /* The button hides itself once we arrive, so hand focus to the top of the
+       tab order rather than letting it fall back to the body */
+    var brand = document.querySelector('.site-header .brand');
+
+    if (brand) {
+      brand.focus();
+    }
+  });
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  update();
+})();
