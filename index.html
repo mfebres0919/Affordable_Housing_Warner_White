@@ -839,12 +839,11 @@
           <ul class="projects__list">
             <li class="project">
               <div class="project__media">
-                <!-- images/project-1.webp + .jpg (1200x900) / -m (800x600) -->
                 <picture>
-                  <source media="(min-width: 48em)" srcset="images/project-1.webp" type="image/webp" />
-                  <source media="(min-width: 48em)" srcset="images/project-1.jpg" type="image/jpeg" />
-                  <source srcset="images/project-1-m.webp" type="image/webp" />
-                  <img src="images/project-1-m.jpg" alt="Affordable senior housing community in Houston" width="800" height="600" decoding="async" loading="lazy" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-1.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-1.jpg" type="image/jpeg" />
+                  <source srcset="images/home/project-experience/project-1-m.webp" type="image/webp" />
+                  <img src="images/home/project-experience/project-1-m.jpg" alt="Residents walking through the courtyard of an affordable senior housing community" width="720" height="540" decoding="async" loading="lazy" />
                 </picture>
 
                 <p class="project__tag">Development</p>
@@ -878,12 +877,11 @@
 
             <li class="project">
               <div class="project__media">
-                <!-- images/project-2.webp + .jpg (1200x900) / -m (800x600) -->
                 <picture>
-                  <source media="(min-width: 48em)" srcset="images/project-2.webp" type="image/webp" />
-                  <source media="(min-width: 48em)" srcset="images/project-2.jpg" type="image/jpeg" />
-                  <source srcset="images/project-2-m.webp" type="image/webp" />
-                  <img src="images/project-2-m.jpg" alt="A Houston church property under transaction review" width="800" height="600" decoding="async" loading="lazy" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-2.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-2.jpg" type="image/jpeg" />
+                  <source srcset="images/home/project-experience/project-2-m.webp" type="image/webp" />
+                  <img src="images/home/project-experience/project-2-m.jpg" alt="Advisors reviewing a church property development plan outside a Houston church" width="720" height="540" decoding="async" loading="lazy" />
                 </picture>
 
                 <p class="project__tag">Legal &amp; Structuring</p>
@@ -917,12 +915,11 @@
 
             <li class="project">
               <div class="project__media">
-                <!-- images/project-3.webp + .jpg (1200x900) / -m (800x600) -->
                 <picture>
-                  <source media="(min-width: 48em)" srcset="images/project-3.webp" type="image/webp" />
-                  <source media="(min-width: 48em)" srcset="images/project-3.jpg" type="image/jpeg" />
-                  <source srcset="images/project-3-m.webp" type="image/webp" />
-                  <img src="images/project-3-m.jpg" alt="Community dental services provided to Houston residents" width="800" height="600" decoding="async" loading="lazy" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-3.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/home/project-experience/project-3.jpg" type="image/jpeg" />
+                  <source srcset="images/home/project-experience/project-3-m.webp" type="image/webp" />
+                  <img src="images/home/project-experience/project-3-m.jpg" alt="Rev. Dr. Marilyn White at a free dental care clinic for Houston residents" width="720" height="540" decoding="async" loading="lazy" />
                 </picture>
 
                 <p class="project__tag">Community Impact</p>
@@ -975,18 +972,27 @@
           <div class="contact__grid">
             <div>
               <!--
-                images/contact-map.webp + .jpg (1000x750) / -m (800x600).
-                A static map export or a Houston neighbourhood photograph. A live
-                Google Maps embed would add a third-party iframe (handbook §6) and
-                the firm has no street address yet — treat it as a documented
-                exception if the client asks for the real thing later.
+                PROJECT EXCEPTION (handbook §6): third-party embed.
+                Keyless Google Maps embed centred on Houston, lazy-loaded so it
+                never blocks first paint. When the firm has a street address,
+                swap the q= value for it — or paste the src from Google Maps
+                > Share > Embed a map for the official iframe.
               -->
-              <picture class="contact__map">
-                <source media="(min-width: 48em)" srcset="images/contact-map.webp" type="image/webp" />
-                <source media="(min-width: 48em)" srcset="images/contact-map.jpg" type="image/jpeg" />
-                <source srcset="images/contact-map-m.webp" type="image/webp" />
-                <img src="images/contact-map-m.jpg" alt="Map of the Houston area served by WW Housing Development" width="800" height="600" decoding="async" loading="lazy" />
-              </picture>
+              <div class="contact__map">
+                <iframe
+                  class="contact__map-frame"
+                  src="https://maps.google.com/maps?q=Houston,+TX&amp;z=10&amp;output=embed"
+                  title="Map of Houston, Texas"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  allowfullscreen
+                ></iframe>
+
+                <p class="contact__map-note">
+                  <span class="contact__map-city">Houston, Texas</span>
+                  Serving the greater Houston area
+                </p>
+              </div>
 
               <div class="contact__details">
                 <div>

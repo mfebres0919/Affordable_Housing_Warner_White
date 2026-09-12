@@ -1274,6 +1274,7 @@ button {
    Details column
    -------------------------------------------------------------------------- */
 .contact__map {
+  position: relative;
   display: block;
   aspect-ratio: 4 / 3;
   max-width: 100%;
@@ -1282,10 +1283,35 @@ button {
   background-color: rgba(15, 42, 68, 0.08);
 }
 
-.contact__map img {
+/* Google's own snippet carries style="border:0" — kept out of the markup */
+.contact__map-frame {
+  display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  border: 0;
+}
+
+.contact__map-note {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  margin: 0;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background-color: var(--clr-surface);
+  box-shadow: 0 6px 18px rgba(10, 30, 50, 0.14);
+  color: var(--clr-muted);
+  font-size: var(--fs-200);
+  line-height: 1.4;
+  /* Label sits over a live map — let pointer events through to it */
+  pointer-events: none;
+}
+
+.contact__map-city {
+  display: block;
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
 }
 
 .contact__details {
@@ -1605,7 +1631,8 @@ a.contact__detail-value:focus-visible {
   .contact__details {
     width: calc(100% - var(--space-xl));
     margin-inline: auto;
-    margin-top: calc(var(--space-2xl) * -1);
+    margin-top: 1rem;
+    border: .5px solid rgba(128, 128, 128, 0.415);
     padding: var(--space-xl);
   }
 
