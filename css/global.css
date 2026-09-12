@@ -198,7 +198,6 @@ button {
  font-weight: bold;
 }
 
-
 /* --------------------------------------------------------------------------
    4. Utilities
    -------------------------------------------------------------------------- */
@@ -1326,7 +1325,7 @@ button {
   gap: var(--space-lg);
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
-  background-color: var(--clr-surface);
+  background-color: white;
   box-shadow: 0 18px 40px rgba(10, 30, 50, 0.12);
 }
 

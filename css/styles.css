@@ -383,6 +383,36 @@
    One mechanism means one set of rules here. Card one carries the class in
    the markup, so the rest state (and the no-JS state) matches the design.
    ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Decorative stripe pattern behind the section.
+   A pseudo-element background rather than inline markup: it is purely
+   decorative so it stays out of the accessibility tree, it needs no markup on
+   any page that reuses it, and the file caches once. Opacity lives here
+   because the exported SVG carries none — tune --process-bg-opacity.
+   -------------------------------------------------------------------------- */
+.projects {
+  /* 0.10 is the ceiling, not a preference: above it, --clr-muted text sitting
+     on the darkest stripe falls below the 4.5:1 AA floor (0.10 = 4.55:1). */
+  --process-bg-opacity: 0.1;
+  position: relative;
+  /* Contains the pattern's negative z-index */
+  isolation: isolate;
+}
+
+.projects::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../images/svg-backgrounds/easing-stripes-light.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: var(--process-bg-opacity);
+  pointer-events: none;
+}
+
 /* --------------------------------------------------------------------------
    Step rail
    -------------------------------------------------------------------------- */
@@ -431,8 +461,12 @@
   min-height: 20rem;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background-color: rgba(15, 42, 68, 0.05);
-  transition: background-color var(--t-slow) var(--ease-out);
+  /* Opaque, so the stripe pattern cannot bleed through behind card copy —
+     it reads as a clean panel floating on the pattern */
+  background-color: var(--clr-surface);
+  border: 1px solid var(--clr-line);
+  transition: background-color var(--t-slow) var(--ease-out),
+    border-color var(--t-slow) var(--ease-out);
 }
 
 /* Photograph, revealed on the active card */
@@ -544,6 +578,7 @@
 
 .process__item.is-active .process__card {
   background-color: var(--clr-primary-deep);
+  border-color: transparent;
 }
 
 .process__item.is-active .process__step {
@@ -892,7 +927,7 @@
   margin-inline: auto;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background-color: rgba(15, 42, 68, 0.05);
+  background-color: white;
 }
 
 .project__media {
