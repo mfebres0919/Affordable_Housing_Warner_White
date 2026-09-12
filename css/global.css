@@ -56,6 +56,7 @@
   --clr-accent: #c08a2e;         /* brass — rules, icons, accent hover       */
   --clr-accent-light: #d9a94a;   /* brass, lighter — CTA fill, on-navy accent*/
   --clr-surface: #faf7f2;        /* cream — page and utility-bar ground      */
+  --clr-surface-alt: #ffffff;    /* white — sections lifted off the cream    */
   --clr-body: #23292f;           /* charcoal — body copy                     */
   --clr-muted: #5a6672;          /* slate — labels, captions, form hints     */
 
@@ -368,6 +369,35 @@ button {
 .check__icon svg {
   width: 0.75rem;
   height: 0.75rem;
+}
+
+/* Hand-drawn brass underline beneath a word inside a heading.
+   Wrap the word: <span class="mark-underline">Homes</span>
+
+   inline-block keeps the word and its mark from being split by a line break,
+   and the padding-bottom reserves the room the mark occupies so it can never
+   collide with whatever follows the heading. The mark is a pseudo-element, so
+   it stays out of the accessibility tree with no aria needed. */
+.mark-underline {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+}
+
+.mark-underline::after {
+  content: "";
+  position: absolute;
+  /* Overshoots the word slightly at both ends, the way a drawn stroke would */
+  left: -5%;
+  right: -5%;
+  bottom: 0.05em;
+  /* Width comes from the insets; the ratio then sets the height, so the
+     stroke is never squashed whatever the heading size */
+  aspect-ratio: 1399 / 187;
+  background-image: url("../images/svg-backgrounds/5-point-wide-underline.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
 }
 
 /* Uppercase text link with a trailing arrow */

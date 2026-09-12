@@ -383,35 +383,16 @@
    One mechanism means one set of rules here. Card one carries the class in
    the markup, so the rest state (and the no-JS state) matches the design.
    ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   Decorative stripe pattern behind the section.
-   A pseudo-element background rather than inline markup: it is purely
-   decorative so it stays out of the accessibility tree, it needs no markup on
-   any page that reuses it, and the file caches once. Opacity lives here
-   because the exported SVG carries none — tune --process-bg-opacity.
-   -------------------------------------------------------------------------- */
-.projects {
-  /* 0.10 is the ceiling, not a preference: above it, --clr-muted text sitting
-     on the darkest stripe falls below the 4.5:1 AA floor (0.10 = 4.55:1). */
-  --process-bg-opacity: 0.1;
-  position: relative;
-  /* Contains the pattern's negative z-index */
-  isolation: isolate;
+.process {
+  background-color: var(--clr-surface-alt);
 }
 
-.projects::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background-image: url("../images/svg-backgrounds/easing-stripes-light.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  opacity: var(--process-bg-opacity);
-  pointer-events: none;
-}
+/* Mobile first: this section is far taller than it is wide (three stacked
+   cards), so covering all of it scales the 1920x1080 artwork about 1.85x and
+   shows barely a tenth of its width — a few huge lines. Bounding the pattern
+   to a band at the top holds it near its drawn scale, and the mask dissolves
+   its lower edge into the ground. Grown at 48em, unbounded at 64em. */
+
 
 /* --------------------------------------------------------------------------
    Step rail
