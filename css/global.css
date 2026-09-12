@@ -134,6 +134,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+
 /* Set by global.js while the mobile nav panel is open */
 body.has-open-nav {
   overflow: hidden;
@@ -192,6 +193,11 @@ button {
   outline-offset: 3px;
   border-radius: var(--radius-sm);
 }
+
+.bold {
+ font-weight: bold;
+}
+
 
 /* --------------------------------------------------------------------------
    4. Utilities
@@ -1736,4 +1742,79 @@ a.contact__detail-value:focus-visible {
     width: 3rem;
     height: 3rem;
   }
+}
+
+/* ==========================================================================
+   14. Call-to-action banner
+   Full-bleed photographic band. Sits above the contact section, and will be
+   reused at the foot of the inner pages, so it lives here rather than in the
+   homepage stylesheet.
+   ========================================================================== */
+.cta {
+  position: relative;
+  /* Contains the background layer's negative z-index */
+  isolation: isolate;
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+  text-align: center;
+}
+
+/* Picture element rather than a CSS background, so the mobile crop, lazy
+   loading and async decoding all apply (handbook §4). The gradient is the
+   empty state until the photograph is added. */
+.cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(
+    135deg,
+    var(--clr-primary) 0%,
+    var(--clr-primary-deep) 100%
+  );
+}
+
+.cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scrim, so the copy holds contrast over whatever photograph is dropped in */
+.cta__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.74) 0%,
+    rgba(10, 30, 50, 0.84) 100%
+  );
+}
+
+.cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.cta__heading {
+  margin: 0;
+  max-width: 24ch;
+  color: var(--clr-surface);
+  font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.cta__text {
+  margin: 0;
+  max-width: 52ch;
+  color: rgba(250, 247, 242, 0.85);
+  font-size: var(--fs-400);
+  line-height: 1.65;
+}
+
+.cta__actions {
+  margin-top: var(--space-sm);
 }

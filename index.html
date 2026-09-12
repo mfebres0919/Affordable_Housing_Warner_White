@@ -358,7 +358,7 @@
                 <div class="feature__body">
                   <h3 class="feature__title">End-to-End Guidance</h3>
                   <p class="feature__text">
-                    Feasibility review, financing pathway, developer selection, City of Houston
+                    Feasibility reviews, financing pathways, developer selections, City of Houston
                     approvals, and monitoring through project close.
                   </p>
                 </div>
@@ -373,7 +373,7 @@
                 <div class="feature__body">
                   <h3 class="feature__title">Plain-Language Advising</h3>
                   <p class="feature__text">
-                    Built for pastors, boards, and families — not developers. Tax credits and AMI
+                    Built for pastors, boards, and families — <span class="bold">not developers</span>. Tax credits and AMI
                     explained without the jargon.
                   </p>
                 </div>
@@ -953,6 +953,45 @@
           </ul>
         </div>
       </section>
+      <section class="cta" aria-labelledby="cta-heading">
+        <!--
+          images/home/cta/
+            cta-bg.webp + .jpg     1600x533 (desktop, min-width 48em)
+            cta-bg-m.webp + .jpg    800x680 (mobile)
+          Both softened before encoding — the scrim below sits at 74-84%, so
+          the fine detail was not visible and was not earning its bytes.
+        -->
+        <div class="cta__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="images/home/cta/cta-bg.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="images/home/cta/cta-bg.jpg" type="image/jpeg" />
+            <source srcset="images/home/cta/cta-bg-m.webp" type="image/webp" />
+            <img src="images/home/cta/cta-bg-m.jpg" alt="" width="800" height="680" decoding="async" loading="lazy" />
+          </picture>
+        </div>
+
+        <div class="container cta__inner">
+          <h2 class="cta__heading" id="cta-heading">Ready to see what your land can do?</h2>
+
+          <p class="cta__text">
+            Bring us the property and we will tell you honestly whether housing works on it
+            &mdash; before you commit to anything.
+          </p>
+
+          <div class="cta__actions">
+            <a class="btn btn--accent btn--with-badge" href="#contact">
+              Get in Touch
+              <span class="btn__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section class="section contact" id="contact" aria-labelledby="contact-heading">
         <div class="container">
           <header class="section-header section-header--start">
