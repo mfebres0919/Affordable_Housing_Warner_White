@@ -24,10 +24,28 @@
       crossorigin
     />
 
+    <!-- Not deferred on purpose: this decides whether the splash shows
+         before the first paint. See the note at the top of the file. -->
+    <script src="js/splash-init.js"></script>
+
     <link rel="stylesheet" href="css/global.css" />
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="splash" role="status">
+      <p class="visually-hidden">Loading</p>
+
+      <span class="splash__mark">
+        <svg class="splash__ring" viewBox="0 0 120 120" aria-hidden="true" focusable="false">
+          <circle class="splash__ring-track" cx="60" cy="60" r="54" />
+          <circle class="splash__ring-progress" cx="60" cy="60" r="54" />
+        </svg>
+
+        <span class="splash__logo" aria-hidden="true">WW</span>
+        <span class="splash__name" aria-hidden="true">WW Housing Development</span>
+      </span>
+    </div>
+
     <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
