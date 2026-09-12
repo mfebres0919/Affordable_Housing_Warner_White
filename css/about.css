@@ -1,0 +1,380 @@
+/* ==========================================================================
+   WW Housing Development LLC — about.css
+   About page only. Shared components (.page-hero, .section-header, .check,
+   .mark-underline, .btn, contact, footer) live in global.css.
+
+   MOBILE FIRST: base rules target the smallest viewport; min-width queries
+   enhance for larger screens (handbook §12).
+   ========================================================================== */
+
+/* ==========================================================================
+   The firm — photograph beside the story, with a facts list
+   ========================================================================== */
+.firm__inner {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.firm__photo {
+  display: block;
+  aspect-ratio: 4 / 5;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.08);
+}
+
+.firm__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.firm__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+}
+
+.firm__prose p {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-muted);
+  font-size: var(--fs-400);
+  line-height: 1.75;
+}
+
+.firm__prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Firm facts. A description list because these are genuine term/value pairs. */
+.snapshot {
+  display: grid;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--clr-line);
+}
+
+.snapshot__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-block: var(--space-sm);
+}
+
+.snapshot__row + .snapshot__row {
+  border-top: 1px solid var(--clr-line);
+}
+
+.snapshot dt {
+  color: var(--clr-muted);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.snapshot dd {
+  margin: 0;
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Leadership — one full-width row per principal
+   ========================================================================== */
+.leadership {
+  background-color: var(--clr-surface-alt);
+}
+
+.leadership__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+.bio {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.bio + .bio {
+  padding-top: var(--space-2xl);
+  border-top: 1px solid var(--clr-line);
+}
+
+.bio__photo {
+  display: block;
+  aspect-ratio: 4 / 5;
+  max-width: 24rem;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.08);
+}
+
+.bio__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bio__body {
+  min-width: 0;
+}
+
+.bio__name {
+  margin: 0 0 var(--space-2xs);
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.bio__role {
+  margin: 0 0 var(--space-lg);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+}
+
+.bio__prose p {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.75;
+}
+
+.bio__prose p:last-child {
+  margin-bottom: 0;
+}
+
+/* Affiliation pairs — person-specific, rather than repeating the firm's
+   switchboard details under both principals */
+.bio__facts {
+  display: grid;
+  gap: var(--space-md);
+  margin: var(--space-lg) 0 0;
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--clr-line);
+}
+
+.bio__facts dt {
+  margin-bottom: var(--space-2xs);
+  color: var(--clr-muted);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+}
+
+.bio__facts dd {
+  margin: 0;
+  color: var(--clr-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+}
+
+.bio__block {
+  margin-top: var(--space-xl);
+}
+
+.bio__block h4 {
+  margin: 0 0 var(--space-sm);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  color: var(--clr-primary);
+}
+
+.bio__block p {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+.bio__checks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* ==========================================================================
+   Difference — a drag/swipe carousel of cards
+
+   No auto-motion: these are paragraph-length cards, and text that drifts
+   while you are reading it is worse than text that waits. The track is a
+   native scroll container with snap points, so it is a drag on touch, a
+   trackpad swipe on a laptop, and arrow keys once focused.
+   ========================================================================== */
+.difference {
+  background-color: var(--clr-surface);
+}
+
+/* Track sits outside .container so cards can bleed past the gutters, but its
+   padding is computed to line the first card up with the container edge. */
+.difference__track {
+  display: flex;
+  gap: var(--space-lg);
+  margin: 0;
+  padding-inline: var(--difference-gutter);
+  /* Room for the focus ring, and for the cards' shadow */
+  padding-block: var(--space-2xs) var(--space-md);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline-start: var(--difference-gutter);
+  scrollbar-color: var(--clr-accent) rgba(15, 42, 68, 0.12);
+  scrollbar-width: thin;
+}
+
+.difference {
+  --difference-gutter: var(--container-pad);
+}
+
+.difference__track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.difference__track::-webkit-scrollbar-track {
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 42, 68, 0.1);
+}
+
+.difference__track::-webkit-scrollbar-thumb {
+  border-radius: var(--radius-pill);
+  background-color: var(--clr-accent);
+}
+
+.difference__item {
+  flex: 0 0 min(20rem, 76vw);
+  scroll-snap-align: start;
+}
+
+.diff-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  height: 100%;
+  padding: var(--space-lg);
+  border: 1px solid var(--clr-line);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+  box-shadow: 0 10px 26px rgba(10, 30, 50, 0.06);
+}
+
+.diff-card__num {
+  margin: 0 0 var(--space-xs);
+  font-size: clamp(2.75rem, 8vw, 4rem);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--clr-accent);
+}
+
+/* Gradient numeral where the browser can clip a background to glyphs;
+   plain brass everywhere else */
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .diff-card__num {
+    background-image: linear-gradient(180deg, #e8c37a 0%, var(--clr-accent) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.diff-card__title {
+  margin: 0;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--clr-primary);
+}
+
+.diff-card__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   Larger screens — min-width only
+   ========================================================================== */
+@media (min-width: 48em) {
+  .snapshot {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-xl);
+  }
+
+  /* With two columns, the divider belongs to the row above, not the sibling */
+  .snapshot__row + .snapshot__row {
+    border-top: 0;
+  }
+
+  .snapshot__row:nth-child(n + 3) {
+    border-top: 1px solid var(--clr-line);
+  }
+
+  .bio {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .bio__photo {
+    max-width: none;
+  }
+
+  .bio__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .difference__item {
+    flex-basis: 21rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .firm__inner {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .bio {
+    grid-template-columns: 20rem minmax(0, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  /* The bios run long, so the portrait travels with the text instead of
+     leaving a tall empty column beneath itself. align-self: start is what
+     lets the grid item stick rather than stretch. */
+  .bio__media {
+    position: sticky;
+    top: calc(var(--nav-bar-height) + var(--space-lg));
+    align-self: start;
+  }
+
+  /* First card lines up with the container's content edge; cards still run
+     off both sides of the viewport */
+  .difference {
+    --difference-gutter: max(
+      var(--container-pad),
+      calc((100vw - var(--container-max)) / 2 + var(--container-pad))
+    );
+  }
+}
+
+/* ==========================================================================
+   Reduced motion — no smooth scrolling inside the carousel
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .difference__track {
+    scroll-snap-type: none;
+  }
+}
