@@ -121,6 +121,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -289,6 +290,12 @@ button {
   line-height: 1.65;
 }
 
+/* Left-aligned variant */
+.section-header--start {
+  align-items: flex-start;
+  text-align: left;
+}
+
 /* Icon + heading + copy, used in feature grids */
 .feature {
   display: flex;
@@ -356,6 +363,57 @@ button {
 .check__icon svg {
   width: 0.75rem;
   height: 0.75rem;
+}
+
+/* Uppercase text link with a trailing arrow */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--clr-primary);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.link-arrow svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex: none;
+  color: var(--clr-accent);
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.link-arrow:hover svg,
+.link-arrow:focus-visible svg {
+  transform: translate(0.15rem, -0.15rem);
+}
+
+/* Underline is drawn rather than declared, so it can sweep in from the left.
+   Scoped to the label so it stops short of the arrow. */
+.link-arrow__label {
+  position: relative;
+}
+
+.link-arrow__label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35em;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--clr-accent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--t-slow) var(--ease-out);
+}
+
+.link-arrow:hover .link-arrow__label::after,
+.link-arrow:focus-visible .link-arrow__label::after {
+  transform: scaleX(1);
 }
 
 /* Overlapping circular portraits */
@@ -575,6 +633,18 @@ button {
   border-color: var(--clr-accent);
   background-color: var(--clr-accent);
   color: var(--clr-surface);
+}
+
+.btn-icon--on-dark {
+  border-color: var(--clr-line-on-dark);
+  color: var(--clr-surface);
+}
+
+.btn-icon--on-dark:hover,
+.btn-icon--on-dark:focus-visible {
+  border-color: var(--clr-accent-light);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
 }
 
 /* ==========================================================================
@@ -908,7 +978,6 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
-  margin-top: auto;
   padding-top: var(--space-lg);
   border-top: 1px solid var(--clr-line-on-dark);
 }
@@ -1102,5 +1171,485 @@ button {
   .primary-nav__cta,
   .primary-nav__contact {
     transform: none;
+  }
+}
+
+/* ==========================================================================
+   9. Forms
+   Shared controls — the contact section repeats on every page, and inner
+   pages will reuse these fields.
+   ========================================================================== */
+.form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.field--wide {
+  grid-column: 1 / -1;
+}
+
+.field__label {
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+}
+
+.field__required {
+  color: var(--clr-accent);
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  background-color: var(--clr-surface);
+  color: var(--clr-body);
+  font-family: inherit;
+  font-size: var(--fs-300);
+  line-height: 1.5;
+  transition: border-color var(--t-base) var(--ease-out);
+}
+
+.field textarea {
+  min-height: 9rem;
+  border-radius: var(--radius-lg);
+  resize: vertical;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--clr-muted);
+}
+
+.field input:hover,
+.field select:hover,
+.field textarea:hover,
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--clr-accent);
+}
+
+/* Native select arrow replaced with an inline SVG — no external request */
+.field select {
+  appearance: none;
+  padding-right: var(--space-2xl);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6672' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--space-md) center;
+  background-size: 1rem 1rem;
+  cursor: pointer;
+}
+
+.form__actions {
+  grid-column: 1 / -1;
+  justify-self: start;
+}
+
+/* ==========================================================================
+   10. Contact
+   Sits at the foot of every page, above the footer.
+   ========================================================================== */
+.contact {
+  /* Clears the sticky header when a CTA jumps to #contact */
+  scroll-margin-top: calc(var(--nav-bar-height) + var(--space-md));
+}
+
+.contact__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+/* --------------------------------------------------------------------------
+   Details column
+   -------------------------------------------------------------------------- */
+.contact__map {
+  display: block;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.08);
+}
+
+.contact__map img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact__details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface);
+  box-shadow: 0 18px 40px rgba(10, 30, 50, 0.12);
+}
+
+.contact__detail-label {
+  margin: 0 0 var(--space-2xs);
+  color: var(--clr-accent);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.contact__detail-value {
+  display: block;
+  color: var(--clr-primary);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  line-height: 1.4;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+a.contact__detail-value:hover,
+a.contact__detail-value:focus-visible {
+  color: var(--clr-accent);
+}
+
+.contact__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--clr-line);
+}
+
+/* --------------------------------------------------------------------------
+   Form panel
+   -------------------------------------------------------------------------- */
+.contact__panel {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.06);
+}
+
+/* ==========================================================================
+   11. Site footer
+   ========================================================================== */
+.site-footer {
+  background-color: var(--clr-primary);
+  color: rgba(250, 247, 242, 0.78);
+}
+
+.site-footer__top {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding-block: var(--space-xl);
+}
+
+.site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.site-footer__contact a {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-footer__contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  transition: background-color var(--t-base) var(--ease-out);
+}
+
+.site-footer__contact a:hover .site-footer__contact-icon,
+.site-footer__contact a:focus-visible .site-footer__contact-icon {
+  background-color: var(--clr-accent);
+}
+
+.site-footer__contact-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.site-footer__contact-label {
+  display: block;
+  color: var(--clr-surface);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+}
+
+.site-footer__contact-value {
+  display: block;
+  font-size: var(--fs-300);
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   Columns
+   -------------------------------------------------------------------------- */
+.site-footer__main {
+  display: grid;
+  gap: var(--space-xl);
+  padding-block: var(--space-xl);
+  border-top: 1px solid var(--clr-line-on-dark);
+}
+
+.site-footer__heading {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-surface);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+}
+
+.site-footer__about p {
+  margin: 0;
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+.site-footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.site-footer__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+  font-size: var(--fs-300);
+  line-height: 1.5;
+}
+
+.site-footer__list svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  flex: none;
+  margin-top: 0.3125rem;
+  color: var(--clr-accent-light);
+}
+
+.site-footer__list a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.site-footer__list a:hover,
+.site-footer__list a:focus-visible {
+  color: var(--clr-accent-light);
+}
+
+/* Newsletter */
+.site-footer__newsletter {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--clr-line-on-dark);
+}
+
+.newsletter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-2xs);
+  border: 1px solid var(--clr-line-on-dark);
+  border-radius: var(--radius-pill);
+  background-color: rgba(250, 247, 242, 0.06);
+  transition: border-color var(--t-base) var(--ease-out);
+}
+
+.newsletter:focus-within {
+  border-color: var(--clr-accent-light);
+}
+
+.newsletter input {
+  width: 100%;
+  min-width: 0;
+  padding: var(--space-xs) var(--space-md);
+  border: 0;
+  background-color: transparent;
+  color: var(--clr-surface);
+  font-family: inherit;
+  font-size: var(--fs-300);
+}
+
+.newsletter input::placeholder {
+  color: rgba(250, 247, 242, 0.55);
+}
+
+.newsletter input:focus-visible {
+  outline: none;
+}
+
+.newsletter__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.newsletter__submit svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.newsletter__submit:hover,
+.newsletter__submit:focus-visible {
+  background-color: var(--clr-accent);
+  transform: translateX(0.15rem);
+}
+
+/* Office hours panel */
+.site-footer__hours {
+  margin-top: var(--space-lg);
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background-color: rgba(250, 247, 242, 0.06);
+}
+
+.site-footer__hours h3 {
+  margin: 0 0 var(--space-sm);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--clr-line-on-dark);
+  color: var(--clr-surface);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+}
+
+.site-footer__hours ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.site-footer__hours li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-xs);
+  font-size: var(--fs-300);
+}
+
+.site-footer__hours dt,
+.site-footer__hours-day {
+  color: var(--clr-surface);
+  font-weight: var(--fw-semibold);
+}
+
+/* --------------------------------------------------------------------------
+   Bottom bar
+   -------------------------------------------------------------------------- */
+.site-footer__bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding-block: var(--space-lg);
+  border-top: 1px solid var(--clr-line-on-dark);
+  text-align: center;
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.site-footer__copyright {
+  margin: 0;
+  font-size: var(--fs-200);
+}
+
+/* ==========================================================================
+   12. Contact and footer — larger screens
+   ========================================================================== */
+@media (min-width: 48em) {
+  .contact__form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Card lifts onto the map, as in the reference layout */
+  .contact__details {
+    width: calc(100% - var(--space-xl));
+    margin-inline: auto;
+    margin-top: calc(var(--space-2xl) * -1);
+    padding: var(--space-xl);
+  }
+
+  .contact__panel {
+    padding: var(--space-xl);
+  }
+
+  .site-footer__top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-footer__contact {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .site-footer__contact li + li {
+    padding-left: var(--space-xl);
+    border-left: 1px solid var(--clr-line-on-dark);
+  }
+
+  .site-footer__main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2xl) var(--space-xl);
+  }
+
+  .site-footer__bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (min-width: 64em) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .site-footer__main {
+    grid-template-columns: 1.6fr 1fr 1fr 1.3fr;
   }
 }

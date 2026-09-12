@@ -643,6 +643,59 @@
    Fee Arrangement — three service tiers, the core engagement highlighted
    Uses the shared .section-header, .check and .btn components from global.css.
    ========================================================================== */
+.pricing {
+  position: relative;
+  /* Contains the background layer's negative z-index. No overflow: hidden —
+     it would clip the featured card's glow. */
+  isolation: isolate;
+}
+
+/* Photographic ground. Picture element rather than a CSS background so the
+   mobile crop, lazy loading and async decoding all apply (handbook §4).
+   The gradient is the empty state until the photograph is added. */
+.pricing__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: linear-gradient(
+    140deg,
+    var(--clr-primary) 0%,
+    var(--clr-primary-deep) 100%
+  );
+}
+
+.pricing__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scrim, so the section reads the same over any photograph */
+.pricing__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.82) 0%,
+    rgba(10, 30, 50, 0.9) 100%
+  );
+}
+
+/* Section header inverts over the photograph */
+.pricing .section-badge {
+  background-color: rgba(250, 247, 242, 0.12);
+  color: var(--clr-surface);
+}
+
+.pricing .section-heading {
+  color: var(--clr-surface);
+}
+
+.pricing .section-intro {
+  color: rgba(250, 247, 242, 0.82);
+}
+
 .pricing__list {
   display: grid;
   gap: var(--space-xl);
@@ -659,7 +712,8 @@
   padding: var(--space-xl) var(--space-lg) var(--space-lg);
   border: 1px solid transparent;
   border-radius: var(--radius-lg);
-  background-color: rgba(15, 42, 68, 0.05);
+  /* Opaque, so the cards read as solid panels on the photographic ground */
+  background-color: var(--clr-surface);
 }
 
 .plan__icon {
@@ -780,14 +834,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
-  color: var(--clr-body);
+  color: rgba(250, 247, 242, 0.88);
   font-size: var(--fs-300);
 }
 
 .pricing__note-icon {
   display: inline-flex;
   flex: none;
-  color: var(--clr-accent);
+  color: var(--clr-accent-light);
 }
 
 .pricing__note-icon svg {
@@ -818,5 +872,118 @@
     max-width: none;
     margin-inline: 0;
     padding: var(--space-xl);
+  }
+}
+
+/* ==========================================================================
+   Project Experience — the principals' prior work, as cards
+   Uses the shared .section-header and .link-arrow from global.css.
+   ========================================================================== */
+.projects__list {
+  display: grid;
+  gap: var(--space-xl);
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 34rem;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.05);
+}
+
+.project__media {
+  position: relative;
+  background-color: rgba(15, 42, 68, 0.1);
+}
+
+.project__media img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Category flag, seated in the bottom-left corner of the photograph */
+.project__tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 0 var(--radius-sm) 0 0;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
+}
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  flex: 1;
+  padding: var(--space-lg);
+}
+
+.project__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.project__meta li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: var(--clr-muted);
+  font-size: var(--fs-200);
+}
+
+.project__meta svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex: none;
+  color: var(--clr-accent);
+}
+
+.project__title {
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.project__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.6;
+}
+
+/* Keeps every card's link on the same baseline */
+.project__link {
+  margin-top: auto;
+  padding-top: var(--space-md);
+}
+
+/* ==========================================================================
+   Project Experience — larger screens
+   ========================================================================== */
+@media (min-width: 64em) {
+  .projects__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .project {
+    max-width: none;
+    margin-inline: 0;
   }
 }

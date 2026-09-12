@@ -546,6 +546,21 @@
         </div>
       </section>
       <section class="section pricing" aria-labelledby="pricing-heading">
+        <!--
+          images/fees-bg.webp + .jpg    (1920x1200, desktop)
+          images/fees-bg-m.webp + .jpg  (800x1200, mobile crop)
+          Keep under 100 KB — background-scale image. Something calm and
+          architectural; the scrim above it carries the contrast.
+        -->
+        <div class="pricing__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="images/fees-bg.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="images/fees-bg.jpg" type="image/jpeg" />
+            <source srcset="images/fees-bg-m.webp" type="image/webp" />
+            <img src="images/fees-bg-m.jpg" alt="" width="800" height="1200" decoding="async" loading="lazy" />
+          </picture>
+        </div>
+
         <div class="container">
           <header class="section-header">
             <p class="section-badge">
@@ -722,7 +737,391 @@
           </ul>
         </div>
       </section>
+      <section class="section projects" aria-labelledby="projects-heading">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-badge">
+              <span class="section-badge__dot" aria-hidden="true"></span>
+              Project Experience
+            </p>
+
+            <h2 class="section-heading" id="projects-heading">Experience behind the firm</h2>
+
+            <p class="section-intro">
+              WW Housing Development is a new firm. Its principals are not new to this work &mdash;
+              between them they have already carried affordable housing, church property, and
+              community projects across Houston.
+            </p>
+          </header>
+
+          <!--
+            The firm is pre-launch and has no completed projects of its own. Every
+            claim below is drawn from the June 2026 business plan's descriptions of
+            the principals' prior work. Do not add project case studies here unless
+            the principals can substantiate them. Replace the alt text to describe
+            whatever photographs are actually chosen.
+          -->
+          <ul class="projects__list">
+            <li class="project">
+              <div class="project__media">
+                <!-- images/project-1.webp + .jpg (1200x900) / -m (800x600) -->
+                <picture>
+                  <source media="(min-width: 48em)" srcset="images/project-1.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/project-1.jpg" type="image/jpeg" />
+                  <source srcset="images/project-1-m.webp" type="image/webp" />
+                  <img src="images/project-1-m.jpg" alt="Affordable senior housing community in Houston" width="800" height="600" decoding="async" loading="lazy" />
+                </picture>
+
+                <p class="project__tag">Development</p>
+              </div>
+
+              <div class="project__body">
+                <ul class="project__meta">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                    Houston, Texas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
+                    $33 Million
+                  </li>
+                </ul>
+
+                <h3 class="project__title">Affordable Senior Housing Community</h3>
+
+                <p class="project__text">Rev. Dr. Marilyn White provided leadership for the development of a $33 million affordable senior housing community.</p>
+
+                <a class="link-arrow project__link" href="html/project-experience.html">
+                  <span class="link-arrow__label">Explore More</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="project">
+              <div class="project__media">
+                <!-- images/project-2.webp + .jpg (1200x900) / -m (800x600) -->
+                <picture>
+                  <source media="(min-width: 48em)" srcset="images/project-2.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/project-2.jpg" type="image/jpeg" />
+                  <source srcset="images/project-2-m.webp" type="image/webp" />
+                  <img src="images/project-2-m.jpg" alt="A Houston church property under transaction review" width="800" height="600" decoding="async" loading="lazy" />
+                </picture>
+
+                <p class="project__tag">Legal &amp; Structuring</p>
+              </div>
+
+              <div class="project__body">
+                <ul class="project__meta">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                    Houston, Texas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
+                    Multiple closings
+                  </li>
+                </ul>
+
+                <h3 class="project__title">Church Property &amp; Tax Credit Transactions</h3>
+
+                <p class="project__text">T. Deon Warner, Esq. has structured complex church property transactions, seller-financed closings, tax credit deals, and development agreements for Houston-area projects.</p>
+
+                <a class="link-arrow project__link" href="html/project-experience.html">
+                  <span class="link-arrow__label">Explore More</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="project">
+              <div class="project__media">
+                <!-- images/project-3.webp + .jpg (1200x900) / -m (800x600) -->
+                <picture>
+                  <source media="(min-width: 48em)" srcset="images/project-3.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="images/project-3.jpg" type="image/jpeg" />
+                  <source srcset="images/project-3-m.webp" type="image/webp" />
+                  <img src="images/project-3-m.jpg" alt="Community dental services provided to Houston residents" width="800" height="600" decoding="async" loading="lazy" />
+                </picture>
+
+                <p class="project__tag">Community Impact</p>
+              </div>
+
+              <div class="project__body">
+                <ul class="project__meta">
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                    Houston, Texas
+                  </li>
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10" /><line x1="12" y1="20" x2="12" y2="4" /><line x1="6" y1="20" x2="6" y2="14" /></svg>
+                    $1M+ in services
+                  </li>
+                </ul>
+
+                <h3 class="project__title">Charitable Dental Services Secured</h3>
+
+                <p class="project__text">Rev. Dr. Marilyn White secured more than $1 million in charitable dental services for underserved Houston residents.</p>
+
+                <a class="link-arrow project__link" href="html/project-experience.html">
+                  <span class="link-arrow__label">Explore More</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section class="section contact" id="contact" aria-labelledby="contact-heading">
+        <div class="container">
+          <header class="section-header section-header--start">
+            <p class="section-badge">
+              <span class="section-badge__dot" aria-hidden="true"></span>
+              Contact Us
+            </p>
+
+            <h2 class="section-heading" id="contact-heading">Start with a conversation</h2>
+
+            <p class="section-intro">
+              Tell us about the property and what your congregation or organisation is hoping to
+              build. The first conversation costs nothing.
+            </p>
+          </header>
+
+          <div class="contact__grid">
+            <div>
+              <!--
+                images/contact-map.webp + .jpg (1000x750) / -m (800x600).
+                A static map export or a Houston neighbourhood photograph. A live
+                Google Maps embed would add a third-party iframe (handbook §6) and
+                the firm has no street address yet — treat it as a documented
+                exception if the client asks for the real thing later.
+              -->
+              <picture class="contact__map">
+                <source media="(min-width: 48em)" srcset="images/contact-map.webp" type="image/webp" />
+                <source media="(min-width: 48em)" srcset="images/contact-map.jpg" type="image/jpeg" />
+                <source srcset="images/contact-map-m.webp" type="image/webp" />
+                <img src="images/contact-map-m.jpg" alt="Map of the Houston area served by WW Housing Development" width="800" height="600" decoding="async" loading="lazy" />
+              </picture>
+
+              <div class="contact__details">
+                <div>
+                  <p class="contact__detail-label">Call Anytime</p>
+                  <a class="contact__detail-value" href="tel:+17135550147">(713) 555-0147</a>
+                </div>
+
+                <div>
+                  <p class="contact__detail-label">Send Email</p>
+                  <a class="contact__detail-value" href="mailto:info@wwhdllc.com">info@wwhdllc.com</a>
+                </div>
+
+                <div>
+                  <p class="contact__detail-label">Visit Office</p>
+                  <span class="contact__detail-value">Houston, Texas</span>
+                </div>
+
+                <ul class="contact__social">
+                  <li>
+                    <a class="btn-icon" href="#" aria-label="WW Housing Development on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.49 1a2.5 2.5 0 0 1 2.49 2.5zM.25 8.02h4.47V23H.25zm7.5 0h4.28v2.05h.06a4.7 4.7 0 0 1 4.23-2.32c4.52 0 5.36 2.98 5.36 6.85V23h-4.47v-7.5c0-1.79-.03-4.09-2.49-4.09-2.5 0-2.88 1.95-2.88 3.96V23H7.75z" /></svg></a>
+                  </li>
+                  <li>
+                    <a class="btn-icon" href="#" aria-label="WW Housing Development on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.2 2 9.1 3.85 9.1 7.24v2.7H6.11v3.55H9.1V23h3.68v-9.51h2.99l.45-3.55h-3.44V7.59c0-1.02.28-2.27 1.34-2.27z" /></svg></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="contact__panel">
+              <!--
+                NO FORM HANDLER YET. action="#" discards the submission. Point this
+                at a real endpoint before launch or the form silently loses enquiries.
+              -->
+              <form class="form contact__form" action="#" method="post">
+                <div class="field field--wide">
+                  <label class="field__label" for="contact-name">
+                    Name <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <input id="contact-name" name="name" type="text" autocomplete="name" placeholder="Enter your name" required />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="contact-email">
+                    Email <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="Email address" required />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="contact-phone">Phone</label>
+                  <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="Phone number" />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="contact-org">Church or Organization</label>
+                  <input id="contact-org" name="organization" type="text" autocomplete="organization" placeholder="Who are you with?" />
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="contact-service">Service of Interest</label>
+                  <select id="contact-service" name="service">
+                    <option value="">Not sure yet</option>
+                    <option value="feasibility">Engagement &amp; Feasibility</option>
+                    <option value="consulting">Consulting &amp; Navigation</option>
+                    <option value="co-development">Co-Development Partnership</option>
+                  </select>
+                </div>
+
+                <div class="field field--wide">
+                  <label class="field__label" for="contact-message">
+                    Message <span class="field__required" aria-hidden="true">*</span>
+                  </label>
+                  <textarea id="contact-message" name="message" placeholder="Tell us about the property and what you are hoping to build" required></textarea>
+                </div>
+
+                <div class="form__actions">
+                  <button class="btn btn--accent btn--with-badge" type="submit">
+                    Send Request
+                    <span class="btn__badge" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__top">
+          <a class="brand" href="index.html">
+            <span class="brand__mark" aria-hidden="true">WW</span>
+            <span class="brand__text">
+              <span class="brand__name">WW Housing</span>
+              <span class="brand__suffix">Development LLC</span>
+            </span>
+          </a>
+
+          <ul class="site-footer__contact">
+            <li>
+              <a href="mailto:info@wwhdllc.com">
+                <span class="site-footer__contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><polyline points="22 6 12 13 2 6" /></svg></span>
+                <span>
+                  <span class="site-footer__contact-label">Email Address</span>
+                  <span class="site-footer__contact-value">info@wwhdllc.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+17135550147">
+                <span class="site-footer__contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg></span>
+                <span>
+                  <span class="site-footer__contact-label">Phone Number</span>
+                  <span class="site-footer__contact-value">(713) 555-0147</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__main">
+          <div class="site-footer__about">
+            <h2 class="site-footer__heading">About the Firm</h2>
+            <p>
+              WW Housing Development guides Houston churches, community groups, and landowners
+              through affordable housing development &mdash; feasibility, financing, city approvals,
+              and construction &mdash; in plain language.
+            </p>
+
+            <div class="site-footer__newsletter">
+              <h3 class="site-footer__heading">Stay Informed</h3>
+              <!-- NO HANDLER YET — see the note on the contact form above. -->
+              <form class="newsletter" action="#" method="post">
+                <label class="visually-hidden" for="newsletter-email">Email address</label>
+                <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Enter email address" required />
+                <button class="newsletter__submit" type="submit" aria-label="Subscribe to updates">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <nav aria-labelledby="footer-quick-links">
+            <h2 class="site-footer__heading" id="footer-quick-links">Quick Links</h2>
+            <ul class="site-footer__list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="index.html">Home</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="html/about.html">About</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="html/our-process.html">Our Process</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="html/fee-arrangement.html">Fee Arrangement</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="html/project-experience.html">Project Experience</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 class="site-footer__heading">Financing Pathways</h2>
+            <ul class="site-footer__list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Low-Income Housing Tax Credits</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Owner-Financed Land as Equity</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>City of Houston Programs</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>HUD Grant Opportunities</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Private Capital &amp; Build-to-Rent</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="site-footer__heading">Contact Information</h2>
+            <p>Houston, Texas</p>
+
+            <!-- PLACEHOLDER HOURS — confirm with the principals before launch. -->
+            <div class="site-footer__hours">
+              <h3>Office Hours</h3>
+              <ul>
+                <li>
+                  <span class="site-footer__hours-day">Mon &ndash; Fri</span>
+                  <span>9:00 AM &ndash; 5:00 PM</span>
+                </li>
+                <li>
+                  <span class="site-footer__hours-day">Saturday</span>
+                  <span>By appointment</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <ul class="site-footer__social">
+            <li>
+              <a class="btn-icon btn-icon--on-dark" href="#" aria-label="WW Housing Development on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.49 1a2.5 2.5 0 0 1 2.49 2.5zM.25 8.02h4.47V23H.25zm7.5 0h4.28v2.05h.06a4.7 4.7 0 0 1 4.23-2.32c4.52 0 5.36 2.98 5.36 6.85V23h-4.47v-7.5c0-1.79-.03-4.09-2.49-4.09-2.5 0-2.88 1.95-2.88 3.96V23H7.75z" /></svg></a>
+            </li>
+            <li>
+              <a class="btn-icon btn-icon--on-dark" href="#" aria-label="WW Housing Development on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.2 2 9.1 3.85 9.1 7.24v2.7H6.11v3.55H9.1V23h3.68v-9.51h2.99l.45-3.55h-3.44V7.59c0-1.02.28-2.27 1.34-2.27z" /></svg></a>
+            </li>
+          </ul>
+
+          <p class="site-footer__copyright">
+            &copy; 2026 WW Housing Development LLC. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
 
     <script src="js/global.js" defer></script>
     <script src="js/script.js" defer></script>
