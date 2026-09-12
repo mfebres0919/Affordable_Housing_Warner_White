@@ -1245,9 +1245,11 @@ button {
 .field textarea {
   width: 100%;
   padding: var(--space-sm) var(--space-md);
-  border: 1px solid transparent;
+  /* A visible edge at rest, not only on focus — a borderless field on a
+     near-matching ground reads as decoration rather than something to fill in */
+  border: 1px solid var(--clr-line);
   border-radius: var(--radius-pill);
-  background-color: var(--clr-surface);
+  background-color: var(--clr-surface-alt);
   color: var(--clr-body);
   font-family: inherit;
   font-size: var(--fs-300);
@@ -1298,6 +1300,10 @@ button {
 .contact {
   /* Clears the sticky header when a CTA jumps to #contact */
   scroll-margin-top: calc(var(--nav-bar-height) + var(--space-md));
+  /* White, with no cream anywhere in this section: the tiers are white
+     ground, cool grey panel, white fields — three separable tones rather
+     than four warm ones sitting on top of each other */
+  background-color: var(--clr-surface-alt);
 }
 
 .contact__grid {
@@ -1354,9 +1360,10 @@ button {
   flex-direction: column;
   gap: var(--space-lg);
   padding: var(--space-lg);
+  border: 1px solid var(--clr-line);
   border-radius: var(--radius-lg);
-  background-color: white;
-  box-shadow: 0 18px 40px rgba(10, 30, 50, 0.12);
+  background-color: var(--clr-surface-alt);
+  box-shadow: 0 18px 40px rgba(10, 30, 50, 0.1);
 }
 
 .contact__detail-label {
@@ -1397,8 +1404,10 @@ a.contact__detail-value:focus-visible {
    -------------------------------------------------------------------------- */
 .contact__panel {
   padding: var(--space-lg);
+  border: 1px solid var(--clr-line);
   border-radius: var(--radius-lg);
-  background-color: rgba(15, 42, 68, 0.06);
+  /* Cool grey, not cream — separates from the white ground without warmth */
+  background-color: rgba(15, 42, 68, 0.05);
 }
 
 /* ==========================================================================
@@ -1882,74 +1891,66 @@ a.contact__detail-value:focus-visible {
     visibility 0s linear 420ms;
 }
 
-.splash__mark {
-  position: relative;
-  display: inline-flex;
+/* The brand lockup, scaled up. Reuses .brand from the navigation and footer,
+   so when the real logo arrives it is one swap in three places. */
+.splash__inner {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  width: 7.5rem;
-  height: 7.5rem;
+  gap: var(--space-xl);
 }
 
-.splash__ring {
-  position: absolute;
-  inset: 0;
+.brand--splash {
+  gap: var(--space-md);
+}
+
+.brand--splash .brand__mark {
+  width: 4.5rem;
+  height: 4.5rem;
+  font-size: var(--fs-500);
+}
+
+.brand--splash .brand__name {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+}
+
+.brand--splash .brand__suffix {
+  font-size: var(--fs-300);
+  letter-spacing: 0.16em;
+}
+
+/* Progress fills left to right. A bar rather than a ring because a circle
+   cannot wrap a horizontal lockup without crowding it. */
+.splash__progress {
+  width: min(16rem, 56vw);
+  height: 3px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background-color: rgba(250, 247, 242, 0.16);
+}
+
+.splash__progress-fill {
+  display: block;
   width: 100%;
   height: 100%;
-  /* Start the sweep at twelve o'clock rather than three */
-  transform: rotate(-90deg);
+  border-radius: inherit;
+  background-color: var(--clr-accent-light);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: splash-fill 1400ms var(--ease-out) forwards;
 }
 
-.splash__ring circle {
-  fill: none;
-  stroke-width: 3;
-  stroke-linecap: round;
-}
-
-.splash__ring-track {
-  stroke: rgba(250, 247, 242, 0.16);
-}
-
-/* 2 * pi * r, r = 54 */
-.splash__ring-progress {
-  stroke: var(--clr-accent-light);
-  stroke-dasharray: 339.29;
-  stroke-dashoffset: 339.29;
-  animation: splash-ring 1400ms var(--ease-out) forwards;
-}
-
-@keyframes splash-ring {
+@keyframes splash-fill {
   to {
-    stroke-dashoffset: 0;
+    transform: scaleX(1);
   }
 }
 
-.splash__logo {
-  font-family: var(--ff-heading);
-  font-size: var(--fs-700);
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.02em;
-  color: var(--clr-accent-light);
-}
-
-.splash__name {
-  position: absolute;
-  top: calc(100% + var(--space-md));
-  left: 50%;
-  width: max-content;
-  transform: translateX(-50%);
-  color: rgba(250, 247, 242, 0.7);
-  font-size: var(--fs-100);
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-/* Reduced motion: the ring is drawn complete, no sweep. splash-init.js drops
-   its wait to zero to match, so the reveal is immediate. */
+/* Reduced motion: the bar is drawn full, no sweep. splash-init.js drops its
+   wait to zero to match, so the reveal is immediate. */
 @media (prefers-reduced-motion: reduce) {
-  .splash__ring-progress {
+  .splash__progress-fill {
     animation: none;
-    stroke-dashoffset: 0;
+    transform: scaleX(1);
   }
 }

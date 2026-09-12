@@ -46,12 +46,12 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* Long enough for the ring to close, and it matches the CSS duration.
+  /* Long enough for the progress bar to fill, matching the CSS duration.
      No wait at all when motion is not welcome. */
-  var RING_MS = reduced ? 0 : 1400;
+  var FILL_MS = reduced ? 0 : 1400;
   var FAILSAFE_MS = 6000;
 
-  var ringDone = false;
+  var fillDone = false;
   var pageDone = false;
   var revealed = false;
 
@@ -65,18 +65,18 @@
     root.classList.remove('has-splash');
   }
 
-  /* Both conditions: the ring has closed AND the page is actually ready.
-     That is what makes the circle complete exactly as the site appears. */
+  /* Both conditions: the bar has filled AND the page is actually ready.
+     That is what makes the bar complete exactly as the site appears. */
   function maybeReveal() {
-    if (ringDone && pageDone) {
+    if (fillDone && pageDone) {
       reveal();
     }
   }
 
   window.setTimeout(function () {
-    ringDone = true;
+    fillDone = true;
     maybeReveal();
-  }, RING_MS);
+  }, FILL_MS);
 
   if (document.readyState === 'complete') {
     pageDone = true;
