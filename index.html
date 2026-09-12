@@ -182,50 +182,45 @@
     <main id="main">
       <section class="hero">
         <!--
-          Four crossfading photographs. Intended subjects, in order:
-            1. Church exterior or congregation gathered outside
-            2. Houston neighborhood housing — Third Ward streetscape
-            3. Leaders reviewing site plans around a table
-            4. Completed housing with residents
-
-          Export each as: images/hero-N.webp + .jpg  (1920x1080, desktop)
-                          images/hero-N-m.webp + .jpg (800x1000, mobile crop)
-          Keep each file under 100 KB — these are background-scale images.
+          Four crossfading photographs, in images/home/hero/
+            hero-N.webp + .jpg      1200x675  (desktop, min-width 48em)
+            hero-N-m.webp + .jpg     800x1000 (mobile)
+          Masters live in /source-images and are not deployed.
         -->
         <div class="hero__media" aria-hidden="true">
           <div class="hero__slide is-active">
             <picture>
-              <source media="(min-width: 48em)" srcset="images/hero-1.webp" type="image/webp" />
-              <source media="(min-width: 48em)" srcset="images/hero-1.jpg" type="image/jpeg" />
-              <source srcset="images/hero-1-m.webp" type="image/webp" />
-              <img src="images/hero-1-m.jpg" alt="" width="800" height="1000" decoding="async" fetchpriority="high" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-1.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-1.jpg" type="image/jpeg" />
+              <source srcset="images/home/hero/hero-1-m.webp" type="image/webp" />
+              <img src="images/home/hero/hero-1-m.jpg" alt="" width="800" height="1000" decoding="async" fetchpriority="high" />
             </picture>
           </div>
 
           <div class="hero__slide">
             <picture>
-              <source media="(min-width: 48em)" srcset="images/hero-2.webp" type="image/webp" />
-              <source media="(min-width: 48em)" srcset="images/hero-2.jpg" type="image/jpeg" />
-              <source srcset="images/hero-2-m.webp" type="image/webp" />
-              <img src="images/hero-2-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-2.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-2.jpg" type="image/jpeg" />
+              <source srcset="images/home/hero/hero-2-m.webp" type="image/webp" />
+              <img src="images/home/hero/hero-2-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
             </picture>
           </div>
 
           <div class="hero__slide">
             <picture>
-              <source media="(min-width: 48em)" srcset="images/hero-3.webp" type="image/webp" />
-              <source media="(min-width: 48em)" srcset="images/hero-3.jpg" type="image/jpeg" />
-              <source srcset="images/hero-3-m.webp" type="image/webp" />
-              <img src="images/hero-3-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-3.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-3.jpg" type="image/jpeg" />
+              <source srcset="images/home/hero/hero-3-m.webp" type="image/webp" />
+              <img src="images/home/hero/hero-3-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
             </picture>
           </div>
 
           <div class="hero__slide">
             <picture>
-              <source media="(min-width: 48em)" srcset="images/hero-4.webp" type="image/webp" />
-              <source media="(min-width: 48em)" srcset="images/hero-4.jpg" type="image/jpeg" />
-              <source srcset="images/hero-4-m.webp" type="image/webp" />
-              <img src="images/hero-4-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-4.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="images/home/hero/hero-4.jpg" type="image/jpeg" />
+              <source srcset="images/home/hero/hero-4-m.webp" type="image/webp" />
+              <img src="images/home/hero/hero-4-m.jpg" alt="" width="800" height="1000" decoding="async" loading="lazy" />
             </picture>
           </div>
         </div>
@@ -438,11 +433,13 @@
               <p class="process__step">Step 01</p>
 
               <article class="process__card">
-                <!-- images/process-1.webp + .jpg (800x1040). Subject: reviewing a church property or vacant lot on site. -->
+                <!-- feasibility-vision | Reviewing a church property and site plans on site. -->
                 <div class="process__media" aria-hidden="true">
                   <picture>
-                    <source srcset="images/process-1.webp" type="image/webp" />
-                    <img src="images/process-1.jpg" alt="" width="800" height="1040" decoding="async" loading="lazy" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/feasibility-vision.webp" type="image/webp" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/feasibility-vision.jpg" type="image/jpeg" />
+                    <source srcset="images/home/how-it-works/feasibility-vision-m.webp" type="image/webp" />
+                    <img src="images/home/how-it-works/feasibility-vision-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
                   </picture>
                 </div>
 
@@ -467,11 +464,13 @@
               <p class="process__step">Step 02</p>
 
               <article class="process__card">
-                <!-- images/process-2.webp + .jpg (800x1040). Subject: principals and church leaders reviewing financing documents. -->
+                <!-- financing-structure | Financing pathways reviewed with church leaders. -->
                 <div class="process__media" aria-hidden="true">
                   <picture>
-                    <source srcset="images/process-2.webp" type="image/webp" />
-                    <img src="images/process-2.jpg" alt="" width="800" height="1040" decoding="async" loading="lazy" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/financing-structure.webp" type="image/webp" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/financing-structure.jpg" type="image/jpeg" />
+                    <source srcset="images/home/how-it-works/financing-structure-m.webp" type="image/webp" />
+                    <img src="images/home/how-it-works/financing-structure-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
                   </picture>
                 </div>
 
@@ -496,11 +495,13 @@
               <p class="process__step">Step 03</p>
 
               <article class="process__card">
-                <!-- images/process-3.webp + .jpg (800x1040). Subject: completed affordable housing with residents. -->
+                <!-- approvals-builds | Construction under way on a Houston housing site. -->
                 <div class="process__media" aria-hidden="true">
                   <picture>
-                    <source srcset="images/process-3.webp" type="image/webp" />
-                    <img src="images/process-3.jpg" alt="" width="800" height="1040" decoding="async" loading="lazy" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/approvals-builds.webp" type="image/webp" />
+                    <source media="(min-width: 48em)" srcset="images/home/how-it-works/approvals-builds.jpg" type="image/jpeg" />
+                    <source srcset="images/home/how-it-works/approvals-builds-m.webp" type="image/webp" />
+                    <img src="images/home/how-it-works/approvals-builds-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
                   </picture>
                 </div>
 
