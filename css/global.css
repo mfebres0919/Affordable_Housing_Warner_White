@@ -1262,9 +1262,6 @@ button {
   font-weight: var(--fw-semibold);
 }
 
-.field__required {
-  color: var(--clr-accent);
-}
 
 .field input,
 .field select,
@@ -1325,9 +1322,39 @@ button {
    above it so the two read as separate bands rather than one slab.
    ========================================================================== */
 .page-hero {
+  position: relative;
+  /* Contains the background layer's negative z-index */
+  isolation: isolate;
   padding-block: clamp(2.75rem, 8vw, 5rem);
   background-color: var(--clr-primary-deep);
   text-align: center;
+}
+
+/* Optional photographic ground. Picture element rather than a CSS background,
+   so the mobile crop, lazy loading and async decoding all apply (handbook §4).
+   Pages without one simply fall back to the deep navy above. */
+.page-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.page-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scrim, so the copy holds contrast over whatever photograph is used */
+.page-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.78) 0%,
+    rgba(10, 30, 50, 0.88) 100%
+  );
 }
 
 .page-hero__inner {
@@ -1366,108 +1393,126 @@ button {
 
 /* ==========================================================================
    10. Contact
-   Sits at the foot of every page, above the footer.
+   Photographic panel of contact details on one side, form on the other.
+   Repeats at the foot of every page.
    ========================================================================== */
 .contact {
   /* Clears the sticky header when a CTA jumps to #contact */
   scroll-margin-top: calc(var(--nav-bar-height) + var(--space-md));
-  /* White, with no cream anywhere in this section: the tiers are white
-     ground, cool grey panel, white fields — three separable tones rather
-     than four warm ones sitting on top of each other */
   background-color: var(--clr-surface-alt);
 }
 
 .contact__grid {
   display: grid;
-  gap: var(--space-2xl);
+  gap: var(--space-lg);
+  align-items: stretch;
 }
 
 /* --------------------------------------------------------------------------
-   Details column
+   Details panel
    -------------------------------------------------------------------------- */
-.contact__map {
+.contact__aside {
   position: relative;
-  display: block;
-  aspect-ratio: 4 / 3;
-  max-width: 100%;
+  display: flex;
+  align-items: flex-end;
+  min-height: 24rem;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background-color: rgba(15, 42, 68, 0.08);
+  background-color: var(--clr-primary-deep);
 }
 
-/* Google's own snippet carries style="border:0" — kept out of the markup */
-.contact__map-frame {
-  display: block;
+.contact__aside-photo {
+  position: absolute;
+  inset: 0;
+}
+
+.contact__aside-photo img {
   width: 100%;
   height: 100%;
-  border: 0;
+  object-fit: cover;
 }
 
-.contact__map-note {
+/* Scrim, so the details stay legible over whatever photograph is used */
+.contact__aside-photo::after {
+  content: "";
   position: absolute;
-  left: var(--space-md);
-  bottom: var(--space-md);
-  margin: 0;
-  padding: var(--space-sm) var(--space-md);
-  border-radius: var(--radius-md);
-  background-color: var(--clr-surface);
-  box-shadow: 0 6px 18px rgba(10, 30, 50, 0.14);
-  color: var(--clr-muted);
-  font-size: var(--fs-200);
-  line-height: 1.4;
-  /* Label sits over a live map — let pointer events through to it */
-  pointer-events: none;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.45) 0%,
+    rgba(10, 30, 50, 0.88) 62%,
+    rgba(10, 30, 50, 0.94) 100%
+  );
 }
 
-.contact__map-city {
-  display: block;
-  color: var(--clr-primary);
-  font-size: var(--fs-300);
-  font-weight: var(--fw-bold);
-}
-
-.contact__details {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-lg);
+.contact__aside-content {
+  position: relative;
+  width: 100%;
   padding: var(--space-lg);
-  border: 1px solid var(--clr-line);
-  border-radius: var(--radius-lg);
-  background-color: var(--clr-surface-alt);
-  box-shadow: 0 18px 40px rgba(10, 30, 50, 0.1);
+  color: var(--clr-surface);
 }
 
-.contact__detail-label {
-  margin: 0 0 var(--space-2xs);
-  color: var(--clr-accent);
-  font-size: var(--fs-200);
-  font-weight: var(--fw-bold);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.contact__points {
+  display: grid;
+  gap: var(--space-lg);
 }
 
-.contact__detail-value {
-  display: block;
+.contact__point {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  min-width: 0;
+}
+
+.contact__point-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-accent-light);
   color: var(--clr-primary);
-  font-size: var(--fs-500);
+  transition: background-color var(--t-base) var(--ease-out);
+}
+
+.contact__point-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.contact__point-label {
+  display: block;
+  font-size: var(--fs-400);
   font-weight: var(--fw-bold);
-  line-height: 1.4;
+  line-height: 1.3;
+}
+
+.contact__point-value {
+  display: block;
+  margin-top: var(--space-2xs);
+  color: rgba(250, 247, 242, 0.88);
+  font-size: var(--fs-300);
+  line-height: 1.5;
   text-decoration: none;
   overflow-wrap: anywhere;
   transition: color var(--t-base) var(--ease-out);
 }
 
-a.contact__detail-value:hover,
-a.contact__detail-value:focus-visible {
-  color: var(--clr-accent);
+a.contact__point-value:hover,
+a.contact__point-value:focus-visible {
+  color: var(--clr-accent-light);
 }
 
-.contact__social {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xs);
+.contact__point:hover .contact__point-icon {
+  background-color: var(--clr-accent);
+}
+
+.contact__location {
+  margin-top: var(--space-lg);
   padding-top: var(--space-lg);
-  border-top: 1px solid var(--clr-line);
+  border-top: 1px solid rgba(250, 247, 242, 0.22);
 }
 
 /* --------------------------------------------------------------------------
@@ -1479,6 +1524,27 @@ a.contact__detail-value:focus-visible {
   border-radius: var(--radius-lg);
   /* Cool grey, not cream — separates from the white ground without warmth */
   background-color: rgba(15, 42, 68, 0.05);
+}
+
+.contact__panel .section-header {
+  margin-bottom: var(--space-lg);
+}
+
+/* ==========================================================================
+   10b. Service-area map
+   Full-bleed band at the foot of the page, above the footer.
+   ========================================================================== */
+.map {
+  display: block;
+  background-color: rgba(15, 42, 68, 0.08);
+}
+
+/* Google's own snippet carries style="border:0" — kept out of the markup */
+.map__frame {
+  display: block;
+  width: 100%;
+  height: clamp(16rem, 38vh, 24rem);
+  border: 0;
 }
 
 /* ==========================================================================
@@ -1742,15 +1808,6 @@ a.contact__detail-value:focus-visible {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  /* Card lifts onto the map, as in the reference layout */
-  .contact__details {
-    width: calc(100% - var(--space-xl));
-    margin-inline: auto;
-    margin-top: 1rem;
-    border: .5px solid rgba(128, 128, 128, 0.415);
-    padding: var(--space-xl);
-  }
-
   .contact__panel {
     padding: var(--space-xl);
   }
@@ -1786,9 +1843,12 @@ a.contact__detail-value:focus-visible {
 
 @media (min-width: 64em) {
   .contact__grid {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    gap: var(--space-xl);
-    align-items: start;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-lg);
+  }
+
+  .contact__panel {
+    padding: var(--space-2xl);
   }
 
   .site-footer__main {
