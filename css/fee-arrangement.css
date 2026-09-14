@@ -1,0 +1,412 @@
+/* ==========================================================================
+   WW Housing Development LLC — fee-arrangement.css
+   Fee Arrangement page only. The tier table (.pricing/.plan) is shared and
+   lives in global.css, as do .page-hero, .section-header, .link-arrow, .btn,
+   contact and footer.
+
+   MOBILE FIRST: base rules target the smallest viewport; min-width queries
+   enhance for larger screens (handbook §12).
+   ========================================================================== */
+
+/* ==========================================================================
+   What we do — a staggered row of cards
+
+   Four cards of deliberately different builds: two light, one brass, one navy
+   carrying a single figure. They sit on white rather than the cream, so the
+   light cards can be cream and still read as cards.
+
+   The stagger is four margin-tops, applied only once the row is actually four
+   across. Below that they stack or pair up and the offsets would just look
+   like uneven gaps.
+   ========================================================================== */
+.offer {
+  background-color: var(--clr-surface-alt);
+}
+
+.offer__grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+}
+
+.offer-card--light {
+  background-color: var(--clr-surface);
+}
+
+.offer-card--accent {
+  background-color: var(--clr-accent-light);
+}
+
+.offer-card--dark {
+  background-color: var(--clr-primary-deep);
+}
+
+.offer-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.offer-card__media {
+  overflow: hidden;
+  height: 11rem;
+  /* Pushes the picture to whichever end of the card it was placed at */
+  margin-top: auto;
+  border-radius: var(--radius-md);
+  background-color: rgba(15, 42, 68, 0.06);
+}
+
+/* When it comes first in the card, the auto margin must not push it down */
+.offer-card__media:first-child {
+  margin-top: 0;
+}
+
+.offer-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.offer-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+  color: var(--clr-accent-light);
+}
+
+.offer-card__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.offer-card__title {
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+}
+
+.offer-card__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+/* The brass card carries navy copy rather than the muted slate, which has too
+   little contrast against it */
+.offer-card--accent .offer-card__text {
+  color: rgba(15, 42, 68, 0.78);
+}
+
+.offer-card--dark .offer-card__title {
+  color: var(--clr-surface);
+}
+
+/* Pinned to the foot with a hairline above, the way the plan features are */
+.offer-card__points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin-top: auto;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(15, 42, 68, 0.22);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-medium);
+}
+
+.offer-card__points li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-xs);
+}
+
+.offer-card__points li::before {
+  content: "";
+  width: 0.375rem;
+  height: 0.375rem;
+  flex: none;
+  margin-top: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+}
+
+/* The one figure on the page. It is the only card with nothing else in it, so
+   the number carries the whole card. */
+.offer-card__stat {
+  margin: auto 0 0;
+  color: var(--clr-accent-light);
+  font-size: clamp(2.75rem, 8vw, 3.75rem);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.offer-card__stat-label {
+  margin: 0;
+  color: var(--clr-surface);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+}
+
+/* --------------------------------------------------------------------------
+   The service pills under the row
+   -------------------------------------------------------------------------- */
+.offer__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-2xl);
+}
+
+.offer__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background-color: var(--clr-surface);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+}
+
+.offer__tag-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent);
+}
+
+/* ==========================================================================
+   Frequently asked questions
+
+   Disclosure panels, one open at a time. Every panel ships open in the markup
+   and js/fee-arrangement.js closes all but the first, so with no JavaScript
+   the page is a plain readable list of questions and answers rather than a
+   column of headings that do nothing.
+
+   The open and close is a grid row going 1fr to 0fr, which animates smoothly
+   without anybody having to guess a max-height that the copy might outgrow.
+   ========================================================================== */
+.faq__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.faq__aside {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  text-align: left;
+}
+
+.faq__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+  border: 1px solid var(--clr-line);
+}
+
+.faq__card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.faq__card-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.faq__card-title {
+  margin: 0;
+  color: var(--clr-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+}
+
+/* --------------------------------------------------------------------------
+   The panels
+   -------------------------------------------------------------------------- */
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq__item {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-surface-alt);
+}
+
+.faq__question {
+  margin: 0;
+  font-size: inherit;
+}
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 0;
+  /* Open is the resting state, because that is what the markup ships */
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  font-family: inherit;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out);
+}
+
+.faq__item.is-closed .faq__trigger {
+  background-color: transparent;
+}
+
+.faq__item.is-closed .faq__trigger:hover,
+.faq__trigger:focus-visible {
+  background-color: rgba(217, 169, 74, 0.22);
+}
+
+.faq__trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.faq__trigger-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* The arrow points up at an open panel and down at a closed one */
+.faq__item.is-closed .faq__trigger-icon {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--t-panel) var(--ease-out);
+}
+
+.faq__item.is-closed .faq__answer {
+  grid-template-rows: 0fr;
+}
+
+/* The clipping half of the pair. min-height: 0 is what lets a grid row of 0fr
+   actually reach zero rather than stopping at the content's minimum. */
+.faq__answer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.faq__text {
+  margin: 0;
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   Larger screens — min-width only
+   ========================================================================== */
+@media (min-width: 48em) {
+  .offer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .offer-card {
+    padding: var(--space-xl);
+  }
+}
+
+@media (min-width: 64em) {
+  .faq__grid {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: var(--space-2xl);
+    /* The aside is shorter than the list; letting it stretch would strand the
+       card at the bottom of a very tall column */
+    align-items: start;
+  }
+}
+
+@media (min-width: 75em) {
+  .offer__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-md);
+    /* Cards keep their own height, so the stagger reads as placement rather
+       than as four columns of different content */
+    align-items: start;
+  }
+
+  .offer-card:nth-child(2) {
+    margin-top: 4rem;
+  }
+
+  .offer-card:nth-child(3) {
+    margin-top: 6.5rem;
+  }
+
+  .offer-card:nth-child(4) {
+    margin-top: 2rem;
+  }
+
+  .offer-card__media {
+    height: 9.5rem;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion — the panels still open, they just do not travel
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .faq__answer,
+  .faq__trigger,
+  .faq__trigger-icon {
+    transition: none;
+  }
+}

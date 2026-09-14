@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fee Arrangement | WW Housing Development LLC</title>
+    <meta
+      name="description"
+      content="What WW Housing Development charges and what each tier covers: a one-time feasibility review, a consulting and navigation retainer, or a co-development partnership. Every fee agreed in writing before the work starts."
+    />
+
+    <!-- Not deferred on purpose: this decides whether the splash shows
+         before the first paint. See the note at the top of the file. -->
+    <script src="../js/splash-init.js"></script>
+
+    <link
+      rel="preload"
+      href="../fonts/inter-tight-v9-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/inter-tight-v9-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/fee-arrangement.css" />
+  </head>
+  <body>
+    <div class="splash" role="status">
+      <p class="visually-hidden">Loading</p>
+
+      <div class="splash__inner">
+        <span class="brand brand--splash">
+          <span class="brand__mark" aria-hidden="true">WW</span>
+          <span class="brand__text">
+            <span class="brand__name">WW Housing</span>
+            <span class="brand__suffix">Development LLC</span>
+          </span>
+        </span>
+
+        <span class="splash__progress" aria-hidden="true">
+          <span class="splash__progress-fill"></span>
+        </span>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <!-- Utility bar: desktop only -->
+      <div class="utility-bar">
+        <div class="container utility-bar__inner">
+          <ul class="utility-bar__contacts">
+            <li class="utility-item">
+              <span class="utility-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+              </span>
+              <span class="utility-item__text">
+                <span class="utility-item__label">Our Office</span>
+                <span class="utility-item__value">Houston, Texas</span>
+              </span>
+            </li>
+
+            <li class="utility-item">
+              <span class="utility-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </span>
+              <span class="utility-item__text">
+                <span class="utility-item__label">Call Us</span>
+                <a class="utility-item__value" href="tel:+17135550147">(713) 555-0147</a>
+              </span>
+            </li>
+
+            <li class="utility-item">
+              <span class="utility-item__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                  <polyline points="22 6 12 13 2 6" />
+                </svg>
+              </span>
+              <span class="utility-item__text">
+                <span class="utility-item__label">Email</span>
+                <a class="utility-item__value" href="mailto:info@wwhdllc.com">info@wwhdllc.com</a>
+              </span>
+            </li>
+          </ul>
+
+          <ul class="utility-bar__social">
+            <li>
+              <a class="btn-icon" href="#" aria-label="WW Housing Development on LinkedIn">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M4.98 3.5A2.5 2.5 0 1 1 2.49 1a2.5 2.5 0 0 1 2.49 2.5zM.25 8.02h4.47V23H.25zm7.5 0h4.28v2.05h.06a4.7 4.7 0 0 1 4.23-2.32c4.52 0 5.36 2.98 5.36 6.85V23h-4.47v-7.5c0-1.79-.03-4.09-2.49-4.09-2.5 0-2.88 1.95-2.88 3.96V23H7.75z" />
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a class="btn-icon" href="#" aria-label="WW Housing Development on Facebook">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.2 2 9.1 3.85 9.1 7.24v2.7H6.11v3.55H9.1V23h3.68v-9.51h2.99l.45-3.55h-3.44V7.59c0-1.02.28-2.27 1.34-2.27z" />
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Main navigation bar -->
+      <div class="nav-bar">
+        <div class="container nav-bar__inner">
+          <a class="brand" href="../index.html">
+            <span class="brand__mark" aria-hidden="true">WW</span>
+            <span class="brand__text">
+              <span class="brand__name">WW Housing</span>
+              <span class="brand__suffix">Development LLC</span>
+            </span>
+          </a>
+
+          <button
+            class="nav-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="primary-nav"
+          >
+            <span class="nav-toggle__bars" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </button>
+
+          <nav class="primary-nav" id="primary-nav" aria-label="Primary">
+            <button class="nav-close" type="button" aria-label="Close menu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
+            </button>
+
+            <ul class="primary-nav__list">
+              <li class="primary-nav__item"><a href="../index.html">Home</a></li>
+              <li class="primary-nav__item"><a href="about.html">About</a></li>
+              <li class="primary-nav__item"><a href="our-process.html">Our Process</a></li>
+              <li class="primary-nav__item"><a href="fee-arrangement.html" aria-current="page">Fee Arrangement</a></li>
+              <li class="primary-nav__item"><a href="project-experience.html">Project Experience</a></li>
+            </ul>
+
+            <a class="btn btn--accent primary-nav__cta" href="#contact">
+              Schedule a Consultation
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </a>
+
+            <ul class="primary-nav__contact">
+              <li>
+                <a href="tel:+17135550147">
+                  <span class="primary-nav__contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                  </span>
+                  <span class="primary-nav__contact-text">
+                    <span class="primary-nav__contact-label">Call Us</span>
+                    <span class="primary-nav__contact-value">(713) 555-0147</span>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="mailto:info@wwhdllc.com">
+                  <span class="primary-nav__contact-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+                      <polyline points="22 6 12 13 2 6" />
+                    </svg>
+                  </span>
+                  <span class="primary-nav__contact-text">
+                    <span class="primary-nav__contact-label">Email</span>
+                    <span class="primary-nav__contact-value">info@wwhdllc.com</span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="nav-overlay"></div>
+    </header>
+
+    <main id="main">
+      <section class="page-hero" aria-labelledby="fee-hero-title">
+        <div class="page-hero__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="../images/home/hero/hero-1.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="../images/home/hero/hero-1.jpg" type="image/jpeg" />
+            <source srcset="../images/home/hero/hero-1-m.webp" type="image/webp" />
+            <img src="../images/home/hero/hero-1-m.jpg" alt="" width="800" height="1000" decoding="async" fetchpriority="high" />
+          </picture>
+        </div>
+
+        <div class="container page-hero__inner">
+          <p class="page-hero__eyebrow">Fee Arrangement</p>
+
+          <h1 class="page-hero__title">
+            What this costs, and what you get <span class="mark-underline">for it</span>
+          </h1>
+
+          <p class="page-hero__text">
+            Every fee is agreed in writing before any work starts, and the first conversation
+            costs nothing. Here is what each tier covers, where most organisations begin, and
+            the questions people ask us before they commit.
+          </p>
+        </div>
+      </section>
+      <!--
+        The tier table, shared with the home page — the styles moved from
+        styles.css to global.css when this page started using them too. Keep
+        the two copies in step, or cut the home page one down to a summary
+        that links here.
+      -->
+      <section class="section pricing" aria-labelledby="pricing-heading">
+        <!--
+          images/home/pricing/
+            pricing-bg.webp + .jpg     1152x864  (desktop, min-width 48em)
+            pricing-bg-m.webp + .jpg    800x1400 (mobile)
+          Both softened before encoding — this section's scrim sits at 82-90%
+          opacity, so the detail is not visible and the bytes were not earning
+          their place. See the note about the very tall mobile section.
+        -->
+        <div class="pricing__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="../images/home/pricing/pricing-bg.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="../images/home/pricing/pricing-bg.jpg" type="image/jpeg" />
+            <source srcset="../images/home/pricing/pricing-bg-m.webp" type="image/webp" />
+            <img src="../images/home/pricing/pricing-bg-m.jpg" alt="" width="800" height="1400" decoding="async" loading="lazy" />
+          </picture>
+        </div>
+
+        <div class="container">
+          <header class="section-header">
+            <p class="section-badge">
+              <span class="section-badge__dot" aria-hidden="true"></span>
+              The Three Tiers
+            </p>
+
+            <h2 class="section-heading" id="pricing-heading">Clear fees, agreed before we start</h2>
+
+            <p class="section-intro">
+              Three ways to work with us, depending on how far you want us to carry the project.
+              You will know what each stage costs before you commit to it.
+            </p>
+          </header>
+
+          <!--
+            PLACEHOLDER FEES — taken from the June 2026 business plan draft, which
+            notes the full schedule is still to be finalised. Confirm with the
+            principals before launch.
+          -->
+          <ul class="pricing__list">
+            <li class="plan">
+              <span class="plan__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" /><rect x="8" y="2" width="8" height="4" rx="1" /><polyline points="9 14 11 16 15 12" /></svg>
+              </span>
+
+              <h3 class="plan__name">Engagement &amp; Feasibility</h3>
+
+              <p class="plan__summary">Start here. A straight read on whether your land can carry housing, before you commit to anything bigger.</p>
+
+              <p class="plan__price">
+                <span class="plan__amount">$2,500</span>
+                <span class="plan__period">/ one-time</span>
+              </p>
+
+              <ul class="plan__features">
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Property, title, and site constraint review
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                AMI tier and unit-mix feasibility modeling
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Written project scoping summary
+              </li>
+              </ul>
+
+              <a class="btn btn--accent btn--with-badge plan__cta" href="#contact">
+                Start With a Review
+                <span class="btn__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+
+            <li class="plan plan--featured">
+              <p class="plan__tag">Our Core Service</p>
+
+              <span class="plan__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10" /><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" /></svg>
+              </span>
+
+              <h3 class="plan__name">Consulting &amp; Navigation</h3>
+
+              <p class="plan__summary">Our core engagement. We guide the whole development, from financing through to the day the doors open.</p>
+
+              <p class="plan__price">
+                <span class="plan__amount">Custom</span>
+                <span class="plan__period">/ retainer</span>
+              </p>
+
+              <ul class="plan__features">
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Everything in Engagement &amp; Feasibility
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Financing pathway identification
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Developer and vendor selection support
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                City of Houston submission and approvals
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Monitoring through to project close
+              </li>
+              </ul>
+
+              <a class="btn btn--accent btn--with-badge plan__cta" href="#contact">
+                Schedule a Consultation
+                <span class="btn__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+
+            <li class="plan">
+              <span class="plan__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 7 9.5 4.5a2.12 2.12 0 0 0-3 0L3 8l5 5" /><path d="m12 7 2.5-2.5a2.12 2.12 0 0 1 3 0L21 8l-5 5" /><path d="M8 13l4 4 4-4" /><path d="M12 17v4" /></svg>
+              </span>
+
+              <h3 class="plan__name">Co-Development Partnership</h3>
+
+              <p class="plan__summary">For projects where you want your advisor carrying risk beside you, not just advising from the outside.</p>
+
+              <p class="plan__price">
+                <span class="plan__amount">4%</span>
+                <span class="plan__period">/ of the development fee</span>
+              </p>
+
+              <ul class="plan__features">
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Full consulting and navigation scope
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                The firm joins the deal as co-developer
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                A direct stake in the project outcome
+              </li>
+              </ul>
+
+              <a class="btn btn--accent btn--with-badge plan__cta" href="#contact">
+                Discuss a Partnership
+                <span class="btn__badge" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </span>
+              </a>
+            </li>
+          </ul>
+
+          <ul class="pricing__notes">
+            <li class="pricing__note">
+              <span class="pricing__note-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+              </span>
+              The first conversation costs nothing
+            </li>
+
+            <li class="pricing__note">
+              <span class="pricing__note-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="8" y1="13" x2="16" y2="13" /><line x1="8" y1="17" x2="13" y2="17" /></svg>
+              </span>
+              Every fee agreed in writing up front
+            </li>
+
+            <li class="pricing__note">
+              <span class="pricing__note-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+              </span>
+              A straight answer when a deal will not work
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section offer" aria-labelledby="offer-heading">
+        <div class="container">
+          <header class="section-header">
+            <p class="section-badge">
+              <span class="section-badge__dot" aria-hidden="true"></span>
+              What We Do
+            </p>
+
+            <h2 class="section-heading" id="offer-heading">What the fee actually buys</h2>
+
+            <p class="section-intro">
+              Whichever tier you start on, the work is the same shape: a straight read on the
+              land, a route to the money, and someone carrying the paperwork until the doors
+              open.
+            </p>
+          </header>
+
+          <!--
+            STAND-IN PHOTOGRAPHY, as elsewhere on the site: both pictures below
+            are borrowed from other sections. Swap the <picture> blocks when
+            artwork of their own arrives.
+          -->
+          <ul class="offer__grid">
+            <li class="offer-card offer-card--light">
+              <div class="offer-card__body">
+                <h3 class="offer-card__title">A straight read on the land</h3>
+                <p class="offer-card__text">
+                  What your property can physically carry, and whether the economics support
+                  housing at all — answered before you spend anything.
+                </p>
+              </div>
+
+              <!-- feasibility-vision | stand-in -->
+              <div class="offer-card__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/feasibility-vision.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/feasibility-vision.jpg" type="image/jpeg" />
+                  <source srcset="../images/home/how-it-works/feasibility-vision-m.webp" type="image/webp" />
+                  <img src="../images/home/how-it-works/feasibility-vision-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
+                </picture>
+              </div>
+            </li>
+
+            <li class="offer-card offer-card--accent">
+              <span class="offer-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
+              </span>
+
+              <div class="offer-card__body">
+                <h3 class="offer-card__title">One point of contact</h3>
+                <p class="offer-card__text">
+                  The same two people stay on your project from the first review through to
+                  project close.
+                </p>
+              </div>
+
+              <ul class="offer-card__points">
+                <li>No handing you between departments</li>
+              </ul>
+            </li>
+
+            <li class="offer-card offer-card--dark">
+              <span class="offer-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+              </span>
+
+              <p class="offer-card__stat">$0</p>
+              <p class="offer-card__stat-label">What the first conversation costs</p>
+            </li>
+
+            <li class="offer-card offer-card--light">
+              <!-- approvals-builds | stand-in -->
+              <div class="offer-card__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/approvals-builds.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/approvals-builds.jpg" type="image/jpeg" />
+                  <source srcset="../images/home/how-it-works/approvals-builds-m.webp" type="image/webp" />
+                  <img src="../images/home/how-it-works/approvals-builds-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
+                </picture>
+              </div>
+
+              <div class="offer-card__body">
+                <h3 class="offer-card__title">Approvals carried for you</h3>
+                <p class="offer-card__text">
+                  We take the project through the City of Houston and stay on it until residents
+                  move in.
+                </p>
+
+                <a class="link-arrow" href="our-process.html">
+                  <span class="link-arrow__label">See the full process</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="offer__tags">
+            <li class="offer__tag"><span class="offer__tag-dot" aria-hidden="true"></span>Feasibility</li>
+            <li class="offer__tag"><span class="offer__tag-dot" aria-hidden="true"></span>Financing</li>
+            <li class="offer__tag"><span class="offer__tag-dot" aria-hidden="true"></span>City Approvals</li>
+            <li class="offer__tag"><span class="offer__tag-dot" aria-hidden="true"></span>Construction Monitoring</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section faq curve-out" aria-labelledby="faq-heading">
+        <div class="container faq__grid">
+          <div class="faq__aside">
+            <p class="section-badge">
+              <span class="section-badge__dot" aria-hidden="true"></span>
+              Frequently Asked Questions
+            </p>
+
+            <h2 class="section-heading" id="faq-heading">Straight answers about how we charge</h2>
+
+            <p class="section-intro">
+              The questions churches and community groups ask us most often, about what the
+              engagement covers and what it costs. If yours is not here, ask it directly.
+            </p>
+
+            <div class="faq__card">
+              <span class="faq__card-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+              </span>
+
+              <p class="faq__card-title">Not seeing your question?</p>
+
+              <a class="link-arrow" href="#contact">
+                <span class="link-arrow__label">Ask us directly</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+              </a>
+            </div>
+          </div>
+
+          <!--
+            DRAFT COPY. The answers below are written from what the rest of the
+            site already says; confirm the wording with the principals before
+            launch, particularly anything touching fees.
+
+            Every panel ships open and js/fee-arrangement.js closes all but the
+            first, so the list is readable with no JavaScript at all.
+          -->
+          <ul class="faq__list" data-faq>
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-1-label" aria-expanded="true" aria-controls="faq-1">
+                  <span class="faq__trigger-text">How do we get started?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-1" role="region" aria-labelledby="faq-1-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">Bring us the property and your questions. The first conversation costs nothing and is there to work out whether a feasibility review is worth doing at all. If it is, the Engagement &amp; Feasibility tier is where most organisations begin.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-2-label" aria-expanded="true" aria-controls="faq-2">
+                  <span class="faq__trigger-text">What does the feasibility review include?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-2" role="region" aria-labelledby="faq-2-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">A review of the property, title and site constraints, AMI tier and unit-mix modelling against real revenue, and a written summary of what the land can support. You keep that summary whether or not you go any further with us.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-3-label" aria-expanded="true" aria-controls="faq-3">
+                  <span class="faq__trigger-text">How are the fees structured?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-3" role="region" aria-labelledby="faq-3-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">Three ways, depending on how far you want us to carry the project: a one-time fee for the feasibility review, a retainer for full consulting and navigation, or a share of the development fee where the firm joins the deal as co-developer. Whichever applies is agreed in writing before any work starts.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-4-label" aria-expanded="true" aria-controls="faq-4">
+                  <span class="faq__trigger-text">What happens if the numbers do not work on our land?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-4" role="region" aria-labelledby="faq-4-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">We say so, early, and explain why. Not every site can carry housing and not every affordability target can be funded. Finding that out in a feasibility review costs far less than finding it out a year into a project.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-5-label" aria-expanded="true" aria-controls="faq-5">
+                  <span class="faq__trigger-text">Do we have to use a developer you choose?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-5" role="region" aria-labelledby="faq-5-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">No. Part of the consulting engagement is vetting and selecting the developer and vendors with you, against what your organisation actually wants from the project rather than against who we already know.</p>
+                </div>
+              </div>
+            </li>
+
+            <li class="faq__item">
+              <h3 class="faq__question">
+                <button class="faq__trigger" type="button" id="faq-6-label" aria-expanded="true" aria-controls="faq-6">
+                  <span class="faq__trigger-text">Who deals with the City of Houston?</span>
+                  <span class="faq__trigger-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5" /><polyline points="5 12 12 5 19 12" /></svg>
+                  </span>
+                </button>
+              </h3>
+
+              <div class="faq__answer" id="faq-6" role="region" aria-labelledby="faq-6-label">
+                <div class="faq__answer-inner">
+                  <p class="faq__text">We do. Submission, sequencing and approvals are handled directly, with one named person as the liaison for your project so nothing sits waiting on an unowned task.</p>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cta" aria-labelledby="cta-heading">
+        <!--
+          images/home/cta/
+            cta-bg.webp + .jpg     1600x533 (desktop, min-width 48em)
+            cta-bg-m.webp + .jpg    800x680 (mobile)
+          Both softened before encoding — the scrim below sits at 74-84%, so
+          the fine detail was not visible and was not earning its bytes.
+        -->
+        <div class="cta__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="../images/home/cta/cta-bg.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="../images/home/cta/cta-bg.jpg" type="image/jpeg" />
+            <source srcset="../images/home/cta/cta-bg-m.webp" type="image/webp" />
+            <img src="../images/home/cta/cta-bg-m.jpg" alt="" width="800" height="680" decoding="async" loading="lazy" />
+          </picture>
+        </div>
+
+        <div class="container cta__inner">
+          <h2 class="cta__heading" id="cta-heading">Ready to see what your land can do?</h2>
+
+          <p class="cta__text">
+            Bring us the property and we will tell you honestly whether housing works on it, before you commit to anything.
+          </p>
+
+          <div class="cta__actions">
+            <a class="btn btn--accent btn--with-badge" href="#contact">
+              Get in Touch
+              <span class="btn__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact" aria-labelledby="contact-heading">
+        <div class="container contact__grid">
+          <div class="contact__aside">
+            <picture class="contact__aside-photo" aria-hidden="true">
+              <source media="(min-width: 48em)" srcset="../images/home/how-it-works/approvals-builds.webp" type="image/webp" />
+              <source media="(min-width: 48em)" srcset="../images/home/how-it-works/approvals-builds.jpg" type="image/jpeg" />
+              <source srcset="../images/home/how-it-works/approvals-builds-m.webp" type="image/webp" />
+              <img src="../images/home/how-it-works/approvals-builds-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
+            </picture>
+
+            <div class="contact__aside-content">
+              <ul class="contact__points">
+                <li class="contact__point">
+                  <span class="contact__point-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                  </span>
+                  <span>
+                    <span class="contact__point-label">Call Now!</span>
+                    <a class="contact__point-value" href="tel:+17135550147">(713) 555-0147</a>
+                  </span>
+                </li>
+
+                <li class="contact__point">
+                  <span class="contact__point-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><polyline points="22 6 12 13 2 6" /></svg>
+                  </span>
+                  <span>
+                    <span class="contact__point-label">Email Us!</span>
+                    <a class="contact__point-value" href="mailto:info@wwhdllc.com">info@wwhdllc.com</a>
+                  </span>
+                </li>
+              </ul>
+
+              <div class="contact__point contact__location">
+                <span class="contact__point-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                </span>
+                <span>
+                  <span class="contact__point-label">Our Location!</span>
+                  <span class="contact__point-value">Houston, Texas. Serving the greater Houston area.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__panel">
+            <header class="section-header section-header--start">
+              <p class="section-badge">
+                <span class="section-badge__dot" aria-hidden="true"></span>
+                Contact Us
+              </p>
+
+              <h2 class="section-heading" id="contact-heading">Get in touch with our team</h2>
+
+              <p class="section-intro">
+                Tell us about the property and what your congregation or organisation is hoping
+                to build. The first conversation costs nothing.
+              </p>
+            </header>
+
+            <!--
+              NO FORM HANDLER YET. action="#" discards the submission. Point this
+              at a real endpoint before launch or the form silently loses enquiries.
+            -->
+            <form class="form contact__form" action="#" method="post">
+              <div class="field">
+                <label class="field__label visually-hidden" for="contact-first">First name</label>
+                <input id="contact-first" name="first-name" type="text" autocomplete="given-name" placeholder="First Name" required />
+              </div>
+
+              <div class="field">
+                <label class="field__label visually-hidden" for="contact-last">Last name</label>
+                <input id="contact-last" name="last-name" type="text" autocomplete="family-name" placeholder="Last Name" />
+              </div>
+
+              <div class="field">
+                <label class="field__label visually-hidden" for="contact-phone">Mobile number</label>
+                <input id="contact-phone" name="phone" type="tel" autocomplete="tel" placeholder="Mobile Number" />
+              </div>
+
+              <div class="field">
+                <label class="field__label visually-hidden" for="contact-email">Email address</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" placeholder="Email Address" required />
+              </div>
+
+              <div class="field field--wide">
+                <label class="field__label visually-hidden" for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" placeholder="Write your message here..." required></textarea>
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--accent" type="submit">Send A Message</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="map" aria-label="Map of the Houston area we serve">
+        <!--
+          PROJECT EXCEPTION (handbook §6): third-party embed.
+          Keyless Google Maps embed centred on Houston, lazy-loaded so it never
+          blocks first paint. When the firm has a street address, swap the q=
+          value for it.
+        -->
+        <iframe
+          class="map__frame"
+          src="https://maps.google.com/maps?q=Houston,+TX&amp;z=10&amp;output=embed"
+          title="Map of Houston, Texas"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="site-footer__top">
+          <a class="brand" href="../index.html">
+            <span class="brand__mark" aria-hidden="true">WW</span>
+            <span class="brand__text">
+              <span class="brand__name">WW Housing</span>
+              <span class="brand__suffix">Development LLC</span>
+            </span>
+          </a>
+
+          <ul class="site-footer__contact">
+            <li>
+              <a href="mailto:info@wwhdllc.com">
+                <span class="site-footer__contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" /><polyline points="22 6 12 13 2 6" /></svg></span>
+                <span>
+                  <span class="site-footer__contact-label">Email Address</span>
+                  <span class="site-footer__contact-value">info@wwhdllc.com</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a href="tel:+17135550147">
+                <span class="site-footer__contact-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg></span>
+                <span>
+                  <span class="site-footer__contact-label">Phone Number</span>
+                  <span class="site-footer__contact-value">(713) 555-0147</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="site-footer__main">
+          <div class="site-footer__about">
+            <h2 class="site-footer__heading">About the Firm</h2>
+            <p>
+              WW Housing Development guides Houston churches, community groups, and landowners
+              through affordable housing development, covering feasibility, financing, city approvals, and construction, all in plain language.
+            </p>
+
+            <div class="site-footer__newsletter">
+              <h3 class="site-footer__heading">Stay Informed</h3>
+              <!-- NO HANDLER YET — see the note on the contact form above. -->
+              <form class="newsletter" action="#" method="post">
+                <label class="visually-hidden" for="newsletter-email">Email address</label>
+                <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Enter email address" required />
+                <button class="newsletter__submit" type="submit" aria-label="Subscribe to updates">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <nav aria-labelledby="footer-quick-links">
+            <h2 class="site-footer__heading" id="footer-quick-links">Quick Links</h2>
+            <ul class="site-footer__list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="../index.html">Home</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="about.html">About</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="our-process.html">Our Process</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="fee-arrangement.html">Fee Arrangement</a></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg><a href="project-experience.html">Project Experience</a></li>
+            </ul>
+          </nav>
+
+          <div>
+            <h2 class="site-footer__heading">Financing Pathways</h2>
+            <ul class="site-footer__list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Low-Income Housing Tax Credits</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Owner-Financed Land as Equity</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>City of Houston Programs</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>HUD Grant Opportunities</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>Private Capital &amp; Build-to-Rent</li>
+            </ul>
+          </div>
+
+          <div>
+            <h2 class="site-footer__heading">Contact Information</h2>
+            <p>Houston, Texas</p>
+
+            <!-- PLACEHOLDER HOURS — confirm with the principals before launch. -->
+            <div class="site-footer__hours">
+              <h3>Office Hours</h3>
+              <ul>
+                <li>
+                  <span class="site-footer__hours-day">Mon to Fri</span>
+                  <span>9:00 AM to 5:00 PM</span>
+                </li>
+                <li>
+                  <span class="site-footer__hours-day">Saturday</span>
+                  <span>By appointment</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          <ul class="site-footer__social">
+            <li>
+              <a class="btn-icon btn-icon--on-dark" href="#" aria-label="WW Housing Development on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.49 1a2.5 2.5 0 0 1 2.49 2.5zM.25 8.02h4.47V23H.25zm7.5 0h4.28v2.05h.06a4.7 4.7 0 0 1 4.23-2.32c4.52 0 5.36 2.98 5.36 6.85V23h-4.47v-7.5c0-1.79-.03-4.09-2.49-4.09-2.5 0-2.88 1.95-2.88 3.96V23H7.75z" /></svg></a>
+            </li>
+            <li>
+              <a class="btn-icon btn-icon--on-dark" href="#" aria-label="WW Housing Development on Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.2 2 9.1 3.85 9.1 7.24v2.7H6.11v3.55H9.1V23h3.68v-9.51h2.99l.45-3.55h-3.44V7.59c0-1.02.28-2.27 1.34-2.27z" /></svg></a>
+            </li>
+          </ul>
+
+          <p class="site-footer__copyright">
+            &copy; 2026 WW Housing Development LLC. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+
+
+    <button class="to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="12" y1="19" x2="12" y2="5" />
+        <polyline points="5 12 12 5 19 12" />
+      </svg>
+    </button>
+
+
+
+    <script src="../js/global.js" defer></script>
+    <script src="../js/fee-arrangement.js" defer></script>
+  </body>
+</html>
