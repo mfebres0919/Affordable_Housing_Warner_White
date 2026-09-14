@@ -104,6 +104,8 @@
 
   /* Layout */
   --section-space: clamp(3.5rem, 8vw, 7rem);
+  /* Depth of the curved edge a .curve-out section hangs into the next one */
+  --curve-height: clamp(2.5rem, 6vw, 6rem);
   --container-max: 80rem;
   --container-pad: clamp(1rem, 4vw, 2rem);
   --nav-bar-height: 4.5rem;
@@ -1396,6 +1398,52 @@ button {
    Photographic panel of contact details on one side, form on the other.
    Repeats at the foot of every page.
    ========================================================================== */
+/* --------------------------------------------------------------------------
+   Curved section edge
+
+   A cream shape hung below a section and over the top of the one after it: the
+   filled half carries the cream down in a curve, while the transparent half
+   lets the next section's ground rise up on the other side.
+
+   It has to overlap the next section — that is the only way the transparent
+   half has anything to reveal — so whatever it hangs into needs enough top
+   padding to keep its own content clear of the curve. --section-space and the
+   CTA's padding both have room to spare; the marquee band is the one that does
+   not, and is given it below.
+
+   The artwork is stretched rather than scaled: preserveAspectRatio='none' is
+   set in the file itself, so the curve flattens as the viewport widens instead
+   of being drawn at 10:1 and cropped.
+   -------------------------------------------------------------------------- */
+.curve-out {
+  position: relative;
+  /* The section that follows is often positioned too, and would otherwise
+     paint straight over the shape hanging into it */
+  z-index: 1;
+}
+
+.curve-out::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: var(--curve-height);
+  background-image: url("../images/svg-backgrounds/curve-divider.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* --section-space has room for the curve with a margin to spare, so a plain
+   .section needs nothing. These two bands sit much closer to their content —
+   the marquee is only --space-lg deep — and would take the curve across the
+   top of it, so each is given the depth of the shape plus a breath. */
+.curve-out + .marquee,
+.curve-out + .cta {
+  padding-top: calc(var(--curve-height) + var(--space-xl));
+}
+
 .contact {
   position: relative;
   /* Contains the texture layer's negative z-index */
