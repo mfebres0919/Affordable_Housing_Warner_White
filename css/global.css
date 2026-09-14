@@ -1397,9 +1397,31 @@ button {
    Repeats at the foot of every page.
    ========================================================================== */
 .contact {
+  position: relative;
+  /* Contains the texture layer's negative z-index */
+  isolation: isolate;
   /* Clears the sticky header when a CTA jumps to #contact */
   scroll-margin-top: calc(var(--nav-bar-height) + var(--space-md));
   background-color: var(--clr-surface-alt);
+}
+
+/* Tortoise-shell texture behind the section. The artwork carries its own
+   near-white ground, so it is laid over the section rather than swapped in for
+   the background colour, and it is masked rather than simply tiled: a repeat
+   that runs to the edge ends on a visible seam, while this one dissolves into
+   the section ground before it gets there. Held at the size it was drawn,
+   400px, so the brass lines keep their intended weight. */
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../images/svg-backgrounds/tortoise-shell.svg");
+  background-repeat: repeat;
+  background-size: 25rem 25rem;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 90%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 48%, transparent 90%);
+  pointer-events: none;
 }
 
 .contact__grid {
