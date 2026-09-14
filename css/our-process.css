@@ -50,9 +50,29 @@
 }
 
 .step {
+  position: relative;
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-lg);
+  gap: var(--space-md) var(--space-lg);
+}
+
+/* Placed explicitly. Three children in a two-column grid auto-place as
+   marker, media, body — which drops the body back into column one, directly
+   under the marker, where the rail runs straight through the text, and starves
+   column two so the photograph collapses to nothing. */
+.step__marker {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.step__media {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.step__body {
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .step__marker {
@@ -106,6 +126,21 @@
   min-width: 0;
 }
 
+/* The rail is drawn down the whole list. Here the last marker sits at the top
+   of its step rather than beside its middle, so the line would carry on past
+   it and dangle; this covers the overhang in the page ground. Not needed at
+   64em, where the markers are centred and the rail already ends on one. */
+.step:last-child::before {
+  content: "";
+  position: absolute;
+  top: 1.5rem;
+  bottom: 0;
+  left: 0;
+  width: 3rem;
+  background-color: var(--clr-surface);
+  pointer-events: none;
+}
+
 .step__label {
   display: inline-flex;
   margin: 0 0 var(--space-sm);
@@ -140,23 +175,170 @@
 }
 
 /* ==========================================================================
-   Financing pathways
+   Financing pathways — expanding panels
+
+   One set of markup, two behaviours:
+
+     below 64em   a snap carousel. One route at a time, moved by swipe or by
+                  the arrows underneath. Every panel is open.
+     64em and up  a row of panels. The one under the cursor opens and the rest
+                  compress to slivers carrying a vertical title. LIHTC is open
+                  at rest, so the row has a focal point before anyone hovers.
+
+   Each panel is a photograph with a solid block of colour sitting on it. The
+   block is what holds the icon, title, copy and link, so text never sits
+   directly on the image.
+
+   Open and closed are two custom properties, --pw-open and --pw-closed, rather
+   than two copies of every rule. They are plain numbers, so opacity, flex-grow
+   and the transition delays can all be derived from them and every one of
+   those is animatable — which is what makes the open and close read as a
+   single movement rather than several.
    ========================================================================== */
 .pathways {
   background-color: var(--clr-surface-alt);
 }
 
-.pathways__grid {
-  display: grid;
-  gap: var(--space-lg);
+/* The track. Below 64em it scrolls; the negative margin lets the cards run out
+   to the screen edges so the next one peeks in and the swipe reads as one
+   continuous strip rather than a boxed-in widget.
+   position: relative so card offsetLeft is measured against this element —
+   js/our-process.js scrolls by those offsets. */
+.pathways__viewport {
+  position: relative;
+  display: flex;
+  gap: var(--space-md);
+  margin: 0;
+  margin-inline: calc(var(--container-pad) * -1);
+  padding: 0;
+  padding-inline: var(--container-pad);
+  /* Room under the cards for the panel shadow, which overflow-x would clip */
+  padding-block: var(--space-2xs) var(--space-md);
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Every colour on the card is a custom property, so the hovered state and the
-   featured state are one block of value swaps rather than a second copy of
-   every rule. Custom properties inherit, so the children pick them up. */
+.pathways__viewport::-webkit-scrollbar {
+  display: none;
+}
+
 .pathway {
-  --pw-bg: var(--clr-surface);
-  --pw-border: var(--clr-line);
+  /* Open at this width: the carousel shows one whole card at a time */
+  --pw-open: 1;
+  --pw-closed: 0;
+  --pw-grow: 1;
+
+  position: relative;
+  /* Contains the photograph's negative z-index and clips it to the corners */
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 min(20rem, 82%);
+  min-height: 26rem;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  /* Shows through until the photograph loads, and behind any transparency */
+  background-color: var(--clr-primary);
+  scroll-snap-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Photograph
+   -------------------------------------------------------------------------- */
+.pathway__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.pathway__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Scrim. Much heavier while the panel is closed, because the vertical title
+   then sits straight on the photograph with nothing behind it — a closed panel
+   should read as a band of navy carrying a name, not as a busy photograph.
+   The gradient itself never changes; only its opacity does, because gradients
+   do not interpolate and two cross-fading layers would be a second element for
+   no gain. */
+.pathway__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.62) 0%,
+    rgba(10, 30, 50, 0.93) 100%
+  );
+  opacity: calc(1 - var(--pw-open) * 0.56);
+  transition: opacity var(--t-slow) var(--ease-out);
+}
+
+/* --------------------------------------------------------------------------
+   Vertical title — the closed state, 64em and up only
+   Duplicated copy, so it is hidden from assistive tech in the markup; the
+   panel title is the one that gets announced.
+   -------------------------------------------------------------------------- */
+.pathway__vert {
+  display: none;
+  position: absolute;
+  inset: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-sm);
+  opacity: var(--pw-closed);
+  transition: opacity var(--t-base) var(--ease-out);
+  transition-delay: calc(var(--pw-closed) * 180ms);
+  pointer-events: none;
+}
+
+.pathway__vert-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: var(--radius-md);
+  background-color: rgba(250, 247, 242, 0.14);
+  color: var(--clr-accent-light);
+}
+
+.pathway__vert-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* vertical-rl plus the half turn reads bottom to top, which keeps the title
+   the right way up beside a card that grows to the right */
+.pathway__vert-title {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  color: var(--clr-surface);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  white-space: nowrap;
+  /* Long titles are trimmed rather than allowed to push out of the sliver */
+  max-height: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------------------------------------------------
+   The solid block that carries the copy
+   -------------------------------------------------------------------------- */
+.pathway__panel {
+  --pw-panel-bg: var(--clr-surface);
   --pw-title: var(--clr-primary);
   --pw-text: var(--clr-muted);
   --pw-icon-bg: var(--clr-accent-light);
@@ -164,41 +346,37 @@
   --pw-rule: var(--clr-line);
   --pw-link: var(--clr-primary);
 
+  position: relative;
+  overflow: hidden;
+  /* Pushed to the foot of the card, so the photograph frames it from above */
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
-  height: 100%;
   padding: var(--space-lg);
-  border: 1px solid var(--pw-border);
-  border-radius: var(--radius-lg);
-  background-color: var(--pw-bg);
-  transition: background-color var(--t-slow) var(--ease-out),
-    border-color var(--t-slow) var(--ease-out),
-    transform var(--t-base) var(--ease-out),
-    box-shadow var(--t-base) var(--ease-out);
+  border-radius: var(--radius-md);
+  background-color: var(--pw-panel-bg);
+  box-shadow: 0 14px 30px rgba(10, 30, 50, 0.24);
+  opacity: var(--pw-open);
+  transform: translateY(calc(var(--pw-closed) * 0.75rem));
+  transition: opacity var(--t-base) var(--ease-out),
+    transform var(--t-slow) var(--ease-out);
+  /* Opening waits for the card to widen; closing starts at once */
+  transition-delay: calc(var(--pw-open) * 180ms);
 }
 
-/* One card carries the dark treatment at rest, so the grid has a focal point
-   before anyone touches it. LIHTC is the honest choice for it: the copy
-   already says it is the most common route. */
-.pathway--featured,
-.pathway:hover,
-.pathway:focus-within {
-  --pw-bg: var(--clr-primary);
-  --pw-border: transparent;
-  --pw-title: var(--clr-surface);
-  --pw-text: rgba(250, 247, 242, 0.82);
-  --pw-icon-bg: var(--clr-surface);
-  --pw-icon-fg: var(--clr-primary);
-  --pw-rule: rgba(250, 247, 242, 0.24);
-  --pw-link: var(--clr-surface);
-}
-
-/* The lift is hover only, so the featured card does not float permanently */
-.pathway:hover,
-.pathway:focus-within {
-  transform: translateY(-0.25rem);
-  box-shadow: 0 18px 36px rgba(10, 30, 50, 0.18);
+/* Brass hairline along the top, the same signature the callout carries */
+.pathway__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background-image: linear-gradient(
+    to right,
+    var(--clr-accent) 0%,
+    var(--clr-accent-light) 50%,
+    var(--clr-accent) 100%
+  );
 }
 
 .pathway__icon {
@@ -212,8 +390,6 @@
   border-radius: var(--radius-md);
   background-color: var(--pw-icon-bg);
   color: var(--pw-icon-fg);
-  transition: background-color var(--t-slow) var(--ease-out),
-    color var(--t-slow) var(--ease-out);
 }
 
 .pathway__icon svg {
@@ -227,7 +403,6 @@
   font-size: var(--fs-400);
   font-weight: var(--fw-bold);
   line-height: 1.3;
-  transition: color var(--t-slow) var(--ease-out);
 }
 
 .pathway__text {
@@ -235,25 +410,120 @@
   color: var(--pw-text);
   font-size: var(--fs-300);
   line-height: 1.7;
-  transition: color var(--t-slow) var(--ease-out);
 }
 
-/* Pinned to the foot, so the rules line up across the row */
+/* Pinned to the foot, so the rule sits at the same place on every panel */
 .pathway__foot {
   margin-top: auto;
   padding-top: var(--space-md);
   border-top: 1px solid var(--pw-rule);
-  transition: border-color var(--t-slow) var(--ease-out);
 }
 
 .pathway .link-arrow {
   color: var(--pw-link);
-  transition: color var(--t-slow) var(--ease-out);
 }
 
-/* The arrow stays brass in both states */
+/* The arrow stays brass against the cream panel */
 .pathway .link-arrow svg {
-  color: var(--clr-accent-light);
+  color: var(--clr-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Carousel controls. Below 64em only, and the arrows and dots are revealed by
+   js/our-process.js — without it they would be furniture that does nothing,
+   while the swipe carries on working on its own.
+   -------------------------------------------------------------------------- */
+.pathways__controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.pathways__hint {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.pathways__nav {
+  display: none;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.pathways.is-ready .pathways__nav {
+  display: flex;
+}
+
+.pathways__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--clr-line);
+  border-radius: 50%;
+  background-color: var(--clr-surface-alt);
+  color: var(--clr-primary);
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out),
+    opacity var(--t-base) var(--ease-out);
+}
+
+.pathways__arrow svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.pathways__arrow:hover,
+.pathways__arrow:focus-visible {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: var(--clr-surface);
+}
+
+.pathways__arrow[disabled] {
+  opacity: 0.32;
+  cursor: default;
+}
+
+.pathways__arrow[disabled]:hover {
+  background-color: var(--clr-surface-alt);
+  border-color: var(--clr-line);
+  color: var(--clr-primary);
+}
+
+.pathways__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.pathways__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--clr-line);
+  cursor: pointer;
+  transition: width var(--t-base) var(--ease-out),
+    background-color var(--t-base) var(--ease-out);
+}
+
+.pathways__dot.is-current {
+  width: 1.5rem;
+  background-color: var(--clr-accent);
 }
 
 /* --------------------------------------------------------------------------
@@ -423,7 +693,6 @@
    Larger screens — min-width only
    ========================================================================== */
 @media (min-width: 48em) {
-  .pathways__grid,
   .guards__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -432,16 +701,9 @@
     gap: var(--space-xl);
   }
 
-  .step__media {
-    margin-bottom: var(--space-lg);
-  }
 }
 
 @media (min-width: 64em) {
-  .pathways__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   /* Rail to the centre, content alternating either side of it */
   .steps {
     --rail-x: 50%;
@@ -457,10 +719,6 @@
   .step__marker {
     grid-column: 2;
     grid-row: 1;
-  }
-
-  .step__media {
-    margin-bottom: 0;
   }
 
   /* Odd steps: photograph left, copy right. Even steps: the reverse. */
@@ -494,6 +752,124 @@
   .callout {
     padding: var(--space-2xl) var(--space-2xl) calc(var(--space-2xl) + var(--space-sm));
   }
+
+  /* ------------------------------------------------------------------
+     Financing pathways: the carousel becomes a row of expanding panels
+     ------------------------------------------------------------------ */
+  .pathways__viewport {
+    /* No gap. The cards are separated by transparent side borders instead,
+       so there is no dead strip between them — crossing from one card to
+       the next hands the open state straight over rather than letting
+       everything collapse for the width of a gutter. */
+    gap: 0;
+    margin-inline: 0;
+    padding-inline: 0;
+    padding-block: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .pathways__controls {
+    display: none;
+  }
+
+  .pathway {
+    /* Closed is the resting state at this width; --pw-grow drives the width */
+    --pw-open: 0;
+    --pw-closed: 1;
+    --pw-grow: 1;
+
+    flex: var(--pw-grow) 1 0;
+    min-width: 0;
+    height: 32rem;
+    padding: var(--space-sm);
+    border-inline: 0.3125rem solid transparent;
+    /* Keeps the card's own ground out of the transparent borders */
+    background-clip: padding-box;
+    transition: flex-grow 620ms var(--ease-out);
+  }
+
+  .pathway:first-child {
+    border-left-width: 0;
+  }
+
+  .pathway:last-child {
+    border-right-width: 0;
+  }
+
+  .pathway__vert {
+    display: flex;
+  }
+
+  /* A fixed panel width, so the copy does not rewrap line by line while the
+     card is still growing — the block slides out already at its final size
+     rather than reflowing through every width on the way there. Stepped up at
+     the wider breakpoints below rather than tied to the card, for the same
+     reason. */
+  .pathway__panel {
+    width: 20rem;
+    /* Closed panels are invisible, so their link must not be clickable */
+    pointer-events: none;
+  }
+
+  /* ---- Which card is open ----
+     Three rules, read in order. The second and third share specificity, so
+     the order is what settles them. */
+
+  /* At rest: the featured card, so the row has a focal point untouched */
+  .pathway--featured {
+    --pw-open: 1;
+    --pw-closed: 0;
+    --pw-grow: 4;
+  }
+
+  /* It gives way the moment the row is hovered, or another card is tapped */
+  .pathways__viewport:hover .pathway--featured,
+  .pathways__viewport.has-open .pathway--featured {
+    --pw-open: 0;
+    --pw-closed: 1;
+    --pw-grow: 1;
+  }
+
+  /* Whichever card is actually open wins — including the featured one, when
+     it is the card being hovered */
+  .pathways__viewport .pathway:hover,
+  .pathways__viewport .pathway:focus-within,
+  .pathways__viewport .pathway.is-open {
+    --pw-open: 1;
+    --pw-closed: 0;
+    --pw-grow: 4;
+  }
+
+  /* pointer-events cannot be derived from a number, so it repeats the ladder */
+  .pathway--featured .pathway__panel {
+    pointer-events: auto;
+  }
+
+  .pathways__viewport:hover .pathway--featured .pathway__panel,
+  .pathways__viewport.has-open .pathway--featured .pathway__panel {
+    pointer-events: none;
+  }
+
+  .pathways__viewport .pathway:hover .pathway__panel,
+  .pathways__viewport .pathway:focus-within .pathway__panel,
+  .pathways__viewport .pathway.is-open .pathway__panel {
+    pointer-events: auto;
+  }
+}
+
+/* The open card has more room at these widths, so the panel takes some of it.
+   Stepped rather than fluid: a fluid width would rewrap the copy mid-animation. */
+@media (min-width: 75em) {
+  .pathway__panel {
+    width: 24rem;
+  }
+}
+
+@media (min-width: 90em) {
+  .pathway__panel {
+    width: 28rem;
+  }
 }
 
 /* ==========================================================================
@@ -509,11 +885,20 @@
   }
 }
 
-/* Hovering a card should not make it jump for anyone who would rather it did
-   not; the colour swap still happens */
+/* The panels still open and close for anyone who would rather not have motion;
+   they just arrive there rather than travelling. The carousel is left to the
+   browser, which honours the preference for smooth scrolling on its own. */
 @media (prefers-reduced-motion: reduce) {
-  .pathway:hover,
-  .pathway:focus-within {
+  .pathway,
+  .pathway__media::after,
+  .pathway__panel,
+  .pathway__vert,
+  .pathways__dot,
+  .pathways__arrow {
+    transition: none;
+  }
+
+  .pathway__panel {
     transform: none;
   }
 }

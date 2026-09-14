@@ -419,7 +419,7 @@
         </div>
       </section>
 
-      <section class="section pathways" aria-labelledby="pathways-heading">
+      <section class="section pathways" aria-labelledby="pathways-heading" data-pathways>
         <div class="container">
           <header class="section-header section-header--split">
             <div>
@@ -437,97 +437,238 @@
             </p>
           </header>
 
-          <ul class="pathways__grid">
+          <!--
+            STAND-IN PHOTOGRAPHY. Every panel below reuses a photograph from
+            elsewhere on the site so the section is not empty. Swap each
+            <picture> for artwork of its own when it arrives; portrait crops
+            around 3:4 sit best, since the closed panels are tall and narrow.
+          -->
+          <ul class="pathways__viewport" data-pathways-viewport>
             <li class="pathway pathway--featured">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" /></svg>
-              </span>
-              <h3 class="pathway__title">Low-Income Housing Tax Credits</h3>
-              <p class="pathway__text">The most common route for affordable rental housing, typically structured at 60 or 80 percent of area median income.</p>
+              <!-- financing-structure | stand-in. Financing pathways reviewed with church leaders. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/financing-structure.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/home/how-it-works/financing-structure.jpg" type="image/jpeg" />
+                  <source srcset="../images/home/how-it-works/financing-structure-m.webp" type="image/webp" />
+                  <img src="../images/home/how-it-works/financing-structure-m.jpg" alt="" width="640" height="800" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" /></svg></span>
+                <span class="pathway__vert-title">Low-Income Housing Tax Credits</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" /></svg></span>
+
+                <h3 class="pathway__title">Low-Income Housing Tax Credits</h3>
+                <p class="pathway__text">The most common route for affordable rental housing, typically structured at 60 or 80 percent of area median income.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
 
             <li class="pathway">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6" /><line x1="8" y1="3" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="21" /></svg>
-              </span>
-              <h3 class="pathway__title">Owner-Financed Land as Equity</h3>
-              <p class="pathway__text">Your land becomes your contribution to the deal, which can reduce what the project needs to borrow and keep more control with the congregation.</p>
+              <!-- step-1 | stand-in. Advisors reviewing site plans outside a Houston church. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-1.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-1.jpg" type="image/jpeg" />
+                  <source srcset="../images/our-process/step-1-m.webp" type="image/webp" />
+                  <img src="../images/our-process/step-1-m.jpg" alt="" width="720" height="540" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6" /><line x1="8" y1="3" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="21" /></svg></span>
+                <span class="pathway__vert-title">Owner-Financed Land as Equity</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21 1 6" /><line x1="8" y1="3" x2="8" y2="18" /><line x1="16" y1="6" x2="16" y2="21" /></svg></span>
+
+                <h3 class="pathway__title">Owner-Financed Land as Equity</h3>
+                <p class="pathway__text">Your land becomes your contribution to the deal, which can reduce what the project needs to borrow and keep more control with the congregation.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
 
             <li class="pathway">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="21" x2="21" y2="21" /><line x1="5" y1="21" x2="5" y2="10" /><line x1="19" y1="21" x2="19" y2="10" /><line x1="10" y1="21" x2="10" y2="10" /><line x1="14" y1="21" x2="14" y2="10" /><polyline points="2 10 12 3 22 10" /></svg>
-              </span>
-              <h3 class="pathway__title">City of Houston Programs</h3>
-              <p class="pathway__text">Local programmes and incentives, including the sequencing and paperwork that decide whether an application moves or sits.</p>
+              <!-- step-4 | stand-in. City of Houston submission and approvals. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-4.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-4.jpg" type="image/jpeg" />
+                  <source srcset="../images/our-process/step-4-m.webp" type="image/webp" />
+                  <img src="../images/our-process/step-4-m.jpg" alt="" width="720" height="540" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="21" x2="21" y2="21" /><line x1="5" y1="21" x2="5" y2="10" /><line x1="19" y1="21" x2="19" y2="10" /><line x1="10" y1="21" x2="10" y2="10" /><line x1="14" y1="21" x2="14" y2="10" /><polyline points="2 10 12 3 22 10" /></svg></span>
+                <span class="pathway__vert-title">City of Houston Programs</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" y1="21" x2="21" y2="21" /><line x1="5" y1="21" x2="5" y2="10" /><line x1="19" y1="21" x2="19" y2="10" /><line x1="10" y1="21" x2="10" y2="10" /><line x1="14" y1="21" x2="14" y2="10" /><polyline points="2 10 12 3 22 10" /></svg></span>
+
+                <h3 class="pathway__title">City of Houston Programs</h3>
+                <p class="pathway__text">Local programmes and incentives, including the sequencing and paperwork that decide whether an application moves or sits.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
 
             <li class="pathway">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg>
-              </span>
-              <h3 class="pathway__title">HUD Grant Opportunities</h3>
-              <p class="pathway__text">Federal grant routes assessed against what your site and your timeline can realistically meet.</p>
+              <!-- step-3 | stand-in. Church property development plans reviewed around a table. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-3.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-3.jpg" type="image/jpeg" />
+                  <source srcset="../images/our-process/step-3-m.webp" type="image/webp" />
+                  <img src="../images/our-process/step-3-m.jpg" alt="" width="720" height="540" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg></span>
+                <span class="pathway__vert-title">HUD Grant Opportunities</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="6" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg></span>
+
+                <h3 class="pathway__title">HUD Grant Opportunities</h3>
+                <p class="pathway__text">Federal grant routes assessed against what your site and your timeline can realistically meet.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
 
             <li class="pathway">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
-              </span>
-              <h3 class="pathway__title">Private Capital and Build-to-Rent</h3>
-              <p class="pathway__text">Evaluated case by case. We look at whether the structure actually aligns with what the congregation wants, not only whether it funds.</p>
+              <!-- project-2 | stand-in. Advisors reviewing a church property development plan. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/home/project-experience/project-2.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/home/project-experience/project-2.jpg" type="image/jpeg" />
+                  <source srcset="../images/home/project-experience/project-2-m.webp" type="image/webp" />
+                  <img src="../images/home/project-experience/project-2-m.jpg" alt="" width="720" height="540" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg></span>
+                <span class="pathway__vert-title">Private Capital and Build-to-Rent</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg></span>
+
+                <h3 class="pathway__title">Private Capital and Build-to-Rent</h3>
+                <p class="pathway__text">Evaluated case by case. We look at whether the structure actually aligns with what the congregation wants, not only whether it funds.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
 
             <li class="pathway">
-              <span class="pathway__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
-              </span>
-              <h3 class="pathway__title">Land Sale with Participation</h3>
-              <p class="pathway__text">Selling the land while keeping a share of the project upside, for congregations that would rather not carry development risk.</p>
+              <!-- step-5 | stand-in. Residents in the courtyard of a completed community. -->
+              <div class="pathway__media" aria-hidden="true">
+                <picture>
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-5.webp" type="image/webp" />
+                  <source media="(min-width: 48em)" srcset="../images/our-process/step-5.jpg" type="image/jpeg" />
+                  <source srcset="../images/our-process/step-5-m.webp" type="image/webp" />
+                  <img src="../images/our-process/step-5-m.jpg" alt="" width="720" height="540" decoding="async" loading="lazy" />
+                </picture>
+              </div>
 
-              <div class="pathway__foot">
-                <a class="link-arrow" href="#contact">
-                  <span class="link-arrow__label">Ask about this</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-                </a>
+              <!-- The closed state on large screens. A second copy of the title,
+                   so it is hidden from assistive tech; the panel carries the one
+                   that gets announced. -->
+              <span class="pathway__vert" aria-hidden="true">
+                <span class="pathway__vert-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg></span>
+                <span class="pathway__vert-title">Land Sale with Participation</span>
+              </span>
+
+              <div class="pathway__panel">
+                <span class="pathway__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg></span>
+
+                <h3 class="pathway__title">Land Sale with Participation</h3>
+                <p class="pathway__text">Selling the land while keeping a share of the project upside, for congregations that would rather not carry development risk.</p>
+
+                <div class="pathway__foot">
+                  <a class="link-arrow" href="#contact">
+                    <span class="link-arrow__label">Ask about this</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                  </a>
+                </div>
               </div>
             </li>
           </ul>
+
+          <!--
+            Carousel controls. Below 64em only, and revealed by
+            js/our-process.js — without it the arrows and dots would be
+            furniture that does nothing, while the swipe carries on working.
+          -->
+          <div class="pathways__controls">
+            <p class="pathways__hint">Swipe or tap the arrows to see every route</p>
+
+            <div class="pathways__nav">
+              <button class="pathways__arrow" type="button" data-pathways-prev aria-label="Previous financing route">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6" /></svg>
+              </button>
+
+              <div class="pathways__dots" data-pathways-dots></div>
+
+              <button class="pathways__arrow" type="button" data-pathways-next aria-label="Next financing route">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6" /></svg>
+              </button>
+            </div>
+          </div>
 
           <div class="callout">
             <div class="callout__bg" aria-hidden="true">
