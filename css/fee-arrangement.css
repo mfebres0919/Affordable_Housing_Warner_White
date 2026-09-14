@@ -9,6 +9,103 @@
    ========================================================================== */
 
 /* ==========================================================================
+   The tier table, the other way up
+
+   The home page runs light cards over a photograph. Here the panel is turned
+   over: navy cards on white, with the easing-stripes artwork behind them for
+   texture instead of a photograph. Everything the shared .pricing block
+   inverted for the photograph has to be put back, and then the cards
+   inverted in its place.
+
+   The featured tier keeps its brass glow untouched — it reads better against
+   navy than it ever did against the photograph.
+   ========================================================================== */
+.pricing--inverted {
+  background-color: var(--clr-surface-alt);
+}
+
+/* Texture, not a picture. Line work this faint does not survive being blown
+   up to cover a section three cards tall, so on small screens it is held to
+   the section's width and sits as a band across the top; once the panel is
+   wide enough to be roughly the artwork's own 16:9, it covers. */
+.pricing--inverted::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: url("../images/svg-backgrounds/easing-stripes-light.svg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 130% auto;
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Section header: back to navy on light
+   -------------------------------------------------------------------------- */
+.pricing--inverted .section-badge {
+  background-color: rgba(15, 42, 68, 0.07);
+  color: var(--clr-primary);
+}
+
+.pricing--inverted .section-heading {
+  color: var(--clr-primary);
+}
+
+.pricing--inverted .section-intro {
+  color: var(--clr-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Cards: cream to navy
+   -------------------------------------------------------------------------- */
+.pricing--inverted .plan {
+  background-color: var(--clr-primary);
+}
+
+/* The unfeatured cards have no border of their own on the photograph, where
+   the contrast did that job. On white they need an edge. */
+.pricing--inverted .plan:not(.plan--featured) {
+  box-shadow: 0 18px 40px rgba(15, 42, 68, 0.14);
+}
+
+.pricing--inverted .plan__name,
+.pricing--inverted .plan__amount {
+  color: var(--clr-surface);
+}
+
+.pricing--inverted .plan__summary,
+.pricing--inverted .plan__period {
+  color: rgba(250, 247, 242, 0.76);
+}
+
+.pricing--inverted .plan__price {
+  border-bottom-color: var(--clr-line-on-dark);
+}
+
+.pricing--inverted .plan__features .check {
+  color: rgba(250, 247, 242, 0.9);
+}
+
+/* Navy on navy would vanish, so the tag takes the brass and the navy text */
+.pricing--inverted .plan__tag {
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+/* --------------------------------------------------------------------------
+   Reassurance row: also back to navy on light
+   -------------------------------------------------------------------------- */
+.pricing--inverted .pricing__note {
+  color: var(--clr-muted);
+}
+
+.pricing--inverted .pricing__note-icon {
+  color: var(--clr-accent);
+}
+
+/* ==========================================================================
    What we do — a staggered row of cards
 
    Four cards of deliberately different builds: two light, one brass, one navy
@@ -19,8 +116,10 @@
    across. Below that they stack or pair up and the offsets would just look
    like uneven gaps.
    ========================================================================== */
+/* Cream, because .pricing--inverted above it is now the white one. The light
+   cards go the other way for the same reason. */
 .offer {
-  background-color: var(--clr-surface-alt);
+  background-color: var(--clr-surface);
 }
 
 .offer__grid {
@@ -37,7 +136,7 @@
 }
 
 .offer-card--light {
-  background-color: var(--clr-surface);
+  background-color: var(--clr-surface-alt);
 }
 
 .offer-card--accent {
@@ -205,6 +304,10 @@
    The open and close is a grid row going 1fr to 0fr, which animates smoothly
    without anybody having to guess a max-height that the copy might outgrow.
    ========================================================================== */
+.faq {
+  background-color: var(--clr-surface-alt);
+}
+
 .faq__grid {
   display: grid;
   gap: var(--space-2xl);
@@ -226,7 +329,7 @@
   margin-top: var(--space-sm);
   padding: var(--space-lg);
   border-radius: var(--radius-lg);
-  background-color: var(--clr-surface-alt);
+  background-color: var(--clr-surface);
   border: 1px solid var(--clr-line);
 }
 
@@ -270,6 +373,8 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   background-color: var(--clr-surface-alt);
+  /* The section is white too now, so the panels carry their own lift */
+  box-shadow: 0 10px 24px rgba(15, 42, 68, 0.06);
 }
 
 .faq__question {

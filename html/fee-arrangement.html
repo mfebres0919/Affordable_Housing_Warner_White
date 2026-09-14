@@ -232,24 +232,12 @@
         the two copies in step, or cut the home page one down to a summary
         that links here.
       -->
-      <section class="section pricing" aria-labelledby="pricing-heading">
+      <section class="section pricing pricing--inverted" aria-labelledby="pricing-heading">
         <!--
-          images/home/pricing/
-            pricing-bg.webp + .jpg     1152x864  (desktop, min-width 48em)
-            pricing-bg-m.webp + .jpg    800x1400 (mobile)
-          Both softened before encoding — this section's scrim sits at 82-90%
-          opacity, so the detail is not visible and the bytes were not earning
-          their place. See the note about the very tall mobile section.
+          No photographic ground on this page: .pricing--inverted turns the
+          panel the other way up — navy cards on white, with the easing-stripes
+          artwork for texture. See css/fee-arrangement.css.
         -->
-        <div class="pricing__bg" aria-hidden="true">
-          <picture>
-            <source media="(min-width: 48em)" srcset="../images/home/pricing/pricing-bg.webp" type="image/webp" />
-            <source media="(min-width: 48em)" srcset="../images/home/pricing/pricing-bg.jpg" type="image/jpeg" />
-            <source srcset="../images/home/pricing/pricing-bg-m.webp" type="image/webp" />
-            <img src="../images/home/pricing/pricing-bg-m.jpg" alt="" width="800" height="1400" decoding="async" loading="lazy" />
-          </picture>
-        </div>
-
         <div class="container">
           <header class="section-header">
             <p class="section-badge">
@@ -427,7 +415,7 @@
         </div>
       </section>
 
-      <section class="section offer" aria-labelledby="offer-heading">
+      <section class="section offer curve-out" aria-labelledby="offer-heading">
         <div class="container">
           <header class="section-header">
             <p class="section-badge">
@@ -532,7 +520,7 @@
         </div>
       </section>
 
-      <section class="section faq curve-out" aria-labelledby="faq-heading">
+      <section class="section faq" aria-labelledby="faq-heading">
         <div class="container faq__grid">
           <div class="faq__aside">
             <p class="section-badge">
