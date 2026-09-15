@@ -2246,6 +2246,30 @@ button {
   pointer-events: none;
 }
 
+
+/* WHITE SVG CURVE */
+.curve-in-white,
+.curve-out-white {
+  position: relative;
+  /* The neighbouring bands are positioned too, and would otherwise paint over
+     whichever shape is reaching into them */
+  z-index: 1;
+}
+
+.curve-in-white::before,
+.curve-out-white::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--curve-height);
+  background-image: var(--curve-image, url("../images/svg-backgrounds/curve-divider.svg"));
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+
 /* At the foot, hanging down. The artwork's own orientation: deep on the right.
    Pulled back a pixel so the shape and the section it belongs to overlap: sat
    exactly edge to edge, a fractional layout position leaves a hairline of the
