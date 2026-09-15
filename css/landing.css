@@ -206,10 +206,17 @@
   padding: var(--space-md);
   border-radius: var(--radius-lg);
   background-color: var(--clr-surface-alt);
+  /* The band behind them carries the tortoise-shell texture now, so the cards
+     lift off it rather than sitting flat against the pattern */
+  box-shadow: 0 16px 38px rgba(15, 42, 68, 0.07);
 }
 
+/* The ratio belongs to the frame, not to what is inside it — that way the
+   photograph and the monogram standing in for one come out exactly the same
+   height, whatever the source image's own dimensions happen to be */
 .person__photo {
   display: block;
+  aspect-ratio: 4 / 3;
   overflow: hidden;
   border-radius: var(--radius-md);
   background-color: rgba(15, 42, 68, 0.06);
@@ -218,19 +225,17 @@
 .person__photo img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
+  height: 100%;
   object-fit: cover;
   /* The portrait is a head-and-shoulders crop; without this the face sits low */
   object-position: center 22%;
 }
 
-/* Stands in for a portrait at exactly the photograph's size, so the pair of
-   cards stays the same shape until the second picture arrives */
+/* Stands in for a portrait until the second picture arrives */
 .person__photo--monogram {
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 4 / 3;
   background-color: var(--clr-primary);
   color: var(--clr-accent-light);
   font-size: clamp(2rem, 6vw, 2.75rem);
@@ -254,12 +259,59 @@
   font-size: var(--fs-400);
 }
 
+/* Links on the left, the way through to the About page on the right */
+.person__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--clr-line);
+}
+
 .person__social {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--clr-line);
+}
+
+.person__link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--clr-line);
+  border-radius: var(--radius-pill);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+
+.person__link svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex: none;
+  color: var(--clr-accent);
+  transition: transform var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+
+.person__link:hover,
+.person__link:focus-visible {
+  background-color: var(--clr-primary);
+  border-color: var(--clr-primary);
+  color: var(--clr-surface);
+}
+
+.person__link:hover svg,
+.person__link:focus-visible svg {
+  color: var(--clr-accent-light);
+  transform: translateX(0.25rem);
 }
 
 /* ==========================================================================

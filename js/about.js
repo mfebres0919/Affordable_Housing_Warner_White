@@ -74,12 +74,52 @@
     }
     });
 
+    /* A link from elsewhere can name the panel it wants open — the landing
+       page's "Learn more" buttons point at #panel-white and #panel-deon. The
+       browser cannot scroll to a panel that starts hidden, so this selects the
+       tab first and then brings the section into view itself. */
+    function openFromHash(scroll) {
+      if (!window.location.hash) {
+        return null;
+      }
+
+      var wanted = window.location.hash.slice(1);
+      var match = tabs.filter(function (t) {
+        return t.getAttribute('aria-controls') === wanted || t.id === wanted;
+      })[0];
+
+      if (!match) {
+        return null;
+      }
+
+      select(match, false);
+
+      if (scroll) {
+        var panel = panelFor(match);
+
+        if (panel && typeof panel.scrollIntoView === 'function') {
+          panel.scrollIntoView({
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'auto' : 'smooth',
+            block: 'start'
+          });
+        }
+      }
+
+      return match;
+    }
+
     /* Normalise whatever the markup shipped with */
-    var initial = tabs.filter(function (t) {
+    var initial = openFromHash(true) || tabs.filter(function (t) {
       return t.getAttribute('aria-selected') === 'true';
     })[0] || tabs[0];
 
     select(initial, false);
+
+    /* Following another such link while already on the page */
+    window.addEventListener('hashchange', function () {
+      openFromHash(true);
+    });
   }
 
   var lists = document.querySelectorAll('[data-tabs]');

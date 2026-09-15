@@ -2226,29 +2226,9 @@ button {
    further down this file.
    -------------------------------------------------------------------------- */
 .curve-in,
-.curve-out {
-  position: relative;
-  /* The neighbouring bands are positioned too, and would otherwise paint over
-     whichever shape is reaching into them */
-  z-index: 1;
-}
 
-.curve-in::before,
-.curve-out::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: var(--curve-height);
-  background-image: var(--curve-image, url("../images/svg-backgrounds/curve-divider.svg"));
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  pointer-events: none;
-}
-
-
-/* WHITE SVG CURVE */
 .curve-in-white,
+.curve-out,
 .curve-out-white {
   position: relative;
   /* The neighbouring bands are positioned too, and would otherwise paint over
@@ -2256,7 +2236,9 @@ button {
   z-index: 1;
 }
 
+.curve-in::before,
 .curve-in-white::before,
+.curve-out::after,
 .curve-out-white::after {
   content: "";
   position: absolute;
@@ -2270,11 +2252,14 @@ button {
 }
 
 
+
+
 /* At the foot, hanging down. The artwork's own orientation: deep on the right.
    Pulled back a pixel so the shape and the section it belongs to overlap: sat
    exactly edge to edge, a fractional layout position leaves a hairline of the
    section below showing through between them. */
-.curve-out::after {
+.curve-out::after,
+.curve-out-white::after {
   top: calc(100% - 1px);
 }
 
@@ -2282,9 +2267,19 @@ button {
    it puts the filled half against the section rather than away from it, and it
    runs the sweep the opposite way from the curve at the foot, so a section is
    not bracketed by the same shape twice. */
-.curve-in::before {
+.curve-in::before,
+.curve-in-white::before {
   bottom: calc(100% - 1px);
   transform: scale(-1, -1);
+}
+
+/* The white pair. Everything above already applies to them; all that changes
+   is which copy of the artwork is used. Reach for these on a section whose own
+   ground is white but which has not set --curve-image itself — a section that
+   has set it needs nothing, and gets white curves either way. */
+.curve-in-white,
+.curve-out-white {
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
 }
 
 /* Per-instance overrides, for when a run of sections wants the sweep broken up */
@@ -2334,6 +2329,13 @@ button {
    ends on a visible seam, while this one dissolves into the ground before it
    gets there. Held at the size it was drawn, 400px, so the brass lines keep
    their intended weight. */
+/* Any section that carries one needs to be its containing block, and to keep
+   the layer's negative z-index from escaping behind the section's own ground */
+.has-texture {
+  position: relative;
+  isolation: isolate;
+}
+
 .section-texture {
   position: absolute;
   inset: 0;
