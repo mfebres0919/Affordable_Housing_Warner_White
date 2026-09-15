@@ -2745,6 +2745,27 @@ a.contact__point-value:focus-visible {
   font-size: var(--fs-200);
 }
 
+/* Designer credit. Quieter than the copyright beside it — it belongs to the
+   footer, not to the firm's own notice. */
+.site-footer__credit {
+  margin: 0;
+  color: rgba(250, 247, 242, 0.55);
+  font-size: var(--fs-100);
+}
+
+.site-footer__credit a {
+  color: rgba(250, 247, 242, 0.75);
+  font-weight: var(--fw-medium);
+  text-decoration-color: rgba(250, 247, 242, 0.32);
+  text-underline-offset: 0.2em;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.site-footer__credit a:hover,
+.site-footer__credit a:focus-visible {
+  color: var(--clr-accent-light);
+}
+
 /* TEMPORARY, with the markup in index.html: a quiet way through to the
    unlinked /start/ page while it is under review. Delete both before launch. */
 .site-footer__preview {
