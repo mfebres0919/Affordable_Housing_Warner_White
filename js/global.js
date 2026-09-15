@@ -184,3 +184,141 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   update();
 })();
+
+/* ==========================================================================
+   Project Experience submenu
+
+   The disclosure button belongs to the mobile panel: on a pointer device the
+   row opens on hover and CSS handles it alone, so the button is hidden there.
+   This only has to drive the panel, plus tidy up when the layout changes.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var items = document.querySelectorAll('[data-nav-menu]');
+
+  if (items.length === 0) {
+    return;
+  }
+
+  /* Must match the navigation row breakpoint in css/global.css */
+  var desktopQuery = window.matchMedia('(min-width: 68em)');
+  var OPEN_CLASS = 'is-open';
+
+  function setOpen(item, open) {
+    var button = item.querySelector('[data-nav-disclosure]');
+
+    item.classList.toggle(OPEN_CLASS, open);
+
+    if (button) {
+      button.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+  }
+
+  function handleClick(event) {
+    var item = event.currentTarget.closest('[data-nav-menu]');
+
+    if (item) {
+      setOpen(item, !item.classList.contains(OPEN_CLASS));
+    }
+  }
+
+  var i;
+
+  for (i = 0; i < items.length; i += 1) {
+    var button = items[i].querySelector('[data-nav-disclosure]');
+
+    if (button) {
+      button.addEventListener('click', handleClick);
+    }
+  }
+
+  /* Crossing into the desktop row hands the job back to :hover, so anything
+     left open in the panel is closed rather than stranded open in the row */
+  function handleBreakpoint() {
+    if (!desktopQuery.matches) {
+      return;
+    }
+
+    var j;
+
+    for (j = 0; j < items.length; j += 1) {
+      setOpen(items[j], false);
+    }
+  }
+
+  if (typeof desktopQuery.addEventListener === 'function') {
+    desktopQuery.addEventListener('change', handleBreakpoint);
+  } else if (typeof desktopQuery.addListener === 'function') {
+    desktopQuery.addListener(handleBreakpoint);
+  }
+})();
+
+/* ==========================================================================
+   FAQ disclosure panels
+
+   Shared by the Fee Arrangement and project detail pages; no-ops anywhere
+   without a [data-faq] list. Every panel ships open in the markup and the
+   first thing this does is close all but the first, so with no JavaScript the
+   section reads as a plain list of questions and answers.
+   ========================================================================== */
+
+(function () {
+  'use strict';
+
+  var list = document.querySelector('[data-faq]');
+
+  if (!list) {
+    return;
+  }
+
+  var triggers = list.querySelectorAll('.faq__trigger');
+
+  if (triggers.length < 2) {
+    return;
+  }
+
+  var CLOSED_CLASS = 'is-closed';
+  var items = [];
+
+  function setOpen(item, open) {
+    item.classList.toggle(CLOSED_CLASS, !open);
+
+    var trigger = item.querySelector('.faq__trigger');
+
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+  }
+
+  /* button -> h3 -> li, whichever way we get there */
+  function itemFor(trigger) {
+    return trigger.closest ? trigger.closest('.faq__item')
+                           : trigger.parentNode.parentNode;
+  }
+
+  function handleClick(event) {
+    var item = itemFor(event.currentTarget);
+    /* Toggling rather than only opening: a second click on the open question
+       closes it, which is what the arrow pointing up implies */
+    var open = item.classList.contains(CLOSED_CLASS);
+    var i;
+
+    for (i = 0; i < items.length; i += 1) {
+      setOpen(items[i], items[i] === item && open);
+    }
+  }
+
+  var i;
+
+  for (i = 0; i < triggers.length; i += 1) {
+    items.push(itemFor(triggers[i]));
+    triggers[i].addEventListener('click', handleClick);
+  }
+
+  /* The rest state: the first question answered, the others waiting */
+  for (i = 0; i < items.length; i += 1) {
+    setOpen(items[i], i === 0);
+  }
+})();

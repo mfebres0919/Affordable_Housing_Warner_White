@@ -1,0 +1,450 @@
+/* ==========================================================================
+   WW Housing Development LLC — project-detail.css
+   One worked example of a project page. Shared components (.page-hero,
+   .section-header, .link-arrow, .faq panels, .btn, contact, footer) live in
+   global.css.
+
+   MOBILE FIRST: base rules target the smallest viewport; min-width queries
+   enhance for larger screens (handbook §12).
+   ========================================================================== */
+
+/* ==========================================================================
+   Breadcrumb, under the page title
+   ========================================================================== */
+.crumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+  color: rgba(250, 247, 242, 0.7);
+  font-size: var(--fs-300);
+}
+
+/* A slash before every entry but the first */
+.crumbs__list li + li::before {
+  content: "/";
+  margin-right: var(--space-xs);
+  color: rgba(250, 247, 242, 0.42);
+}
+
+.crumbs__list a {
+  color: rgba(250, 247, 242, 0.82);
+  text-decoration: none;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.crumbs__list a:hover,
+.crumbs__list a:focus-visible {
+  color: var(--clr-accent-light);
+}
+
+.crumbs__list [aria-current="page"] {
+  color: var(--clr-accent-light);
+}
+
+/* ==========================================================================
+   The two columns
+   ========================================================================== */
+.detail__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.detail__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.detail__body {
+  min-width: 0;
+}
+
+.detail__media {
+  overflow: hidden;
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-lg);
+  background-color: rgba(15, 42, 68, 0.06);
+}
+
+.detail__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.detail__lead {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-body);
+  font-size: var(--fs-500);
+  line-height: 1.6;
+}
+
+.detail__text {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-muted);
+  font-size: var(--fs-400);
+  line-height: 1.75;
+}
+
+.detail__heading {
+  margin: var(--space-2xl) 0 var(--space-md);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+.side-panel {
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+  border: 1px solid var(--clr-line);
+}
+
+.side-panel__title {
+  margin: 0;
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+}
+
+.side-panel__list a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--clr-line);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+
+.side-panel__list li:last-child a {
+  border-bottom: 0;
+}
+
+.side-panel__list svg {
+  width: 1rem;
+  height: 1rem;
+  flex: none;
+  color: var(--clr-accent);
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.side-panel__list a:hover,
+.side-panel__list a:focus-visible {
+  background-color: var(--clr-surface);
+}
+
+.side-panel__list a:hover svg,
+.side-panel__list a:focus-visible svg {
+  transform: translateX(0.25rem);
+}
+
+/* The entry for the page you are already on */
+.side-panel__list .is-current a {
+  background-color: var(--clr-surface);
+  color: var(--clr-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Contact card
+   -------------------------------------------------------------------------- */
+.side-card {
+  position: relative;
+  /* Contains the photograph's negative z-index and clips it to the corners */
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-primary-deep);
+}
+
+.side-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.side-card__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.side-card__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.72) 0%,
+    rgba(10, 30, 50, 0.92) 100%
+  );
+}
+
+.side-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.side-card__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.side-card__text {
+  margin: 0;
+  color: rgba(250, 247, 242, 0.86);
+  font-size: var(--fs-300);
+  line-height: 1.6;
+}
+
+.side-card__value {
+  margin: 0;
+  color: var(--clr-surface);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+}
+
+.side-card__value a {
+  color: var(--clr-accent-light);
+  text-decoration: none;
+}
+
+.side-card__value a:hover,
+.side-card__value a:focus-visible {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+.stats {
+  display: grid;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+}
+
+.stat__value {
+  margin: 0;
+  font-size: clamp(1.875rem, 5vw, 2.5rem);
+  font-weight: var(--fw-bold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--clr-primary);
+}
+
+.stat__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.6;
+}
+
+/* Pinned to the foot with a hairline above, so the tags line up across the row */
+.stat__tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: auto 0 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--clr-line);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+}
+
+.stat__tag-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Meters
+   -------------------------------------------------------------------------- */
+.meters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+.meter__label {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin: 0 0 var(--space-xs);
+  color: var(--clr-primary);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-bold);
+}
+
+.meter__value {
+  color: var(--clr-muted);
+  font-weight: var(--fw-semibold);
+}
+
+.meter__track {
+  display: block;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background-color: rgba(15, 42, 68, 0.1);
+}
+
+.meter__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+  background-image: linear-gradient(
+    to right,
+    var(--clr-accent) 0%,
+    var(--clr-accent-light) 100%
+  );
+}
+
+/* ==========================================================================
+   What we would bring
+   ========================================================================== */
+.gets {
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+}
+
+.gets__media {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: rgba(15, 42, 68, 0.06);
+}
+
+.gets__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.gets__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.gets__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+.gets__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.gets__icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.gets__title {
+  margin: 0 0 var(--space-2xs);
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+}
+
+.gets__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   Larger screens — min-width only
+   ========================================================================== */
+@media (min-width: 48em) {
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gets {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+    padding: var(--space-xl);
+  }
+
+  .gets__media img {
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (min-width: 64em) {
+  .detail__grid {
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr);
+    gap: var(--space-2xl);
+    /* The column is shorter than the article, so it must not stretch — sticky
+       needs the element free to sit at its own height inside a taller track */
+    align-items: start;
+  }
+
+  /* Travels with the scroll rather than leaving a long run of empty page.
+     The offset clears the sticky site header. */
+  .detail__aside {
+    position: sticky;
+    top: calc(var(--nav-bar-height) + var(--space-lg));
+    /* Falls back to scrolling normally if the panel ever grows taller than the
+       viewport, instead of pinning with its foot out of reach */
+    max-height: calc(100vh - var(--nav-bar-height) - var(--space-xl));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+}

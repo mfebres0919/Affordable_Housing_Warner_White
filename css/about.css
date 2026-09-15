@@ -257,6 +257,8 @@
    Leadership — one full-width row per principal
    ========================================================================== */
 .leadership {
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   background-color: var(--clr-surface-alt);
 }
 
@@ -558,4 +560,25 @@
   .firm__badge-ring {
     animation: none;
   }
+}
+
+/* ==========================================================================
+   Curve stacking
+
+   A section's lower curve hangs down over the section beneath it. Both carry
+   z-index: 1 from .curve-out, and where two sit side by side the later one
+   wins on document order and paints its own ground straight over the curve
+   reaching into it. So a run of solid sections counts down: each outranks the
+   one it reaches into.
+   ========================================================================== */
+.firm {
+  z-index: 3;
+}
+
+.leadership {
+  z-index: 2;
+}
+
+.apart {
+  z-index: 1;
 }

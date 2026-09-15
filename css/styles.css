@@ -384,6 +384,8 @@
    the markup, so the rest state (and the no-JS state) matches the design.
    ========================================================================== */
 .process {
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   background-color: var(--clr-surface-alt);
 }
 

@@ -153,7 +153,27 @@
               <li class="primary-nav__item"><a href="html/about.html">About</a></li>
               <li class="primary-nav__item"><a href="html/our-process.html">Our Process</a></li>
               <li class="primary-nav__item"><a href="html/fee-arrangement.html">Fee Arrangement</a></li>
-              <li class="primary-nav__item"><a href="html/project-experience.html">Project Experience</a></li>
+              <li class="primary-nav__item primary-nav__item--menu" data-nav-menu>
+                <span class="primary-nav__row">
+                  <a href="html/project-experience.html">Project Experience</a>
+
+                  <!-- Small screens only: on a pointer device the row opens on hover -->
+                  <button class="primary-nav__disclosure" type="button" aria-expanded="false" aria-controls="nav-projects" data-nav-disclosure>
+                    <span class="visually-hidden">Show projects</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9" /></svg>
+                  </button>
+                </span>
+
+                <!--
+                  Every entry points at the same page on purpose: there is one
+                  worked example of a project detail page, not three.
+                -->
+                <ul class="primary-nav__submenu" id="nav-projects">
+                  <li><a href="html/project-detail.html">Affordable Senior Housing Community</a></li>
+                  <li><a href="html/project-detail.html">Church Property &amp; Tax Credit Transactions</a></li>
+                  <li><a href="html/project-detail.html">Charitable Dental Services Secured</a></li>
+                </ul>
+              </li>
             </ul>
 
             <a class="btn btn--accent primary-nav__cta" href="#contact">
@@ -503,7 +523,7 @@
         </div>
       </section>
 
-      <section class="section process" aria-labelledby="process-heading">
+      <section class="section process curve-in curve-out" aria-labelledby="process-heading">
         <div class="container">
           <header class="section-header">
             <p class="section-badge">
@@ -833,7 +853,7 @@
           </ul>
         </div>
       </section>
-      <section class="section projects curve-out" aria-labelledby="projects-heading">
+      <section class="section projects curve-in curve-out" aria-labelledby="projects-heading">
         <div class="container">
           <header class="section-header">
             <p class="section-badge">
@@ -1011,7 +1031,9 @@
         </div>
       </section>
 
-      <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <section class="section contact curve-in" id="contact" aria-labelledby="contact-heading">
+        <div class="section-texture" aria-hidden="true"></div>
+
         <div class="container contact__grid">
           <div class="contact__aside">
             <picture class="contact__aside-photo" aria-hidden="true">

@@ -196,6 +196,8 @@
    single movement rather than several.
    ========================================================================== */
 .pathways {
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   background-color: var(--clr-surface-alt);
 }
 
@@ -994,4 +996,25 @@
   .pathway__panel {
     transform: none;
   }
+}
+
+/* ==========================================================================
+   Curve stacking
+
+   A section's lower curve hangs down over the section beneath it. Both carry
+   z-index: 1 from .curve-out, and where two sit side by side the later one
+   wins on document order and paints its own ground straight over the curve
+   reaching into it. So a run of solid sections counts down: each outranks the
+   one it reaches into.
+   ========================================================================== */
+.stages {
+  z-index: 3;
+}
+
+.pathways {
+  z-index: 2;
+}
+
+.guards {
+  z-index: 1;
 }

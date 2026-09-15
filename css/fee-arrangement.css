@@ -21,6 +21,8 @@
    navy than it ever did against the photograph.
    ========================================================================== */
 .pricing--inverted {
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   background-color: var(--clr-surface-alt);
 }
 
@@ -29,11 +31,7 @@
    it is held at the 400px it was drawn at, exactly as the contact section
    holds it, and masked so the repeat dissolves rather than ending on a seam.
    Its own strokes are already at 0.05 opacity, so no extra fading here. */
-.pricing--inverted::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
+.pricing--inverted .section-texture {
   background-image: url("../images/svg-backgrounds/tortoise-shell.svg");
   background-repeat: repeat;
   background-size: 25rem 25rem;
@@ -323,6 +321,8 @@
    without anybody having to guess a max-height that the copy might outgrow.
    ========================================================================== */
 .faq {
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   background-color: var(--clr-surface-alt);
 }
 
@@ -375,104 +375,9 @@
   font-weight: var(--fw-bold);
 }
 
-/* --------------------------------------------------------------------------
-   The panels
-   -------------------------------------------------------------------------- */
-.faq__list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.faq__item {
-  overflow: hidden;
-  border-radius: var(--radius-md);
-  background-color: var(--clr-surface-alt);
-  /* The section is white too now, so the panels carry their own lift */
-  box-shadow: 0 10px 24px rgba(15, 42, 68, 0.06);
-}
-
-.faq__question {
-  margin: 0;
-  font-size: inherit;
-}
-
-.faq__trigger {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-md);
-  width: 100%;
-  padding: var(--space-md) var(--space-lg);
-  border: 0;
-  /* Open is the resting state, because that is what the markup ships */
-  background-color: var(--clr-accent-light);
-  color: var(--clr-primary);
-  font-family: inherit;
-  font-size: var(--fs-400);
-  font-weight: var(--fw-bold);
-  line-height: 1.35;
-  text-align: left;
-  cursor: pointer;
-  transition: background-color var(--t-base) var(--ease-out);
-}
-
-.faq__item.is-closed .faq__trigger {
-  background-color: transparent;
-}
-
-.faq__item.is-closed .faq__trigger:hover,
-.faq__trigger:focus-visible {
-  background-color: rgba(217, 169, 74, 0.22);
-}
-
-.faq__trigger-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  flex: none;
-  transition: transform var(--t-base) var(--ease-out);
-}
-
-.faq__trigger-icon svg {
-  width: 1.125rem;
-  height: 1.125rem;
-}
-
-/* The arrow points up at an open panel and down at a closed one */
-.faq__item.is-closed .faq__trigger-icon {
-  transform: rotate(180deg);
-}
-
-.faq__answer {
-  display: grid;
-  grid-template-rows: 1fr;
-  transition: grid-template-rows var(--t-panel) var(--ease-out);
-}
-
-.faq__item.is-closed .faq__answer {
-  grid-template-rows: 0fr;
-}
-
-/* The clipping half of the pair. min-height: 0 is what lets a grid row of 0fr
-   actually reach zero rather than stopping at the content's minimum. */
-.faq__answer-inner {
-  overflow: hidden;
-  min-height: 0;
-}
-
-.faq__text {
-  margin: 0;
-  padding: var(--space-md) var(--space-lg) var(--space-lg);
-  color: var(--clr-muted);
-  font-size: var(--fs-300);
-  line-height: 1.75;
-}
+/* The panels themselves (.faq__list and below) moved to global.css when the
+   project detail page started using them too. What stays here is this page's
+   two-column framing around them. */
 
 /* ==========================================================================
    Larger screens — min-width only
@@ -532,4 +437,25 @@
   .faq__trigger-icon {
     transition: none;
   }
+}
+
+/* ==========================================================================
+   Curve stacking
+
+   A section's lower curve hangs down over the section beneath it. Both carry
+   z-index: 1 from .curve-out, and where two sit side by side the later one
+   wins on document order and paints its own ground straight over the curve
+   reaching into it. So a run of solid sections counts down: each outranks the
+   one it reaches into.
+   ========================================================================== */
+.pricing--inverted {
+  z-index: 3;
+}
+
+.offer {
+  z-index: 2;
+}
+
+.faq {
+  z-index: 1;
 }

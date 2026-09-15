@@ -1010,6 +1010,96 @@ button {
   color: var(--clr-accent-light);
 }
 
+/* --------------------------------------------------------------------------
+   Project Experience submenu
+
+   In the panel it is a disclosure: the chevron button opens the list in place.
+   In the desktop row it is a dropdown that opens on hover. Keyboard users get
+   it either way — focus landing on the parent link satisfies :focus-within,
+   which reveals the list and so makes its own links reachable by Tab.
+   -------------------------------------------------------------------------- */
+.primary-nav__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.primary-nav__row a {
+  flex: 1 1 auto;
+}
+
+.primary-nav__disclosure {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  flex: none;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  color: var(--clr-surface);
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out),
+    transform var(--t-base) var(--ease-out);
+}
+
+.primary-nav__disclosure svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.primary-nav__disclosure:hover,
+.primary-nav__disclosure:focus-visible {
+  background-color: rgba(250, 247, 242, 0.08);
+  color: var(--clr-accent-light);
+}
+
+.primary-nav__disclosure[aria-expanded="true"] {
+  color: var(--clr-accent-light);
+  transform: rotate(180deg);
+}
+
+/* Opens by growing a grid row from nothing, so the panel never has to guess a
+   height the project names might outgrow */
+.primary-nav__submenu {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--t-panel) var(--ease-out);
+}
+
+.primary-nav__item--menu.is-open .primary-nav__submenu {
+  grid-template-rows: 1fr;
+}
+
+.primary-nav__submenu > li {
+  min-height: 0;
+}
+
+.primary-nav__submenu > li:first-child {
+  padding-top: var(--space-2xs);
+}
+
+.primary-nav__submenu > li:last-child {
+  padding-bottom: var(--space-xs);
+}
+
+/* The whole list is one grid row, so the clipping happens here */
+.primary-nav__submenu {
+  overflow: hidden;
+}
+
+.primary-nav__submenu a {
+  padding-block: var(--space-xs);
+  padding-inline: var(--space-lg) var(--space-md);
+  color: rgba(250, 247, 242, 0.82);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-regular);
+  line-height: 1.4;
+}
+
 /* Panel links fade in from the right, staggered behind the panel itself */
 .primary-nav__item,
 .primary-nav__cta,
@@ -1201,6 +1291,84 @@ button {
 
   .primary-nav__cta {
     flex: none;
+  }
+
+  /* ---- Project Experience dropdown ---- */
+  .primary-nav__item--menu {
+    position: relative;
+  }
+
+  /* The chevron on the link itself; the button is a panel control only */
+  .primary-nav__disclosure {
+    display: none;
+  }
+
+  .primary-nav__item--menu > .primary-nav__row > a::after {
+    content: "";
+    display: inline-block;
+    width: 0.4rem;
+    height: 0.4rem;
+    margin-left: 0.4rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-0.15em) rotate(45deg);
+    transition: transform var(--t-base) var(--ease-out);
+  }
+
+  .primary-nav__item--menu:hover > .primary-nav__row > a::after,
+  .primary-nav__item--menu:focus-within > .primary-nav__row > a::after {
+    transform: translateY(0.05em) rotate(225deg);
+  }
+
+  /* visibility rather than display, so the links leave the tab order while the
+     list is shut but come back the moment the parent link takes focus */
+  .primary-nav__submenu {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    display: block;
+    width: max-content;
+    max-width: min(22rem, 70vw);
+    margin: 0;
+    padding: var(--space-xs);
+    border: 1px solid var(--clr-line-on-dark);
+    border-radius: var(--radius-md);
+    background-color: var(--clr-primary-deep);
+    box-shadow: 0 20px 44px rgba(10, 30, 50, 0.32);
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, 0.35rem);
+    transition: opacity var(--t-base) var(--ease-out),
+      transform var(--t-base) var(--ease-out),
+      visibility 0s linear var(--t-base);
+  }
+
+  /* Bridges the gap between the row and the panel, so the cursor can travel
+     down to the list without passing over dead space and closing it */
+  .primary-nav__submenu::before {
+    content: "";
+    position: absolute;
+    inset: auto 0 100% 0;
+    height: var(--space-sm);
+  }
+
+  .primary-nav__item--menu:hover .primary-nav__submenu,
+  .primary-nav__item--menu:focus-within .primary-nav__submenu {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, var(--space-xs));
+    transition-delay: 0s;
+  }
+
+  .primary-nav__submenu > li:first-child,
+  .primary-nav__submenu > li:last-child {
+    padding: 0;
+  }
+
+  .primary-nav__submenu a {
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-300);
   }
 }
 
@@ -1638,69 +1806,219 @@ button {
 }
 
 
+/* ==========================================================================
+   FAQ disclosure panels
+
+   Shared: the Fee Arrangement page and the project detail page both use them.
+   Each page frames them differently, so only the panels live here.
+
+   Every panel ships open in the markup and js/global.js closes all but the
+   first, so with no JavaScript the section is a readable list of questions and
+   answers rather than a column of headings that do nothing.
+   ========================================================================== */
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq__item {
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-surface-alt);
+  /* The section is white too now, so the panels carry their own lift */
+  box-shadow: 0 10px 24px rgba(15, 42, 68, 0.06);
+}
+
+.faq__question {
+  margin: 0;
+  font-size: inherit;
+}
+
+.faq__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  border: 0;
+  /* Open is the resting state, because that is what the markup ships */
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+  font-family: inherit;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.35;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--t-base) var(--ease-out);
+}
+
+.faq__item.is-closed .faq__trigger {
+  background-color: transparent;
+}
+
+.faq__item.is-closed .faq__trigger:hover,
+.faq__trigger:focus-visible {
+  background-color: rgba(217, 169, 74, 0.22);
+}
+
+.faq__trigger-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.faq__trigger-icon svg {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+/* The arrow points up at an open panel and down at a closed one */
+.faq__item.is-closed .faq__trigger-icon {
+  transform: rotate(180deg);
+}
+
+.faq__answer {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows var(--t-panel) var(--ease-out);
+}
+
+.faq__item.is-closed .faq__answer {
+  grid-template-rows: 0fr;
+}
+
+/* The clipping half of the pair. min-height: 0 is what lets a grid row of 0fr
+   actually reach zero rather than stopping at the content's minimum. */
+.faq__answer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.faq__text {
+  margin: 0;
+  padding: var(--space-md) var(--space-lg) var(--space-lg);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.75;
+}
+
+
 /* --------------------------------------------------------------------------
-   Curved section edge
+   Curved section edges
 
-   A cream shape hung below a section and over the top of the one after it: the
-   filled half carries the cream down in a curve, while the transparent half
-   lets the next section's ground rise up on the other side.
+   Every solid-coloured section is bounded top and bottom by a curve: the one
+   at its foot carries its colour down over the section below, the one at its
+   head carries it up over the section above. Between two solid sections only
+   the upper one carries a curve, or the two would fight over the same strip.
 
-   It has to overlap the next section — that is the only way the transparent
-   half has anything to reveal — so whatever it hangs into needs enough top
-   padding to keep its own content clear of the curve. --section-space and the
-   CTA's padding both have room to spare; the marquee band is the one that does
-   not, and is given it below.
+   There are two copies of the artwork, one filled cream and one white, and a
+   section picks its own with --curve-image alongside its background-color. A
+   single file used as a mask would have coloured itself from CSS and saved the
+   duplicate — but a CSS mask taken from an external SVG is subject to the same
+   origin rules as a fetch, and over file:// every local file is its own origin,
+   so the mask fails and the curve silently disappears. Opening the pages
+   straight off disk has to keep working, so: two files.
 
-   The artwork is stretched rather than scaled: preserveAspectRatio='none' is
-   set in the file itself, so the curve flattens as the viewport widens instead
-   of being drawn at 10:1 and cropped.
+   A curve has to overlap its neighbour — that is the only way the empty half
+   has anything to reveal — so the bands it reaches into are given room for it
+   further down this file.
    -------------------------------------------------------------------------- */
+.curve-in,
 .curve-out {
   position: relative;
-  /* The section that follows is often positioned too, and would otherwise
-     paint straight over the shape hanging into it */
+  /* The neighbouring bands are positioned too, and would otherwise paint over
+     whichever shape is reaching into them */
   z-index: 1;
 }
 
+.curve-in::before,
 .curve-out::after {
   content: "";
   position: absolute;
-  top: 100%;
   left: 0;
   right: 0;
   height: var(--curve-height);
-  background-image: url("../images/svg-backgrounds/curve-divider.svg");
+  background-image: var(--curve-image, url("../images/svg-backgrounds/curve-divider.svg"));
   background-repeat: no-repeat;
   background-size: 100% 100%;
   pointer-events: none;
 }
 
-/* --section-space has room for the curve with a margin to spare, so a plain
+/* At the foot, hanging down. The artwork's own orientation: deep on the right.
+   Pulled back a pixel so the shape and the section it belongs to overlap: sat
+   exactly edge to edge, a fractional layout position leaves a hairline of the
+   section below showing through between them. */
+.curve-out::after {
+  top: calc(100% - 1px);
+}
+
+/* At the head, hanging up. Turned a half circle, which does two jobs at once —
+   it puts the filled half against the section rather than away from it, and it
+   runs the sweep the opposite way from the curve at the foot, so a section is
+   not bracketed by the same shape twice. */
+.curve-in::before {
+  bottom: calc(100% - 1px);
+  transform: scale(-1, -1);
+}
+
+/* Per-instance overrides, for when a run of sections wants the sweep broken up */
+.curve-out--flip::after {
+  transform: scaleX(-1);
+}
+
+.curve-in--flip::before {
+  transform: scaleY(-1);
+}
+
+/* --section-space has room for a curve with a margin to spare, so a plain
    .section needs nothing. These two bands sit much closer to their content —
-   the marquee is only --space-lg deep — and would take the curve across the
-   top of it, so each is given the depth of the shape plus a breath. */
+   the marquee is only --space-lg deep — so each is given the depth of the
+   shape plus a breath. Both are always preceded by a solid section, so
+   neither is conditional.
+
+   Nothing curves into a hero, and nothing curves over the map: a curve across
+   the top of a hero photograph reads as a mistake rather than a join, and one
+   over the map would sit on the embed's own controls. */
 .curve-out + .marquee,
 .curve-out + .cta {
   padding-top: calc(var(--curve-height) + var(--space-xl));
+}
+
+.marquee,
+.pricing {
+  padding-bottom: calc(var(--curve-height) + var(--space-xl));
 }
 
 .contact {
   position: relative;
   /* Contains the texture layer's negative z-index */
   isolation: isolate;
+  /* White, so its curves come from the white copy of the artwork */
+  --curve-image: url("../images/svg-backgrounds/curve-divider-white.svg");
   /* Clears the sticky header when a CTA jumps to #contact */
   scroll-margin-top: calc(var(--nav-bar-height) + var(--space-md));
   background-color: var(--clr-surface-alt);
 }
 
-/* Tortoise-shell texture behind the section. The artwork carries its own
-   near-white ground, so it is laid over the section rather than swapped in for
-   the background colour, and it is masked rather than simply tiled: a repeat
-   that runs to the edge ends on a visible seam, while this one dissolves into
-   the section ground before it gets there. Held at the size it was drawn,
-   400px, so the brass lines keep their intended weight. */
-.contact::before {
-  content: "";
+/* Tortoise-shell texture behind the section. A real element rather than a
+   pseudo: ::before and ::after both belong to the curved edges now, and a
+   section only gets two. The artwork carries its own near-white ground, so it
+   is laid over the section rather than swapped in for the background colour,
+   and it is masked rather than simply tiled — a repeat that runs to the edge
+   ends on a visible seam, while this one dissolves into the ground before it
+   gets there. Held at the size it was drawn, 400px, so the brass lines keep
+   their intended weight. */
+.section-texture {
   position: absolute;
   inset: 0;
   z-index: -1;
