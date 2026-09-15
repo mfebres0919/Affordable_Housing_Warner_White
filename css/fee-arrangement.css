@@ -24,20 +24,21 @@
   background-color: var(--clr-surface-alt);
 }
 
-/* Texture, not a picture. Line work this faint does not survive being blown
-   up to cover a section three cards tall, so on small screens it is held to
-   the section's width and sits as a band across the top; once the panel is
-   wide enough to be roughly the artwork's own 16:9, it covers. */
+/* Texture, not a picture. The tortoise-shell artwork tiles, so unlike a single
+   piece of line work it needs no scaling to fill a panel three cards tall —
+   it is held at the 400px it was drawn at, exactly as the contact section
+   holds it, and masked so the repeat dissolves rather than ending on a seam.
+   Its own strokes are already at 0.05 opacity, so no extra fading here. */
 .pricing--inverted::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background-image: url("../images/svg-backgrounds/easing-stripes-light.svg");
-  background-repeat: no-repeat;
-  background-position: top center;
-  background-size: 130% auto;
-  opacity: 0.16;
+  background-image: url("../images/svg-backgrounds/tortoise-shell.svg");
+  background-repeat: repeat;
+  background-size: 25rem 25rem;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 95%);
   pointer-events: none;
 }
 
@@ -278,11 +279,22 @@
   align-items: center;
   gap: var(--space-xs);
   padding: var(--space-xs) var(--space-md);
+  border: 1px solid var(--clr-accent);
   border-radius: var(--radius-pill);
-  background-color: var(--clr-surface);
-  color: var(--clr-primary);
+  background-color: var(--clr-primary);
+  color: var(--clr-surface);
   font-size: var(--fs-300);
   font-weight: var(--fw-semibold);
+  transition: background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+}
+
+/* Inverts under the cursor: white ground, navy edge, near-black label */
+.offer__tag:hover {
+  background-color: var(--clr-surface-alt);
+  border-color: var(--clr-primary);
+  color: var(--clr-body);
 }
 
 .offer__tag-dot {
@@ -290,6 +302,12 @@
   height: 0.4375rem;
   flex: none;
   border-radius: 50%;
+  /* The lighter brass, which holds up against the navy */
+  background-color: var(--clr-accent-light);
+  transition: background-color var(--t-base) var(--ease-out);
+}
+
+.offer__tag:hover .offer__tag-dot {
   background-color: var(--clr-accent);
 }
 

@@ -1,0 +1,186 @@
+/* ==========================================================================
+   WW Housing Development LLC — project-experience.css
+   Project Experience page only. Shared components (.page-hero,
+   .section-header, .link-arrow, .btn, contact, footer) live in global.css.
+
+   MOBILE FIRST: base rules target the smallest viewport; min-width queries
+   enhance for larger screens (handbook §12).
+   ========================================================================== */
+
+/* ==========================================================================
+   The work — photographs with a frosted panel sitting on them
+
+   The panel is translucent rather than solid, so the photograph carries on
+   behind the copy instead of being cut off by it. That only works where the
+   browser can blur what is behind the panel; where it cannot, the panel falls
+   back to a near-opaque navy, which is why the darker colour is the base and
+   the lighter one is inside @supports rather than the other way round.
+   ========================================================================== */
+.works__grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.work {
+  position: relative;
+  /* Contains the panel and clips the photograph to the corners */
+  isolation: isolate;
+  overflow: hidden;
+  /* The panel is pushed to the foot of a box with a minimum depth, rather than
+     the card being given a fixed height the copy then has to fit inside */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 24rem;
+  padding: var(--space-md);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-primary-deep);
+}
+
+.work__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.work__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms var(--ease-out);
+}
+
+.work:hover .work__media img {
+  transform: scale(1.04);
+}
+
+/* A light wash over the whole photograph. The panel does the heavy lifting for
+   the copy; this stops a bright sky from making the card shout. */
+.work__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.1) 0%,
+    rgba(10, 30, 50, 0.42) 100%
+  );
+}
+
+.work__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  border: 1px solid rgba(250, 247, 242, 0.18);
+  border-radius: var(--radius-md);
+  /* The fallback: near-opaque, for browsers with no backdrop-filter */
+  background-color: rgba(10, 30, 50, 0.82);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .work__panel {
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(14px) saturate(120%);
+    background-color: rgba(10, 30, 50, 0.42);
+  }
+}
+
+.work__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: var(--space-2xs) var(--space-sm);
+  border: 1px solid rgba(250, 247, 242, 0.28);
+  border-radius: var(--radius-pill);
+  color: var(--clr-surface);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.04em;
+}
+
+.work__tag-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent-light);
+}
+
+.work__title {
+  margin: 0;
+  color: var(--clr-surface);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.work__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.work__meta li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  color: rgba(250, 247, 242, 0.82);
+  font-size: var(--fs-200);
+}
+
+.work__meta svg {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  flex: none;
+  color: var(--clr-accent-light);
+}
+
+.work__link {
+  margin-top: var(--space-2xs);
+  color: var(--clr-surface);
+}
+
+.work__link svg {
+  color: var(--clr-accent-light);
+}
+
+/* ==========================================================================
+   Larger screens — min-width only
+   ========================================================================== */
+@media (min-width: 48em) {
+  .works__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .work {
+    min-height: 26rem;
+  }
+}
+
+@media (min-width: 64em) {
+  .works__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .work {
+    min-height: 30rem;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .work__media img {
+    transition: none;
+  }
+
+  .work:hover .work__media img {
+    transform: none;
+  }
+}
