@@ -789,7 +789,16 @@
               NO FORM HANDLER YET. action="#" discards the submission. Point this
               at a real endpoint before launch or the form silently loses enquiries.
             -->
-            <form class="form contact__form" action="#" method="post">
+            <!--
+              TO WIRE: replace YOUR_FORM_ID with the Formspree form id from the
+              firm's account. Until then the form posts nowhere. The honeypot
+              below is Formspree's: real people never see it, bots fill it in,
+              and those submissions are dropped.
+            -->
+            <form class="form contact__form" action="https://formspree.io/f/YOUR_FORM_ID" method="post">
+              <input type="hidden" name="_subject" value="Enquiry from wwhdllc.com" />
+              <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
               <div class="field">
                 <label class="field__label visually-hidden" for="contact-first">First name</label>
                 <input id="contact-first" name="first-name" type="text" autocomplete="given-name" placeholder="First Name" required />
@@ -885,6 +894,12 @@
             <div class="site-footer__newsletter">
               <h3 class="site-footer__heading">Stay Informed</h3>
               <!-- NO HANDLER YET — see the note on the contact form above. -->
+              <!--
+                STILL UNWIRED. A newsletter signup belongs with a mailing
+                list provider (Mailchimp, Buttondown, ConvertKit), not with
+                Formspree — the provider handles consent, unsubscribes and
+                the sending. Point action= at their form endpoint.
+              -->
               <form class="newsletter" action="#" method="post">
                 <label class="visually-hidden" for="newsletter-email">Email address</label>
                 <input id="newsletter-email" name="email" type="email" autocomplete="email" placeholder="Enter email address" required />

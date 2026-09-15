@@ -1,0 +1,474 @@
+/* ==========================================================================
+   WW Housing Development LLC — landing.css
+   The /start/ campaign page only. It borrows the tokens, .btn, .check, .form
+   and .field components from global.css, and nothing else: no navigation,
+   no marquee, no pricing, no map, no footer columns.
+
+   MOBILE FIRST: base rules target the smallest viewport; min-width queries
+   enhance for larger screens (handbook §12).
+   ========================================================================== */
+
+/* ==========================================================================
+   Bar — a logo and a phone number, not a navigation
+   ========================================================================== */
+.landing-bar {
+  background-color: var(--clr-primary-deep);
+}
+
+.landing-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-block: var(--space-md);
+}
+
+.landing-bar__call {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--clr-surface);
+  font-size: var(--fs-300);
+  font-weight: var(--fw-semibold);
+  text-decoration: none;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.landing-bar__call:hover,
+.landing-bar__call:focus-visible {
+  color: var(--clr-accent-light);
+}
+
+.landing-bar__call-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+  border-radius: 50%;
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.landing-bar__call-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ==========================================================================
+   Lead — the offer and the form, together above the fold on a laptop
+   ========================================================================== */
+.lead {
+  position: relative;
+  /* Contains the photograph's negative z-index */
+  isolation: isolate;
+  padding-block: var(--space-2xl);
+  background-color: var(--clr-primary-deep);
+}
+
+.lead__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.lead__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Heavier than the site's other scrims: a form sits on this one, and the
+   fields have to read as fields rather than as part of the photograph */
+.lead__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(10, 30, 50, 0.86) 0%,
+    rgba(10, 30, 50, 0.93) 100%
+  );
+}
+
+.lead__grid {
+  display: grid;
+  gap: var(--space-2xl);
+}
+
+.lead__eyebrow {
+  margin: 0 0 var(--space-sm);
+  color: var(--clr-accent-light);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.lead__title {
+  margin: 0 0 var(--space-md);
+  color: var(--clr-surface);
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.lead__text {
+  margin: 0 0 var(--space-lg);
+  max-width: 46ch;
+  color: rgba(250, 247, 242, 0.86);
+  font-size: var(--fs-500);
+  line-height: 1.6;
+}
+
+.lead__points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.lead__points .check {
+  color: var(--clr-surface);
+}
+
+/* --------------------------------------------------------------------------
+   The form card
+   -------------------------------------------------------------------------- */
+.book {
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface);
+  box-shadow: 0 24px 60px rgba(10, 30, 50, 0.32);
+  /* Clears the sticky-free bar when the closing button jumps to #book */
+  scroll-margin-top: var(--space-lg);
+}
+
+.book__title {
+  margin: 0 0 var(--space-2xs);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+}
+
+.book__text {
+  margin: 0 0 var(--space-lg);
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.6;
+}
+
+/* Visible labels here, unlike the site's contact form. On a page whose whole
+   purpose is this form, a placeholder that vanishes on focus is not enough. */
+.book .field__label {
+  display: block;
+  margin-bottom: var(--space-2xs);
+  color: var(--clr-primary);
+  font-size: var(--fs-200);
+  font-weight: var(--fw-semibold);
+}
+
+.book__note {
+  grid-column: 1 / -1;
+  margin: var(--space-sm) 0 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  text-align: center;
+}
+
+.book__note a {
+  color: var(--clr-primary);
+  font-weight: var(--fw-semibold);
+  text-decoration-color: var(--clr-accent);
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   The two principals
+   ========================================================================== */
+.people__title,
+.gives__title {
+  max-width: none;
+  margin-bottom: var(--space-xl);
+  text-align: center;
+  margin-inline: auto;
+}
+
+.people__list {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.person {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xl) var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface-alt);
+  text-align: center;
+}
+
+/* Initials, until the portraits are both available */
+.person__mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  flex: none;
+  margin-bottom: var(--space-sm);
+  border-radius: 50%;
+  background-color: var(--clr-primary);
+  color: var(--clr-accent-light);
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+}
+
+.person__name {
+  margin: 0;
+  font-size: var(--fs-500);
+  font-weight: var(--fw-bold);
+}
+
+.person__role {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   What the conversation gives you
+   ========================================================================== */
+.gives {
+  background-color: var(--clr-surface-alt);
+}
+
+.gives__list {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.give {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding: var(--space-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--clr-surface);
+}
+
+.give__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  flex: none;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius-md);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.give__icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.give__name {
+  margin: 0;
+  font-size: var(--fs-400);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+}
+
+.give__text {
+  margin: 0;
+  color: var(--clr-muted);
+  font-size: var(--fs-300);
+  line-height: 1.7;
+}
+
+/* ==========================================================================
+   The honest note — the firm's sharpest line, given a band of its own
+   ========================================================================== */
+.honest {
+  padding-block: var(--section-space);
+  background-color: var(--clr-primary);
+}
+
+.honest__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.honest__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  flex: none;
+  border-radius: var(--radius-md);
+  background-color: var(--clr-accent-light);
+  color: var(--clr-primary);
+}
+
+.honest__icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.honest__title {
+  margin: 0;
+  max-width: 22ch;
+  color: var(--clr-surface);
+  font-size: clamp(1.5rem, 4.5vw, 2.125rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.honest__text {
+  margin: 0;
+  max-width: 58ch;
+  color: rgba(250, 247, 242, 0.86);
+  font-size: var(--fs-400);
+  line-height: 1.75;
+}
+
+/* ==========================================================================
+   Closing call to action
+   ========================================================================== */
+.closer {
+  padding-block: var(--section-space);
+}
+
+.closer__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.closer__title {
+  margin: 0;
+  max-width: 20ch;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.closer__text {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--clr-muted);
+  font-size: var(--fs-400);
+  line-height: 1.7;
+}
+
+.closer__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-sm);
+}
+
+.closer__call {
+  color: var(--clr-primary);
+  font-weight: var(--fw-semibold);
+  text-decoration-color: var(--clr-accent);
+  text-decoration-thickness: 2px;
+}
+
+/* ==========================================================================
+   Foot — a line, not a sitemap
+   ========================================================================== */
+.landing-foot {
+  padding-block: var(--space-lg);
+  background-color: var(--clr-primary-deep);
+}
+
+.landing-foot__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.landing-foot__copy {
+  margin: 0;
+  color: rgba(250, 247, 242, 0.7);
+  font-size: var(--fs-200);
+}
+
+.landing-foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+  margin: 0;
+}
+
+.landing-foot__links a {
+  color: rgba(250, 247, 242, 0.82);
+  font-size: var(--fs-200);
+  text-decoration: none;
+  transition: color var(--t-base) var(--ease-out);
+}
+
+.landing-foot__links a:hover,
+.landing-foot__links a:focus-visible {
+  color: var(--clr-accent-light);
+}
+
+/* ==========================================================================
+   Larger screens — min-width only
+   ========================================================================== */
+@media (min-width: 48em) {
+  .book__form {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-md);
+  }
+
+  .book {
+    padding: var(--space-xl);
+  }
+
+  .people__list,
+  .gives__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64em) {
+  .lead {
+    padding-block: var(--section-space);
+  }
+
+  /* Copy and form side by side, so the offer and the thing it asks for are
+     on screen together rather than one scroll apart */
+  .lead__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 27rem);
+    gap: var(--space-2xl);
+    align-items: center;
+  }
+
+  .gives__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

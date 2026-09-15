@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Book a consultation | WW Housing Development LLC</title>
+    <meta
+      name="description"
+      content="A free first conversation about what your church's land could support, with a Houston pastor and a real estate attorney who have carried this work before."
+    />
+
+    <!--
+      CAMPAIGN LANDING PAGE — not part of the site's navigation.
+
+      Deliberately different from the rest of the site:
+        - no navigation, no marquee, no pricing, no map, no social links.
+          Every link is a way out, and this page has one job.
+        - no splash screen. Someone arriving from a flyer or a QR code should
+          see the offer immediately, not a logo animation.
+        - no JavaScript at all. Nothing here needs it.
+
+      Lives at /start/ so the printed URL is wwhdllc.com/start — short enough
+      for a business card, and it stays valid if the page is ever rebuilt.
+
+      Not linked from anywhere on the site, and left out of the sitemap, on
+      purpose: it is the destination for outreach, not a page to browse to.
+    -->
+
+    <link
+      rel="preload"
+      href="../fonts/inter-tight-v9-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="../fonts/inter-tight-v9-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/landing.css" />
+  </head>
+  <body class="landing">
+    <a class="skip-link" href="#book">Skip to the form</a>
+
+    <header class="landing-bar">
+      <div class="container landing-bar__inner">
+        <span class="brand">
+          <span class="brand__mark" aria-hidden="true">WW</span>
+          <span class="brand__text">
+            <span class="brand__name">WW Housing</span>
+            <span class="brand__suffix">Development LLC</span>
+          </span>
+        </span>
+
+        <a class="landing-bar__call" href="tel:+17135550147">
+          <span class="landing-bar__call-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+          </span>
+          <span class="landing-bar__call-text">(713) 555-0147</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="lead" aria-labelledby="lead-title">
+        <!-- hero-4 | stand-in -->
+        <div class="lead__bg" aria-hidden="true">
+          <picture>
+            <source media="(min-width: 48em)" srcset="../images/home/hero/hero-4.webp" type="image/webp" />
+            <source media="(min-width: 48em)" srcset="../images/home/hero/hero-4.jpg" type="image/jpeg" />
+            <source srcset="../images/home/hero/hero-4-m.webp" type="image/webp" />
+            <img src="../images/home/hero/hero-4-m.jpg" alt="" width="800" height="1000" decoding="async" fetchpriority="high" />
+          </picture>
+        </div>
+
+        <div class="container lead__grid">
+          <div class="lead__copy">
+            <p class="lead__eyebrow">Houston churches and community groups</p>
+
+            <h1 class="lead__title" id="lead-title">
+              Your church owns the land. Find out what it can <span class="mark-underline">become</span>.
+            </h1>
+
+            <p class="lead__text">
+              A free first conversation with two people who have carried this work before &mdash;
+              a pastor and a real estate attorney, both in Houston. No cost, no obligation, and a
+              straight answer about whether your property can support housing at all.
+            </p>
+
+            <ul class="lead__points">
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                The first conversation costs nothing
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Plain language, built for boards and not developers
+              </li>
+              <li class="check">
+                <span class="check__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12" /></svg></span>
+                Every fee agreed in writing before any work starts
+              </li>
+            </ul>
+          </div>
+
+          <div class="book" id="book">
+            <h2 class="book__title">Book a consultation</h2>
+            <p class="book__text">Tell us how to reach you and we will be in touch to arrange a time.</p>
+
+            <!--
+              TO WIRE: replace YOUR_FORM_ID with the Formspree form id from the
+              firm's account (formspree.io -> New Form -> copy the endpoint).
+              Until then the form posts nowhere and nothing is captured.
+
+              _subject  labels the notification email.
+              _gotcha   is Formspree's honeypot: real people never see it, bots
+                        fill it in, and Formspree drops those submissions.
+              _next     optionally redirects somewhere of ours after sending;
+                        without it Formspree shows its own thank-you page.
+            -->
+            <form class="form book__form" action="https://formspree.io/f/YOUR_FORM_ID" method="post">
+              <input type="hidden" name="_subject" value="Consultation request from wwhdllc.com/start" />
+              <input class="visually-hidden" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+              <div class="field field--wide">
+                <label class="field__label" for="book-name">Your name</label>
+                <input id="book-name" name="name" type="text" autocomplete="name" placeholder="First and last name" required />
+              </div>
+
+              <div class="field field--wide">
+                <label class="field__label" for="book-org">Church or organisation</label>
+                <input id="book-org" name="organisation" type="text" autocomplete="organization" placeholder="Optional" />
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="book-email">Email</label>
+                <input id="book-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              </div>
+
+              <div class="field">
+                <label class="field__label" for="book-phone">Phone</label>
+                <input id="book-phone" name="phone" type="tel" autocomplete="tel" placeholder="(713) 000-0000" required />
+              </div>
+
+              <div class="form__actions">
+                <button class="btn btn--accent btn--with-badge" type="submit">
+                  Book My Consultation
+                  <span class="btn__badge" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  </span>
+                </button>
+              </div>
+
+              <p class="book__note">Or call <a href="tel:+17135550147">(713) 555-0147</a> and speak to someone directly.</p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <section class="section people" aria-labelledby="people-title">
+        <div class="container">
+          <h2 class="section-heading people__title" id="people-title">The two people you will be talking to</h2>
+
+          <!--
+            MONOGRAMS, not photographs. Rev. Dr. White's portrait has not been
+            supplied yet, and one photograph beside one placeholder reads as an
+            oversight. Swap both for pictures when the second one arrives.
+          -->
+          <ul class="people__list">
+            <li class="person">
+              <span class="person__mark" aria-hidden="true">MW</span>
+              <h3 class="person__name">Rev. Dr. Marilyn White</h3>
+              <p class="person__role">Three decades of ministry in Houston's Third Ward, and leadership on a $33 million affordable senior housing community.</p>
+            </li>
+
+            <li class="person">
+              <span class="person__mark" aria-hidden="true">DW</span>
+              <h3 class="person__name">T. Deon Warner, Esq.</h3>
+              <p class="person__role">A legal practice built on church property, tax credits, seller-financed closings and development agreements.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section gives" aria-labelledby="gives-title">
+        <div class="container">
+          <h2 class="section-heading gives__title" id="gives-title">What the first conversation gives you</h2>
+
+          <ul class="gives__list">
+            <li class="give">
+              <span class="give__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+              </span>
+              <h3 class="give__name">A straight read on the property</h3>
+              <p class="give__text">What the land can physically carry, and whether the economics support housing on it at all.</p>
+            </li>
+
+            <li class="give">
+              <span class="give__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2" /><polyline points="2 17 12 22 22 17" /><polyline points="2 12 12 17 22 12" /></svg>
+              </span>
+              <h3 class="give__name">The funding routes that actually apply</h3>
+              <p class="give__text">Tax credits, City of Houston programmes, HUD routes and private capital, weighed against your site and your goals.</p>
+            </li>
+
+            <li class="give">
+              <span class="give__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="8" y1="13" x2="16" y2="13" /><line x1="8" y1="17" x2="13" y2="17" /></svg>
+              </span>
+              <h3 class="give__name">What it would cost to go further</h3>
+              <p class="give__text">If there is a project worth pursuing, you will know what the next stage costs before you commit to it.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="honest" aria-labelledby="honest-title">
+        <div class="container honest__inner">
+          <span class="honest__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18" /><path d="M5 7h14" /><path d="m5 7-3 7h6l-3-7z" /><path d="m19 7-3 7h6l-3-7z" /><path d="M8 21h8" /></svg>
+          </span>
+
+          <h2 class="honest__title" id="honest-title">If the numbers do not work, we will say so</h2>
+
+          <p class="honest__text">
+            Not every site can carry housing, and not every affordability target can be funded. If
+            that is true of your property we will tell you early and explain why, rather than
+            letting you spend a year discovering it.
+          </p>
+        </div>
+      </section>
+
+      <section class="closer" aria-labelledby="closer-title">
+        <div class="container closer__inner">
+          <h2 class="closer__title" id="closer-title">Bring us your land and your questions</h2>
+
+          <p class="closer__text">The first conversation costs nothing, and you will leave it knowing more than you came in with.</p>
+
+          <div class="closer__actions">
+            <a class="btn btn--accent btn--with-badge" href="#book">
+              Book a Consultation
+              <span class="btn__badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </a>
+
+            <a class="closer__call" href="tel:+17135550147">or call (713) 555-0147</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="landing-foot">
+      <div class="container landing-foot__inner">
+        <p class="landing-foot__copy">&copy; 2026 WW Housing Development LLC &middot; Houston, Texas</p>
+
+        <p class="landing-foot__links">
+          <a href="mailto:info@wwhdllc.com">info@wwhdllc.com</a>
+          <a href="../index.html">See the full site</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
