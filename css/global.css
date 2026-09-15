@@ -1986,15 +1986,15 @@ button {
    shape plus a breath. Both are always preceded by a solid section, so
    neither is conditional.
 
-   Nothing curves into a hero, and nothing curves over the map: a curve across
-   the top of a hero photograph reads as a mistake rather than a join, and one
-   over the map would sit on the embed's own controls. */
-.curve-out + .marquee,
+   Three bands take no curve at all. A hero gets none because a curve across
+   the top of a photograph reads as a mistake rather than a join; the map gets
+   none because it would sit on the embed's own controls; and the marquee gets
+   none because the band is barely deeper than the curve itself, so the shape
+   lands across the scrolling row however much padding it is given. */
 .curve-out + .cta {
   padding-top: calc(var(--curve-height) + var(--space-xl));
 }
 
-.marquee,
 .pricing {
   padding-bottom: calc(var(--curve-height) + var(--space-xl));
 }
